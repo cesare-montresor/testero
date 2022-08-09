@@ -1,0 +1,39 @@
+debug: true
+
+spring:
+  datasource:
+    auth:
+      url: jdbc:postgresql://localhost:5432/testero_auth
+      username: testero_auth
+      password: testero_auth
+      driver-class-name: org.postgresql.Driver
+
+    core:
+      url: jdbc:postgresql://localhost:5432/testero_core
+      username: testero_core
+      password: testero_core
+      driver-class-name: org.postgresql.Driver
+
+
+graphql:
+  tools:
+    schema-location-pattern: "**/*.graphql"
+  playground:
+    enabled: true
+  servlet:
+    # Sets if GraphQL servlet should be created and exposed. If not specified defaults to "true".
+    enabled: true
+    # Sets the path where GraphQL servlet will be exposed. If not specified defaults to "/graphql"
+    mapping: /graphql
+
+    cors-enabled: false
+    cors:
+      allowed-origins: http://localhost
+      allowed-methods: GET, HEAD, POST
+    # if you want to @ExceptionHandler annotation for custom GraphQLErrors
+    exception-handlers-enabled: true
+    context-setting: PER_REQUEST_WITH_INSTRUMENTATION
+    # Sets if asynchronous operations are supported for GraphQL requests. If not specified defaults to true.
+    async-mode-enabled: true
+
+

@@ -1,0 +1,23 @@
+html, body{
+    height: 100%;
+}
+
+h1{
+    color: #b00b69;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+/* LOGIN */
+#page-login
+{
+    width: 300px;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
