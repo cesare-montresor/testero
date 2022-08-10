@@ -2,6 +2,7 @@ package it.univr.di.testero.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,6 +14,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.savedrequest.NullRequestCache;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 //TODO: replace with security for graphql
 
@@ -29,10 +33,23 @@ public class SecurityConfig {
         auth.userDetailsService(userDetailsService);
     }
 
+    //Disable cors to enable GQL testing during development
+    @Bean
+    public CorsFilter corsFilter() {
+        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        final CorsConfiguration config = new CorsConfiguration();
+        config.addAllowedOrigin("*");
+        config.addAllowedHeader("*");
+        config.addAllowedMethod("*");
+        source.registerCorsConfiguration("/**", config);
+        return new CorsFilter(source);
+    }
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        //Cross-site request forgery: OFF
-        http.csrf().disable();
+        //disable cors and csrf
+        http.cors().and().csrf().disable();
+
         // Public
         http.authorizeRequests()
             .regexMatchers("/css/.*").permitAll()
@@ -42,8 +59,8 @@ public class SecurityConfig {
 
         // GraphQL
         http.authorizeRequests()
-            .regexMatchers("/graphql.*").authenticated()
-            .antMatchers("/graphiql").authenticated();
+            .regexMatchers("/graphql.*").permitAll() //.authenticated()
+            .antMatchers("/graphiql").permitAll(); //.authenticated();
 
         // Login/Logout
         http.formLogin().loginPage("/login").permitAll();

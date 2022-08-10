@@ -25,7 +25,8 @@ public class MainController implements ErrorController {
     @GetMapping("/")
     public String getIndex() {
         User authUser = authService.userGet();
-
+        authService.userAdd("mario", "rossi", "mario rossi", "TEACHER");
+        authService.userAdd("luigi", "bianchi", "luigi bianchi", "STUDENT");
         if (authUser == null) {
             return "redirect:/login";
         }else{
