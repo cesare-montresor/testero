@@ -1,8 +1,6 @@
 package it.univr.di.testero.config;
 
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,31 +16,29 @@ import java.util.Objects;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-  basePackages = "it.univr.di.testero.repository.auth",
-  entityManagerFactoryRef = "authEntityManagerFactory",
-  transactionManagerRef = "authTransactionManager"
+  basePackages = "it.univr.di.testero.repository.core",
+  entityManagerFactoryRef = "coreEntityManagerFactory",
+  transactionManagerRef = "coreTransactionManager"
 )
-public class AuthJpaConfig {
-
-
+public class CoreJpaConfig {
     @Bean
-    public LocalContainerEntityManagerFactoryBean authEntityManagerFactory(
-      @Qualifier("authDataSource") DataSource dataSource,
+    public LocalContainerEntityManagerFactoryBean coreEntityManagerFactory(
+      @Qualifier("coreDataSource") DataSource dataSource,
       EntityManagerFactoryBuilder builder)
     {
         return builder
           .dataSource(dataSource)
-          .packages("it.univr.di.testero.model.auth")
+          .packages("it.univr.di.testero.model.core")
           .build();
     }
 
     @Bean
-    public PlatformTransactionManager authTransactionManager(
-      @Qualifier("authEntityManagerFactory") LocalContainerEntityManagerFactoryBean authEntityManagerFactory) {
+    public PlatformTransactionManager coreTransactionManager(
+      @Qualifier("coreEntityManagerFactory") LocalContainerEntityManagerFactoryBean coreEntityManagerFactory) {
         return new JpaTransactionManager(
-                Objects.requireNonNull(
-                        authEntityManagerFactory.getObject()
-                )
+            Objects.requireNonNull(
+                coreEntityManagerFactory.getObject()
+            )
         );
     }
 }

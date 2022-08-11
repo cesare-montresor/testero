@@ -3,6 +3,8 @@ package it.univr.di.testero.controller;
 
 import it.univr.di.testero.config.AuthService;
 import it.univr.di.testero.model.auth.User;
+import it.univr.di.testero.model.core.Test;
+import it.univr.di.testero.repository.core.TestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
@@ -22,9 +24,19 @@ public class MainController implements ErrorController {
     @Autowired
     AuthService authService;
 
+
+    @Autowired
+    TestRepository testRepository;
+
     @GetMapping("/")
     public String getIndex() {
         User authUser = authService.userGet();
+
+        long date = System.currentTimeMillis() / 1000L;
+        Test t = new Test(date,"Test 0",false,false);
+        testRepository.save(t);
+
+
         authService.userAdd("mario", "rossi", "mario rossi", "TEACHER");
         authService.userAdd("luigi", "bianchi", "luigi bianchi", "STUDENT");
         if (authUser == null) {

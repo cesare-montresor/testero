@@ -10,13 +10,13 @@ CREATE TABLE InTest (
 );
 */
 
-
-
-
+/*
 @Entity
 @Table(name="intest", schema = "testero_core")
-public class InTest {
+*/
 
+public class InTest {
+   /*
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id = 0L;
@@ -25,14 +25,6 @@ public class InTest {
     String nome;
     Boolean ordineCasuale;
     Boolean domandeConNumero;
-
-    /*
-    @OneToMany(mappedBy = "mainDoctor", orphanRemoval = true, cascade = CascadeType.ALL)
-    Collection<Patient> patients;
-
-    @OneToMany(mappedBy = "doctor", orphanRemoval = true, cascade = CascadeType.ALL)
-    Collection<Prescription> prescriptions;
-    */
 
     public InTest() {}
 
@@ -44,18 +36,5 @@ public class InTest {
         this.active=active;
     }
 
-    public InTest(String username, String password, String name, String roles) {
-        this(username, password, name, roles, true);
-    }
-
-    /*
-    public String toString(){
-        return "Id: "+ id + "\nUsername: " + username + "\n" +
-                "Name: " + username + "\n" +
-                "Roles: " + username + "\n" ;
-    }
-    */
-
-
-
+ */
 }

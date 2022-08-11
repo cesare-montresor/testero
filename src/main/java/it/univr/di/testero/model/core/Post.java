@@ -1,4 +1,4 @@
-package it.univr.di.testero.repository.core;
+package it.univr.di.testero.model.core;
 
 
 import graphql.kickstart.tools.GraphQLQueryResolver;

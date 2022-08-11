@@ -3,7 +3,7 @@ import javax.persistence.*;
 import java.util.List;
 
 /*
-CREATE TABLE Test (
+CREATE TABLE test (
     data TIMESTAMP NOT NULL ,
     nome VARCHAR NOT NULL ,
     ordineCasuale BOOLEAN DEFAULT FALSE , -- le domande devono essere presentate in ordine casuale
@@ -14,6 +14,7 @@ CREATE TABLE Test (
 
 @Entity
 @Table(name="test", schema = "testero_core")
+@IdClass(TestId.class)
 public class Test {
 
     @Id
@@ -27,8 +28,12 @@ public class Test {
     @ManyToMany
     @JoinTable(
             name="in_test", schema = "testero_core",
-            joinColumns=@JoinColumn(name="person_id", referencedColumnName="id"),
-            inverseJoinColumns=@JoinColumn(name="country_id", referencedColumnName="id"))
+            joinColumns= @JoinColumn(name="domanda", referencedColumnName="nome"),
+            inverseJoinColumns= {
+                @JoinColumn(name="dataTest", referencedColumnName="id"),
+                @JoinColumn(name="nomeTest", referencedColumnName="id")
+            }
+    )
     private List<Domanda> domande;
 
     /*

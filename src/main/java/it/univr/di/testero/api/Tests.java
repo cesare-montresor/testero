@@ -1,7 +1,7 @@
 package it.univr.di.testero.api;
 
 import graphql.kickstart.tools.GraphQLQueryResolver;
-import it.univr.di.testero.repository.core.Post;
+import it.univr.di.testero.model.core.Post;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
