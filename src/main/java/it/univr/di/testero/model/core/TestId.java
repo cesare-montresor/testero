@@ -1,13 +1,16 @@
 package it.univr.di.testero.model.core;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 public class TestId implements Serializable {
-    Long data;
-    String nome;
+    public LocalDateTime data;
+    public String nome;
    // Constructors
    // Getters /Setters equals and hashcode
-    public TestId(Long data, String nome) {
+    public TestId(){}
+
+    public TestId(LocalDateTime data, String nome) {
         this.data = data;
         this.nome = nome;
     }

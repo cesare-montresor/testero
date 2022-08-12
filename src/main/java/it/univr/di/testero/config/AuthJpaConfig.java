@@ -18,12 +18,24 @@ import java.util.Objects;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-  basePackages = "it.univr.di.testero.repository.auth",
+  basePackages = {"it.univr.di.testero.repository.auth"},
   entityManagerFactoryRef = "authEntityManagerFactory",
   transactionManagerRef = "authTransactionManager"
 )
 public class AuthJpaConfig {
 
+    @Bean
+    @ConfigurationProperties("spring.datasource.auth")
+    public DataSourceProperties authDataSourceProperties() {
+        return new DataSourceProperties();
+    }
+
+    @Bean
+    public DataSource authDataSource() {
+        return authDataSourceProperties()
+                .initializeDataSourceBuilder()
+                .build();
+    }
 
     @Bean
     public LocalContainerEntityManagerFactoryBean authEntityManagerFactory(

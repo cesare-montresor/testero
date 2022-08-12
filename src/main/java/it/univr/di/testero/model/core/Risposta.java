@@ -1,5 +1,6 @@
 package it.univr.di.testero.model.core;
 import javax.persistence.*;
+import java.util.Collection;
 
 /*
 CREATE TABLE Risposta (
@@ -17,17 +18,19 @@ public class Risposta {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long id = 0L;
+    public Long id = 0L;
     public String testo;
     public Float punteggio;
     @ManyToOne
     @JoinColumn(name = "domanda")
     public Domanda domanda;
 
+    @OneToMany(mappedBy = "risposta", orphanRemoval = true, cascade = CascadeType.ALL)
+    Collection<CompilazioneRisposta> compilazioniRisposte;
 
     public Risposta() {}
 
-    public Risposta(String testo, Float punteggio, Domanda domanda, String roles, Boolean active ){
+    public Risposta(String testo, Float punteggio, Domanda domanda){
         this.testo=testo;
         this.punteggio=punteggio;
         this.domanda=domanda;

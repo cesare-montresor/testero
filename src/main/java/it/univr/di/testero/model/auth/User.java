@@ -1,6 +1,8 @@
 package it.univr.di.testero.model.auth;
-import javax.persistence.*;
+import it.univr.di.testero.model.core.Compilazione;
 
+import javax.persistence.*;
+import java.util.Collection;
 
 
 @Entity
@@ -16,14 +18,6 @@ public class User {
     String name;
     String roles;
     Boolean active;
-
-    /*
-    @OneToMany(mappedBy = "mainDoctor", orphanRemoval = true, cascade = CascadeType.ALL)
-    Collection<Patient> patients;
-
-    @OneToMany(mappedBy = "doctor", orphanRemoval = true, cascade = CascadeType.ALL)
-    Collection<Prescription> prescriptions;
-    */
 
     public User() {}
 

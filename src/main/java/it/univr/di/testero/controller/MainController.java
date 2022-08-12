@@ -3,7 +3,11 @@ package it.univr.di.testero.controller;
 
 import it.univr.di.testero.config.AuthService;
 import it.univr.di.testero.model.auth.User;
+import it.univr.di.testero.model.core.Domanda;
+import it.univr.di.testero.model.core.Risposta;
 import it.univr.di.testero.model.core.Test;
+import it.univr.di.testero.repository.core.DomandaRepository;
+import it.univr.di.testero.repository.core.RispostaRepository;
 import it.univr.di.testero.repository.core.TestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.error.ErrorController;
@@ -16,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 
 
 @Controller
@@ -27,18 +32,31 @@ public class MainController implements ErrorController {
 
     @Autowired
     TestRepository testRepository;
+    @Autowired
+    DomandaRepository domandaRepository;
+    @Autowired
+    RispostaRepository rispostaRepository;
 
     @GetMapping("/")
     public String getIndex() {
         User authUser = authService.userGet();
 
-        long date = System.currentTimeMillis() / 1000L;
+        LocalDateTime date = LocalDateTime.now();
         Test t = new Test(date,"Test 0",false,false);
         testRepository.save(t);
 
+        Domanda d = new Domanda("Tempo", "Che tempo fa?", 10.0F, false, false);
+        domandaRepository.save(d);
 
-        authService.userAdd("mario", "rossi", "mario rossi", "TEACHER");
-        authService.userAdd("luigi", "bianchi", "luigi bianchi", "STUDENT");
+        Risposta r1 = new Risposta("Sole", 1.0F, d);
+        Risposta r2 = new Risposta("Pioggia", 0.0F, d);
+        Risposta r3 = new Risposta("Neve", 0.0F, d);
+        rispostaRepository.save(r1);
+        rispostaRepository.save(r2);
+        rispostaRepository.save(r3);
+
+        //authService.userAdd("mario", "rossi", "mario rossi", "TEACHER");
+        //authService.userAdd("luigi", "bianchi", "luigi bianchi", "STUDENT");
         if (authUser == null) {
             return "redirect:/login";
         }else{

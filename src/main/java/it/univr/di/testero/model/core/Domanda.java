@@ -18,27 +18,22 @@ CREATE TABLE Domanda (
 public class Domanda {
 
     @Id
-    String nome;
-    String testo;
-    Float punti;
-    Boolean ordineCasuale;
-    Boolean domandeConNumero;
-
+    public String nome;
+    public String testo;
+    public Float punti;
+    public Boolean ordineCasuale;
+    public Boolean domandeConNumero;
 
     @OneToMany(mappedBy = "domanda", orphanRemoval = true, cascade = CascadeType.ALL)
-    Collection<Risposta> risposte;
+    public Collection<Risposta> risposte;
 
 
-    @ManyToMany
-    @JoinTable(
-            name="in_test", schema = "testero_core",
-            joinColumns= {
-                @JoinColumn(name="dataTest", referencedColumnName="id"),
-                @JoinColumn(name="nomeTest", referencedColumnName="id")
-            },
-            inverseJoinColumns=@JoinColumn(name="domanda", referencedColumnName="nome")
-    )
-    private List<Test> tests;
+    @ManyToMany(mappedBy = "domande")
+    public Collection<Test> tests;
+
+    @OneToMany(mappedBy = "domanda", orphanRemoval = true, cascade = CascadeType.ALL)
+    public Collection<CompilazioneRisposta> compilazioniRisposte;
+
 
 
     public Domanda() {}

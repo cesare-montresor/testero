@@ -1,5 +1,7 @@
 package it.univr.di.testero.model.core;
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.List;
 
 /*
@@ -10,6 +12,13 @@ CREATE TABLE test (
     domandeConNumero BOOLEAN DEFAULT FALSE , -- le domande devono essere numerate
     PRIMARY KEY ( data , nome )
 );
+
+CREATE TABLE in_test (
+    domanda VARCHAR REFERENCES Domanda ,
+    dataTest TIMESTAMP NOT NULL ,
+    nomeTest VARCHAR NOT NULL ,
+    FOREIGN KEY ( dataTest , nomeTest ) REFERENCES Test
+);
 */
 
 @Entity
@@ -18,35 +27,27 @@ CREATE TABLE test (
 public class Test {
 
     @Id
-    Long data;
+    public LocalDateTime data;
     @Id
-    String nome;
-    Boolean ordineCasuale;
-    Boolean domandeConNumero;
+    public String nome;
+    public Boolean ordineCasuale;
+    public Boolean domandeConNumero;
 
 
     @ManyToMany
     @JoinTable(
             name="in_test", schema = "testero_core",
-            joinColumns= @JoinColumn(name="domanda", referencedColumnName="nome"),
-            inverseJoinColumns= {
-                @JoinColumn(name="dataTest", referencedColumnName="id"),
-                @JoinColumn(name="nomeTest", referencedColumnName="id")
-            }
+            joinColumns= {@JoinColumn(name="dataTest"), @JoinColumn(name="nomeTest")},
+            inverseJoinColumns={@JoinColumn(name="nome")}
     )
-    private List<Domanda> domande;
+    public List<Domanda> domande;
 
-    /*
-    @OneToMany(mappedBy = "mainDoctor", orphanRemoval = true, cascade = CascadeType.ALL)
-    Collection<Patient> patients;
-
-    @OneToMany(mappedBy = "doctor", orphanRemoval = true, cascade = CascadeType.ALL)
-    Collection<Prescription> prescriptions;
-    */
+    @OneToMany(mappedBy = "test", orphanRemoval = true, cascade = CascadeType.ALL)
+    Collection<Compilazione> compilazioni;
 
     public Test() {}
 
-    public Test(Long data, String nome, Boolean ordineCasuale, Boolean domandeConNumero ){
+    public Test(LocalDateTime data, String nome, Boolean ordineCasuale, Boolean domandeConNumero ){
         this.data=data;
         this.nome=nome;
         this.ordineCasuale=ordineCasuale;

@@ -8,5 +8,4 @@ type Query {
     # TESTS
     hi: String!
     greetings(name: String ): String!
-    recentPosts: [Post]!
 }
