@@ -1,0 +1,19 @@
+input AddTestData{
+    nome: String!
+    ordineCasuale: Boolean!
+    domandeConNumero: Boolean!
+}
+
+input AddDomandaData{
+    nome: String!
+    testo: String!
+    punti: Float!
+    ordineCasuale: Boolean!
+    risposteConNumero: Boolean!
+    risposte: [AddRispostaData]!
+}
+
+input AddRispostaData{
+    testo: String!
+    punteggio: Float
+}

@@ -11,13 +11,13 @@ public class User {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long id = 0L;
+    public Long id = 0L;
 
-    String username;
-    String password;
-    String name;
-    String roles;
-    Boolean active;
+    public String username;
+    public String password;
+    public String name;
+    public String roles;
+    public Boolean active;
 
     public User() {}
 

@@ -18,11 +18,13 @@ CREATE TABLE Domanda (
 public class Domanda {
 
     @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    public Long id = 0L;
     public String nome;
     public String testo;
     public Float punti;
     public Boolean ordineCasuale;
-    public Boolean domandeConNumero;
+    public Boolean risposteConNumero;
 
     @OneToMany(mappedBy = "domanda", orphanRemoval = true, cascade = CascadeType.ALL)
     public Collection<Risposta> risposte;
@@ -38,12 +40,12 @@ public class Domanda {
 
     public Domanda() {}
 
-    public Domanda(String nome, String testo, Float punti, Boolean ordineCasuale, Boolean domandeConNumero ){
+    public Domanda(String nome, String testo, Float punti, Boolean ordineCasuale, Boolean risposteConNumero ){
         this.nome=nome;
         this.testo=testo;
         this.punti=punti;
         this.ordineCasuale=ordineCasuale;
-        this.domandeConNumero=domandeConNumero;
+        this.risposteConNumero=risposteConNumero;
     }
 
 

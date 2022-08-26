@@ -1,6 +1,0 @@
-# The Root Query for the application
-extend type Query {
-    # Auth
-    login(username: String, password: String): String!
-    logout: Boolean!
-}

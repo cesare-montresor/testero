@@ -39,9 +39,9 @@ public class Compilazione {
 
     public Compilazione() {}
 
-    public Compilazione(Test test, User user, Boolean completo ){
+    public Compilazione(Test test, Long user_id, Boolean completo ){
         this.test=test;
-        /*this.user=user;*/
+        this.user_id=user_id;
         this.completo=completo;
     }
 

@@ -5,7 +5,8 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 import java.util.Optional;
 
-public interface DomandaRepository extends CrudRepository<Domanda, String> {
+public interface DomandaRepository extends CrudRepository<Domanda, Long> {
     List<Domanda> findAll();
-    Optional<Domanda> findById(String name);
+    Optional<Domanda> findById(Long id);
+    Optional<Domanda> findByNome(String nome);
 }

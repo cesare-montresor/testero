@@ -23,12 +23,12 @@ CREATE TABLE in_test (
 
 @Entity
 @Table(name="test", schema = "testero_core")
-@IdClass(TestId.class)
 public class Test {
 
     @Id
-    public LocalDateTime data;
-    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    public Long id;
+    public Long data;
     public String nome;
     public Boolean ordineCasuale;
     public Boolean domandeConNumero;
@@ -37,8 +37,8 @@ public class Test {
     @ManyToMany
     @JoinTable(
             name="in_test", schema = "testero_core",
-            joinColumns= {@JoinColumn(name="dataTest"), @JoinColumn(name="nomeTest")},
-            inverseJoinColumns={@JoinColumn(name="nome")}
+            joinColumns= {@JoinColumn(name="test_id")},
+            inverseJoinColumns={@JoinColumn(name="domanda_id")}
     )
     public List<Domanda> domande;
 
@@ -47,7 +47,7 @@ public class Test {
 
     public Test() {}
 
-    public Test(LocalDateTime data, String nome, Boolean ordineCasuale, Boolean domandeConNumero ){
+    public Test(Long data, String nome, Boolean ordineCasuale, Boolean domandeConNumero ){
         this.data=data;
         this.nome=nome;
         this.ordineCasuale=ordineCasuale;

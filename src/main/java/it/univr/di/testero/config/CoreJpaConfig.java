@@ -19,7 +19,7 @@ import java.util.Objects;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-  basePackages = {"it.univr.di.testero.repository.core"},
+  basePackages = {"it.univr.di.testero.repository"},
   entityManagerFactoryRef = "coreEntityManagerFactory",
   transactionManagerRef = "coreTransactionManager"
 )

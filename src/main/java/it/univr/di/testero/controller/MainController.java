@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.util.Optional;
 
 
 @Controller
@@ -41,22 +43,7 @@ public class MainController implements ErrorController {
     public String getIndex() {
         User authUser = authService.userGet();
 
-        LocalDateTime date = LocalDateTime.now();
-        Test t = new Test(date,"Test 0",false,false);
-        testRepository.save(t);
 
-        Domanda d = new Domanda("Tempo", "Che tempo fa?", 10.0F, false, false);
-        domandaRepository.save(d);
-
-        Risposta r1 = new Risposta("Sole", 1.0F, d);
-        Risposta r2 = new Risposta("Pioggia", 0.0F, d);
-        Risposta r3 = new Risposta("Neve", 0.0F, d);
-        rispostaRepository.save(r1);
-        rispostaRepository.save(r2);
-        rispostaRepository.save(r3);
-
-        //authService.userAdd("mario", "rossi", "mario rossi", "TEACHER");
-        //authService.userAdd("luigi", "bianchi", "luigi bianchi", "STUDENT");
         if (authUser == null) {
             return "redirect:/login";
         }else{

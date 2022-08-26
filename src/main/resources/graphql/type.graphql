@@ -1,0 +1,25 @@
+type Test{
+    id: Int!
+    data: Int!
+    nome: String!
+    ordineCasuale: Boolean!
+    domandeConNumero: Boolean!
+    domande: [Domanda]
+}
+
+type Domanda{
+    id: Int!
+    nome: String!
+    testo: String!
+    punti: Float!
+    ordineCasuale: Boolean!
+    risposteConNumero: Boolean!
+    risposte: [Risposta]
+}
+
+type Risposta{
+    id: Int!
+    testo: String!
+    punteggio: Float
+    domanda: Domanda
+}
