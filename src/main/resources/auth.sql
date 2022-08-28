@@ -4,7 +4,7 @@
 
 CREATE TABLE IF NOT EXISTS testero_auth."user"
 (
-    id bigint NOT NULL ,
+    id bigint NOT NULL,
     username character varying(100) COLLATE pg_catalog."default" NOT NULL,
     password character varying(100) COLLATE pg_catalog."default" NOT NULL,
     name character varying(100) COLLATE pg_catalog."default" NOT NULL,
@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS testero_auth."user"
     active boolean NOT NULL,
     CONSTRAINT "User_pkey" PRIMARY KEY (id),
     CONSTRAINT "User_username_unique" UNIQUE (username)
-    )
+)
 
     TABLESPACE pg_default;
 
