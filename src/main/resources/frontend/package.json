@@ -12,9 +12,9 @@
     "react-scripts": "^5.0.1"
   },
   "scripts": {
-    "init": "npm install; npm run build",
+    "init": "npm install",
     "start": "react-scripts start",
-    "build": "BUILD_PATH=../static/app/ react-scripts build",
+    "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
