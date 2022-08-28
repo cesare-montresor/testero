@@ -1,0 +1,33 @@
+{
+  "name": "swag0",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "/app/",
+  "dependencies": {
+    "graphql": "^16.6.0",
+    "graphql-request": "^4.3.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "^5.0.1"
+  },
+  "scripts": {
+    "init": "npm install; npm run build",
+    "start": "react-scripts start",
+    "build": "BUILD_PATH=../static/app/ react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

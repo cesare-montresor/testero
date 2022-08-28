@@ -1,6 +1,5 @@
-package it.univr.di.testero.repository.core;
-import it.univr.di.testero.model.core.Domanda;
-import it.univr.di.testero.model.core.Risposta;
+package it.univr.di.testero.repository;
+import it.univr.di.testero.model.Risposta;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

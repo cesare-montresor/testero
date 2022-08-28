@@ -1,5 +1,4 @@
-package it.univr.di.testero.model.core;
-import it.univr.di.testero.model.auth.User;
+package it.univr.di.testero.model;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -29,7 +28,8 @@ public class Compilazione {
     @ManyToOne
     public Test test;
 
-    public Long user_id;
+    @ManyToOne
+    public User user;
 
     public Boolean completo;
 
@@ -39,9 +39,9 @@ public class Compilazione {
 
     public Compilazione() {}
 
-    public Compilazione(Test test, Long user_id, Boolean completo ){
+    public Compilazione(Test test, User user, Boolean completo ){
         this.test=test;
-        this.user_id=user_id;
+        this.user=user;
         this.completo=completo;
     }
 

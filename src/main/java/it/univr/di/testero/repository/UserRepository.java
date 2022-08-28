@@ -1,5 +1,5 @@
-package it.univr.di.testero.repository.auth;
-import it.univr.di.testero.model.auth.User;
+package it.univr.di.testero.repository;
+import it.univr.di.testero.model.User;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

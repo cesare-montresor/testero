@@ -2,13 +2,10 @@ package it.univr.di.testero.controller;
 
 
 import it.univr.di.testero.config.AuthService;
-import it.univr.di.testero.model.auth.User;
-import it.univr.di.testero.model.core.Domanda;
-import it.univr.di.testero.model.core.Risposta;
-import it.univr.di.testero.model.core.Test;
-import it.univr.di.testero.repository.core.DomandaRepository;
-import it.univr.di.testero.repository.core.RispostaRepository;
-import it.univr.di.testero.repository.core.TestRepository;
+import it.univr.di.testero.model.User;
+import it.univr.di.testero.repository.DomandaRepository;
+import it.univr.di.testero.repository.RispostaRepository;
+import it.univr.di.testero.repository.TestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
@@ -20,9 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
-import java.util.Optional;
 
 
 @Controller
@@ -55,7 +49,7 @@ public class MainController implements ErrorController {
     public String getHome(Model model) {
         User authUser = authService.userGet();
         model.addAttribute("user", authUser);
-        return "home";
+        return "redirect:/app/index.html";
     }
 
     @GetMapping("/login")

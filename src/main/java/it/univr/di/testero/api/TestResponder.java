@@ -2,8 +2,8 @@ package it.univr.di.testero.api;
 
 import graphql.kickstart.tools.GraphQLMutationResolver;
 import it.univr.di.testero.api.input.AddTestData;
-import it.univr.di.testero.model.core.Test;
-import it.univr.di.testero.repository.core.TestRepository;
+import it.univr.di.testero.model.Test;
+import it.univr.di.testero.repository.TestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

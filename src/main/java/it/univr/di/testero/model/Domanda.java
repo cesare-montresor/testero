@@ -1,7 +1,6 @@
-package it.univr.di.testero.model.core;
+package it.univr.di.testero.model;
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.List;
 
 /*
 CREATE TABLE Domanda (

@@ -2,8 +2,8 @@ package it.univr.di.testero.api;
 
 import graphql.kickstart.tools.GraphQLQueryResolver;
 import it.univr.di.testero.config.AuthService;
-import it.univr.di.testero.model.auth.User;
-import it.univr.di.testero.repository.auth.UserRepository;
+import it.univr.di.testero.model.User;
+import it.univr.di.testero.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

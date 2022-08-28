@@ -1,0 +1,94 @@
+/* HTML override */
+html, body {  
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%
+}
+
+a, a:hover, a:visited, a:active{
+  text-decoration: none;
+  color: black;
+}
+
+/* COMMON */
+
+.btn-bar a{
+  padding: 10px;
+  background-color: orange;
+  border-radius: 5px;
+}
+
+/* MAIN PAGE */
+
+.page-main{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height:max-content;
+  padding: 10px;
+}
+
+.page-content{
+  padding: 10px;
+}
+
+.page-title{
+  font-size: 30px;
+
+}
+
+/* MENU */
+.menu-main{
+  padding: 10px;
+}
+
+.menu-main a{
+  margin-right: 10px;
+}
+
+
+/* TEST LIST */
+
+.test-list{
+  display: flex;
+  flex-direction: column;
+}
+
+.test-list-row{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* ADD TEST */
+
+.test-add{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.test-add-main{
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  min-width: 300px;
+}
+
+.test-add-main-nome{
+  display: flex;
+  flex-direction: column;
+}
+
+
+.test-add-main-order, .test-add-main-numbered{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.test-add-main-controls{
+  display: flex;
+  justify-content: center;
+}

@@ -1,8 +1,6 @@
-package it.univr.di.testero.model.auth;
-import it.univr.di.testero.model.core.Compilazione;
+package it.univr.di.testero.model;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 
 @Entity

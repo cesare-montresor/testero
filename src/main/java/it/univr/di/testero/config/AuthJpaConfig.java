@@ -1,11 +1,15 @@
 package it.univr.di.testero.config;
 
+import it.univr.di.testero.model.User;
+import it.univr.di.testero.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -18,7 +22,8 @@ import java.util.Objects;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-  basePackages = {"it.univr.di.testero.repository.auth"},
+  basePackages = {"it.univr.di.testero.repository"},
+  includeFilters = { @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {  UserRepository.class} ) },
   entityManagerFactoryRef = "authEntityManagerFactory",
   transactionManagerRef = "authTransactionManager"
 )
@@ -44,7 +49,7 @@ public class AuthJpaConfig {
     {
         return builder
           .dataSource(dataSource)
-          .packages("it.univr.di.testero.model.auth")
+          .packages(User.class)
           .build();
     }
 

@@ -1,9 +1,6 @@
-package it.univr.di.testero.model.core;
-import it.univr.di.testero.model.auth.User;
+package it.univr.di.testero.model;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.List;
 
 /*
 CREATE TABLE IF NOT EXISTS testero_core.compilazione_risposta (

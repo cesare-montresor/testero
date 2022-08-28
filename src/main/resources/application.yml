@@ -35,5 +35,7 @@ graphql:
     context-setting: PER_REQUEST_WITH_INSTRUMENTATION
     # Sets if asynchronous operations are supported for GraphQL requests. If not specified defaults to true.
     async-mode-enabled: true
-
+  spring:
+    main:
+      allow-bean-definition-overriding: true
 

@@ -1,12 +1,19 @@
 package it.univr.di.testero.config;
 
+import it.univr.di.testero.model.Compilazione;
+import it.univr.di.testero.model.CompilazioneRisposta;
+import it.univr.di.testero.model.Domanda;
+import it.univr.di.testero.model.Risposta;
+import it.univr.di.testero.model.Test;
+import it.univr.di.testero.repository.DomandaRepository;
+import it.univr.di.testero.repository.RispostaRepository;
+import it.univr.di.testero.repository.TestRepository;
+import it.univr.di.testero.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.*;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -17,9 +24,11 @@ import javax.sql.DataSource;
 import java.util.Objects;
 
 @Configuration
+@Primary
 @EnableTransactionManagement
 @EnableJpaRepositories(
   basePackages = {"it.univr.di.testero.repository"},
+  includeFilters = { @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {  TestRepository.class, RispostaRepository.class, DomandaRepository.class} ) },
   entityManagerFactoryRef = "coreEntityManagerFactory",
   transactionManagerRef = "coreTransactionManager"
 )
@@ -47,7 +56,7 @@ public class CoreJpaConfig {
     {
         return builder
           .dataSource(dataSource)
-          .packages("it.univr.di.testero.model.core")
+          .packages( Test.class, Risposta.class, Domanda.class, Compilazione.class, CompilazioneRisposta.class )
           .build();
     }
 

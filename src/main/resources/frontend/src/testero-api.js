@@ -1,43 +1,38 @@
-import { createClient, gql } from 'urql';
-
-
+import { GraphQLClient, gql } from 'graphql-request'
 
 class TesteroAPI {
     constructor(){
         this.endpoint = 'http://localhost:8080/graphql';
-        this.client = new createClient(this.endpoint);
         this.headers = {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
             'Access-Control-Allow-Origin': '*'
         };
+        this.client = new GraphQLClient(this.endpoint);
+        this.client.setHeaders(this.headers);
     }
 
-    async fetch( query, vars ) {
-        return await this.client.request(query, vars, this.headers);
+    fetch( query, vars ) {
+        return this.client.request(query, vars);
     }
 
     addTest(nome, ordineCasuale, domandeConNumero){
-        const input = {
-            nome: "Test K",
-            ordineCasuale: false,
-            domandeConNumero: true
-        }
-
         const query = gql`
             mutation addTest($input: AddTestData!) {
-                id
-            }
-        `;
+                addTest(input: $input) {
+                    id, nome
+                }
+            }`;
+
         const vars = {
-            "input":{
+            "input": {
                 "nome": nome,
                 "ordineCasuale": ordineCasuale,
                 "domandeConNumero": domandeConNumero
             }
         };
 
-        return this.fetch(query,gql);
+        return this.fetch(query, vars);
     }
 };
 

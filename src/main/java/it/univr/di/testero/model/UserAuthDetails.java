@@ -1,4 +1,4 @@
-package it.univr.di.testero.model.auth;
+package it.univr.di.testero.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

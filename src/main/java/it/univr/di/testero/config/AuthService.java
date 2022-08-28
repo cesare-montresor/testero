@@ -1,8 +1,8 @@
 package it.univr.di.testero.config;
 
-import it.univr.di.testero.model.auth.User;
-import it.univr.di.testero.model.auth.UserAuthDetails;
-import it.univr.di.testero.repository.auth.UserRepository;
+import it.univr.di.testero.model.User;
+import it.univr.di.testero.model.UserAuthDetails;
+import it.univr.di.testero.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.Authentication;
