@@ -59,8 +59,8 @@ public class SecurityConfig {
 
         // GraphQL
         http.authorizeRequests()
-            .regexMatchers("/graphql.*").authenticated()
-            .antMatchers("/graphiql").authenticated();
+            .regexMatchers("/graphql.*").permitAll() //.authenticated()
+            .antMatchers("/graphiql").permitAll(); //authenticated();
 
         // Login/Logout
         http.formLogin().loginPage("/login").permitAll();
