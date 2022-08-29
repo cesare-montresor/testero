@@ -7,8 +7,9 @@ import it.univr.di.testero.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
-@Component
+@Controller
 public class UserResponder {
     @Autowired
     private AuthService authService;
