@@ -1,6 +1,9 @@
 package it.univr.di.testero.model;
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 /*
@@ -27,7 +30,7 @@ public class Test {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     public Long id;
-    public Long data;
+    public OffsetDateTime data;
     public String nome;
     public Boolean ordineCasuale;
     public Boolean domandeConNumero;
@@ -46,7 +49,7 @@ public class Test {
 
     public Test() {}
 
-    public Test(Long data, String nome, Boolean ordineCasuale, Boolean domandeConNumero ){
+    public Test(OffsetDateTime data, String nome, Boolean ordineCasuale, Boolean domandeConNumero ){
         this.data=data;
         this.nome=nome;
         this.ordineCasuale=ordineCasuale;

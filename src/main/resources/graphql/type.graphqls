@@ -1,6 +1,6 @@
 type Test{
     id: Int!
-    data: Int!
+    data: DateTime!
     nome: String!
     ordineCasuale: Boolean!
     domandeConNumero: Boolean!
@@ -22,4 +22,12 @@ type Risposta{
     testo: String!
     punteggio: Float
     domanda: Domanda
+}
+
+type User{
+    id: Int!
+    username: String
+    name: String
+    roles: String
+    active: Boolean
 }
