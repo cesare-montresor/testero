@@ -90,10 +90,4 @@ public class MainController implements ErrorController {
         model.addAttribute("error_message",error_message);
         return "error";
     }
-
-    @SchemaMapping(typeName = "Mutation", field = "addTest")
-    public Test addTest(@Argument("input") AddTestData input){
-        Test t = new Test(OffsetDateTime.ofInstant(Instant.now(), ZoneOffset.UTC), input.getNome(), input.getOrdineCasuale(), input.getDomandeConNumero());
-        return testRepository.save(t);
-    }
 }
