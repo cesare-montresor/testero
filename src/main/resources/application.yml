@@ -1,4 +1,4 @@
-debug: true
+debug: false
 
 spring:
   datasource:
@@ -13,6 +13,13 @@ spring:
       username: testero_core
       password: testero_core
       driver-class-name: org.postgresql.Driver
+
+    resp:
+      url: jdbc:postgresql://localhost:5432/testero_resp
+      username: testero_resp
+      password: testero_resp
+      driver-class-name: org.postgresql.Driver
+
   main:
     allow-bean-definition-overriding: true
 

@@ -8,7 +8,6 @@ import it.univr.di.testero.model.Test;
 import it.univr.di.testero.repository.DomandaRepository;
 import it.univr.di.testero.repository.RispostaRepository;
 import it.univr.di.testero.repository.TestRepository;
-import it.univr.di.testero.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -32,7 +31,7 @@ import java.util.Objects;
   entityManagerFactoryRef = "coreEntityManagerFactory",
   transactionManagerRef = "coreTransactionManager"
 )
-public class CoreJpaConfig {
+public class JpaConfigCore {
 
     @Primary
     @Bean

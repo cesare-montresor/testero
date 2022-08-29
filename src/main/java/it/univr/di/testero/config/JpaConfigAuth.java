@@ -23,11 +23,11 @@ import java.util.Objects;
 @EnableTransactionManagement
 @EnableJpaRepositories(
   basePackages = {"it.univr.di.testero.repository"},
-  includeFilters = { @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {  UserRepository.class} ) },
+  includeFilters = { @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {  UserRepository.class } ) },
   entityManagerFactoryRef = "authEntityManagerFactory",
   transactionManagerRef = "authTransactionManager"
 )
-public class AuthJpaConfig {
+public class JpaConfigAuth {
 
     @Bean
     @ConfigurationProperties("spring.datasource.auth")
