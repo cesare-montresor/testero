@@ -1,4 +1,6 @@
 package it.univr.di.testero.model;
+import lombok.*;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
@@ -25,15 +27,21 @@ CREATE TABLE in_test (
 
 @Entity
 @Table(name="test", schema = "testero_core")
+@NoArgsConstructor
 public class Test {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    public Long id;
-    public OffsetDateTime data;
-    public String nome;
-    public Boolean ordineCasuale;
-    public Boolean domandeConNumero;
+    @Getter @Setter
+    private Long id;
+    @Getter @Setter
+    private OffsetDateTime data;
+    @Getter @Setter
+    private String nome;
+    @Getter @Setter
+    private Boolean ordineCasuale;
+    @Getter @Setter
+    private Boolean domandeConNumero;
 
 
     @ManyToMany
@@ -47,14 +55,13 @@ public class Test {
     @OneToMany(mappedBy = "test", orphanRemoval = true, cascade = CascadeType.ALL)
     Collection<Compilazione> compilazioni;
 
-    public Test() {}
 
-    public Test(OffsetDateTime data, String nome, Boolean ordineCasuale, Boolean domandeConNumero ){
-        this.data=data;
-        this.nome=nome;
-        this.ordineCasuale=ordineCasuale;
-        this.domandeConNumero=domandeConNumero;
+    public Test(OffsetDateTime data, String nome, Boolean ordineCasuale, Boolean domandeConNumero) {
+        this.data = data;
+        this.nome = nome;
+        this.ordineCasuale = ordineCasuale;
+        this.domandeConNumero = domandeConNumero;
+        this.domande = domande;
+        this.compilazioni = compilazioni;
     }
-
-
 }

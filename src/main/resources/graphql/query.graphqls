@@ -1,4 +1,5 @@
 # The Root Query for the application
 type Query {
     getUser: User!
+    allTests: [Test]!
 }

@@ -1,5 +1,5 @@
 type Test{
-    id: Int!
+    id: ID!
     data: DateTime!
     nome: String!
     ordineCasuale: Boolean!
@@ -8,7 +8,7 @@ type Test{
 }
 
 type Domanda{
-    id: Int!
+    id: ID!
     nome: String!
     testo: String!
     punti: Float!
@@ -18,16 +18,29 @@ type Domanda{
 }
 
 type Risposta{
-    id: Int!
+    id: ID!
     testo: String!
     punteggio: Float
     domanda: Domanda
 }
 
 type User{
-    id: Int!
+    id: ID!
     username: String
     name: String
     roles: String
     active: Boolean
+}
+
+type CompilazioneRisposta{
+    id: ID!
+    domanda: Domanda!
+    risposta: Risposta!
+}
+
+type Compilazione{
+    id: ID!
+    test: Test!
+    compilazioni: [CompilazioneRisposta]!
+    user: User
 }
