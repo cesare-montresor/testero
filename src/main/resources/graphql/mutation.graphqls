@@ -1,3 +1,7 @@
 type Mutation {
+    takeTest(input: Int!): Compilazione!
+    giveAnswer(input: GiveRispostaData!): CompilazioneRisposta!
+
     addTest(input: AddTestData!): Test!
+    addQuestion(input: AddDomandaData): Domanda!
 }

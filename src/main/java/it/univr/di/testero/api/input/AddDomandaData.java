@@ -12,13 +12,26 @@ input AddDomandaData{
 
 */
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.List;
 
+@NoArgsConstructor
+@AllArgsConstructor
 public class AddDomandaData {
-    public String nome;
-    public String testo;
-    public String punti;
-    public Boolean ordineCasuale;
-    public Boolean risposteConNumero;
-    public List<AddRispostaData> risposte;
+    @Setter @Getter
+    private String nome;
+    @Setter @Getter
+    private String testo;
+    @Setter @Getter
+    private Float punti;
+    @Setter @Getter
+    private Boolean ordineCasuale;
+    @Setter @Getter
+    private Boolean risposteConNumero;
+    @Setter @Getter
+    private List<AddRispostaData> risposte;
 }

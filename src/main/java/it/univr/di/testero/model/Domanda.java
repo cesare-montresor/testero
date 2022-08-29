@@ -1,6 +1,11 @@
 package it.univr.di.testero.model;
+import it.univr.di.testero.api.input.AddRispostaData;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 /*
 CREATE TABLE Domanda (
@@ -18,12 +23,18 @@ public class Domanda {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    public Long id = 0L;
-    public String nome;
-    public String testo;
-    public Float punti;
-    public Boolean ordineCasuale;
-    public Boolean risposteConNumero;
+    @Getter
+    private Long id = 0L;
+    @Getter @Setter
+    private String nome;
+    @Getter @Setter
+    private String testo;
+    @Getter @Setter
+    private Float punti;
+    @Getter @Setter
+    private Boolean ordineCasuale;
+    @Getter @Setter
+    private Boolean risposteConNumero;
 
     @OneToMany(mappedBy = "domanda", orphanRemoval = true, cascade = CascadeType.ALL)
     public Collection<Risposta> risposte;
