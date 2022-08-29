@@ -1,4 +1,4 @@
 # The Root Query for the application
 type Query {
-    userLevel: String!
+    getUser: User!
 }

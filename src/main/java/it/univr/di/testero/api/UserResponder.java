@@ -1,24 +1,23 @@
 package it.univr.di.testero.api;
 
-import graphql.kickstart.tools.GraphQLQueryResolver;
+
 import it.univr.di.testero.config.AuthService;
 import it.univr.di.testero.model.User;
 import it.univr.di.testero.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserResponder implements GraphQLQueryResolver {
-
+public class UserResponder {
     @Autowired
     private AuthService authService;
 
     @Autowired
     private UserRepository userRepository;
 
-    public String userLevel() {
-        User user = authService.userGet();
-        return user.roles;
+    @SchemaMapping(typeName = "Query", field = "getUser")
+    public User getUser() {
+        return authService.userGet();
     }
-
 }
