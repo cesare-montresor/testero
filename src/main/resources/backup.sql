@@ -2,7 +2,7 @@
 -- PostgreSQL database cluster dump
 --
 
--- Started on 2022-08-29 16:57:36 CEST
+-- Started on 2022-08-29 17:25:39 CEST
 
 SET default_transaction_read_only = off;
 
@@ -13,14 +13,14 @@ SET standard_conforming_strings = on;
 -- Roles
 --
 
--- CREATE ROLE postgres;
--- ALTER ROLE postgres WITH SUPERUSER INHERIT CREATEROLE CREATEDB LOGIN REPLICATION BYPASSRLS PASSWORD 'SCRAM-SHA-256$4096:ialDfrR2qc0zUlOHeRE/Fg==$zAzS2wiSjCj8fLprGoVUQ1gm65kbfDbHyFJsGlxs7yo=:CuLSK30Brs68BqdipAWZ8V3ibRTa43kxR6ylRP0V1QY=';
+--CREATE ROLE postgres;
+--ALTER ROLE postgres WITH SUPERUSER INHERIT CREATEROLE CREATEDB LOGIN REPLICATION BYPASSRLS PASSWORD 'SCRAM-SHA-256$4096:ialDfrR2qc0zUlOHeRE/Fg==$zAzS2wiSjCj8fLprGoVUQ1gm65kbfDbHyFJsGlxs7yo=:CuLSK30Brs68BqdipAWZ8V3ibRTa43kxR6ylRP0V1QY=';
 CREATE ROLE testero_auth;
 ALTER ROLE testero_auth WITH NOSUPERUSER NOINHERIT NOCREATEROLE NOCREATEDB LOGIN NOREPLICATION NOBYPASSRLS PASSWORD 'SCRAM-SHA-256$4096:IlK5G7UEabxeAYXxsgLhCA==$z7x94awuMQYRqdQHahFpydPoOymZD+hY/z93Igl4v4k=:mZjY4ma3G5RPdEdkqL3g1CpUlg23SAiQzctViPuwLFA=';
 CREATE ROLE testero_core;
 ALTER ROLE testero_core WITH NOSUPERUSER NOINHERIT NOCREATEROLE NOCREATEDB LOGIN NOREPLICATION NOBYPASSRLS PASSWORD 'SCRAM-SHA-256$4096:JicLPKYql7J3NZIValPoKQ==$5HSPEwAfnWFccvEgA00aoFDhS8iyi4Hi3SIAbOv928g=:FPmLXoDbEe2mzbd627uWWv6xS0DDGrgRWI+Qbbmpkzw=';
 CREATE ROLE testero_resp;
-ALTER ROLE testero_resp WITH NOSUPERUSER NOINHERIT NOCREATEROLE NOCREATEDB LOGIN NOREPLICATION NOBYPASSRLS PASSWORD 'SCRAM-SHA-256$4096:54o5nlSxYIDcRtz3ngroaQ==$sYQh8VFQ+3dRG05cvrIqDjaqUYpGE4gZLmhJS39P01M=:DsAyy2Z/GeLMmkmriUSP9csfz5r6wh8ZuZDle3EZSK4=';
+ALTER ROLE testero_resp WITH NOSUPERUSER NOINHERIT NOCREATEROLE NOCREATEDB LOGIN NOREPLICATION NOBYPASSRLS PASSWORD 'SCRAM-SHA-256$4096:0Rm2AlMNEJ0MQavGUDgXNQ==$s7BSUALJtYAhKk4ISRQDHrVZc7rm1p6vy/L+uoxTePQ=:Kj9cGEke0cQJXGNmxb1nVYMLF2ZEWPl0y0Sjta/hZPg=';
 
 
 
@@ -44,7 +44,7 @@ ALTER ROLE testero_resp WITH NOSUPERUSER NOINHERIT NOCREATEROLE NOCREATEDB LOGIN
 -- Dumped from database version 14.5 (Ubuntu 14.5-1.pgdg20.04+1)
 -- Dumped by pg_dump version 14.5 (Ubuntu 14.5-1.pgdg20.04+1)
 
--- Started on 2022-08-29 16:57:36 CEST
+-- Started on 2022-08-29 17:25:39 CEST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -57,7 +57,7 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
--- Completed on 2022-08-29 16:57:36 CEST
+-- Completed on 2022-08-29 17:25:39 CEST
 
 --
 -- PostgreSQL database dump complete
@@ -76,7 +76,7 @@ SET row_security = off;
 -- Dumped from database version 14.5 (Ubuntu 14.5-1.pgdg20.04+1)
 -- Dumped by pg_dump version 14.5 (Ubuntu 14.5-1.pgdg20.04+1)
 
--- Started on 2022-08-29 16:57:36 CEST
+-- Started on 2022-08-29 17:25:39 CEST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -89,17 +89,7 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
---
--- TOC entry 5 (class 2615 OID 24774)
--- Name: testero_resp; Type: SCHEMA; Schema: -; Owner: testero_resp
---
-
-CREATE SCHEMA testero_resp;
-
-
-ALTER SCHEMA testero_resp OWNER TO testero_resp;
-
--- Completed on 2022-08-29 16:57:36 CEST
+-- Completed on 2022-08-29 17:25:39 CEST
 
 --
 -- PostgreSQL database dump complete
@@ -116,7 +106,7 @@ ALTER SCHEMA testero_resp OWNER TO testero_resp;
 -- Dumped from database version 14.5 (Ubuntu 14.5-1.pgdg20.04+1)
 -- Dumped by pg_dump version 14.5 (Ubuntu 14.5-1.pgdg20.04+1)
 
--- Started on 2022-08-29 16:57:36 CEST
+-- Started on 2022-08-29 17:25:39 CEST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -204,10 +194,8 @@ ALTER TABLE testero_auth."user" OWNER TO testero_auth;
 -- Data for Name: user; Type: TABLE DATA; Schema: testero_auth; Owner: testero_auth
 --
 
-COPY testero_auth."user" (id, username, password, name, roles, active) FROM stdin;
-1	mario	$2a$10$04uT/OxXAkURZGr5vOqaAubNZNHUnhzsCF/UJYpjiCqfL3niRC.ue	mario rossi	TEACHER	t
-2	luigi	$2a$10$Tp312l59i6qpiodtZg1geOxhOVEKakUjqW/mFv8luRHFyjA95Z6Ly	luigi bianchi	STUDENT	t
-\.
+INSERT INTO testero_auth."user" VALUES (1, 'mario', '$2a$10$04uT/OxXAkURZGr5vOqaAubNZNHUnhzsCF/UJYpjiCqfL3niRC.ue', 'mario rossi', 'TEACHER', true);
+INSERT INTO testero_auth."user" VALUES (2, 'luigi', '$2a$10$Tp312l59i6qpiodtZg1geOxhOVEKakUjqW/mFv8luRHFyjA95Z6Ly', 'luigi bianchi', 'STUDENT', true);
 
 
 --
@@ -237,7 +225,7 @@ ALTER TABLE ONLY testero_auth."user"
     ADD CONSTRAINT "User_username_unique" UNIQUE (username);
 
 
--- Completed on 2022-08-29 16:57:36 CEST
+-- Completed on 2022-08-29 17:25:39 CEST
 
 --
 -- PostgreSQL database dump complete
@@ -254,7 +242,7 @@ ALTER TABLE ONLY testero_auth."user"
 -- Dumped from database version 14.5 (Ubuntu 14.5-1.pgdg20.04+1)
 -- Dumped by pg_dump version 14.5 (Ubuntu 14.5-1.pgdg20.04+1)
 
--- Started on 2022-08-29 16:57:36 CEST
+-- Started on 2022-08-29 17:25:39 CEST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -420,12 +408,10 @@ ALTER TABLE ONLY testero_core.risposta ALTER COLUMN id SET DEFAULT nextval('test
 -- Data for Name: domanda; Type: TABLE DATA; Schema: testero_core; Owner: testero_core
 --
 
-COPY testero_core.domanda (id, nome, testo, punti, ordinecasuale, risposteconnumero) FROM stdin;
-8	Tempo aaa	Che tempo fa?	10.00	f	f
-17	Tempo asdasd	Che tempo fa?	10.00	f	f
-22	Tempo a	Che tempo fa?	10.00	f	f
-20	 sdad	Che tempo fa?	10.00	f	f
-\.
+INSERT INTO testero_core.domanda VALUES (8, 'Tempo aaa', 'Che tempo fa?', 10.00, false, false);
+INSERT INTO testero_core.domanda VALUES (17, 'Tempo asdasd', 'Che tempo fa?', 10.00, false, false);
+INSERT INTO testero_core.domanda VALUES (22, 'Tempo a', 'Che tempo fa?', 10.00, false, false);
+INSERT INTO testero_core.domanda VALUES (20, ' sdad', 'Che tempo fa?', 10.00, false, false);
 
 
 --
@@ -434,8 +420,6 @@ COPY testero_core.domanda (id, nome, testo, punti, ordinecasuale, risposteconnum
 -- Data for Name: in_test; Type: TABLE DATA; Schema: testero_core; Owner: testero_core
 --
 
-COPY testero_core.in_test (test_id, domanda_id) FROM stdin;
-\.
 
 
 --
@@ -444,11 +428,9 @@ COPY testero_core.in_test (test_id, domanda_id) FROM stdin;
 -- Data for Name: risposta; Type: TABLE DATA; Schema: testero_core; Owner: testero_core
 --
 
-COPY testero_core.risposta (id, testo, punteggio, domanda) FROM stdin;
-23	Sole	1.0000	22
-24	Pioggia	0.0000	22
-25	Neve	0.0000	22
-\.
+INSERT INTO testero_core.risposta VALUES (23, 'Sole', 1.0000, '22');
+INSERT INTO testero_core.risposta VALUES (24, 'Pioggia', 0.0000, '22');
+INSERT INTO testero_core.risposta VALUES (25, 'Neve', 0.0000, '22');
 
 
 --
@@ -457,9 +439,8 @@ COPY testero_core.risposta (id, testo, punteggio, domanda) FROM stdin;
 -- Data for Name: test; Type: TABLE DATA; Schema: testero_core; Owner: testero_core
 --
 
-COPY testero_core.test (id, data, nome, ordinecasuale, domandeconnumero) FROM stdin;
-73	16:35:57.802316	nomeeee	t	f
-\.
+INSERT INTO testero_core.test VALUES (73, '16:35:57.802316', 'nomeeee', true, false);
+INSERT INTO testero_core.test VALUES (74, '17:12:07.636959', 'nomeeee', true, false);
 
 
 --
@@ -468,7 +449,7 @@ COPY testero_core.test (id, data, nome, ordinecasuale, domandeconnumero) FROM st
 -- Name: hibernate_sequence; Type: SEQUENCE SET; Schema: testero_core; Owner: testero_core
 --
 
-SELECT pg_catalog.setval('testero_core.hibernate_sequence', 73, true);
+SELECT pg_catalog.setval('testero_core.hibernate_sequence', 74, true);
 
 
 --
@@ -534,7 +515,7 @@ ALTER TABLE ONLY testero_core.test
     ADD CONSTRAINT test_pkey PRIMARY KEY (id);
 
 
--- Completed on 2022-08-29 16:57:37 CEST
+-- Completed on 2022-08-29 17:25:40 CEST
 
 --
 -- PostgreSQL database dump complete
@@ -551,7 +532,7 @@ ALTER TABLE ONLY testero_core.test
 -- Dumped from database version 14.5 (Ubuntu 14.5-1.pgdg20.04+1)
 -- Dumped by pg_dump version 14.5 (Ubuntu 14.5-1.pgdg20.04+1)
 
--- Started on 2022-08-29 16:57:37 CEST
+-- Started on 2022-08-29 17:25:40 CEST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -637,8 +618,6 @@ ALTER TABLE testero_resp.compilazione_risposta OWNER TO testero_resp;
 -- Data for Name: compilazione; Type: TABLE DATA; Schema: testero_resp; Owner: testero_resp
 --
 
-COPY testero_resp.compilazione (id, test, completo, "user") FROM stdin;
-\.
 
 
 --
@@ -647,8 +626,6 @@ COPY testero_resp.compilazione (id, test, completo, "user") FROM stdin;
 -- Data for Name: compilazione_risposta; Type: TABLE DATA; Schema: testero_resp; Owner: testero_resp
 --
 
-COPY testero_resp.compilazione_risposta (id, compilazione, domanda, risposta) FROM stdin;
-\.
 
 
 --
@@ -669,13 +646,13 @@ ALTER TABLE ONLY testero_resp.compilazione_risposta
     ADD CONSTRAINT compilazione_risposta_pkey PRIMARY KEY (id);
 
 
--- Completed on 2022-08-29 16:57:37 CEST
+-- Completed on 2022-08-29 17:25:40 CEST
 
 --
 -- PostgreSQL database dump complete
 --
 
--- Completed on 2022-08-29 16:57:37 CEST
+-- Completed on 2022-08-29 17:25:40 CEST
 
 --
 -- PostgreSQL database cluster dump complete
