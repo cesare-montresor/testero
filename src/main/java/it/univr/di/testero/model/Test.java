@@ -25,7 +25,6 @@ public class Test {
     @Getter @Setter
     private Boolean domandeConNumero;
 
-
     @ManyToMany
     @JoinTable(
             name="in_test", schema = "testero_core",
