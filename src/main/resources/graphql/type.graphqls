@@ -4,7 +4,7 @@ type Test{
     nome: String!
     ordineCasuale: Boolean!
     domandeConNumero: Boolean!
-    domande: [Domanda]
+    domande: [Domanda]!
 }
 
 type Domanda{
@@ -14,13 +14,18 @@ type Domanda{
     punti: Float!
     ordineCasuale: Boolean!
     risposteConNumero: Boolean!
-    risposte: [Risposta]
+    risposte: [Risposta]!
 }
 
 type Risposta{
     id: Int!
     testo: String!
     domanda: Domanda
+}
+
+type TestInfo{
+    compilazione: Compilazione!
+    test: Test!
 }
 
 type User{

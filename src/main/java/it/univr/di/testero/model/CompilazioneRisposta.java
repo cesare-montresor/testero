@@ -17,17 +17,16 @@ public class CompilazioneRisposta {
 
     @ManyToOne
     @Getter @Setter
+    @JoinColumn(name = "compilazione")
     private Compilazione compilazione;
 
-    @ManyToOne
-    @Getter @Setter
-    private Domanda domanda;
+    @Getter @Setter @Column(name = "domanda_id")
+    private Long domanda;
 
-    @ManyToOne
-    @Getter @Setter
-    private Risposta risposta;
+    @Getter @Setter @Column(name = "risposta_id")
+    private Long risposta;
 
-    public CompilazioneRisposta(Compilazione compilazione, Domanda domanda, Risposta risposta){
+    public CompilazioneRisposta(Compilazione compilazione, Long domanda, Long risposta){
         this.compilazione=compilazione;
         this.domanda=domanda;
         this.risposta=risposta;
