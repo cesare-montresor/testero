@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate, useParams } from 'react-router-dom';
 import { TesteroAPI } from './testero-api.js'
+
 
 
 import './index.css';
@@ -21,22 +22,82 @@ function TesteroApp() {
                         <Route exact path="/addTest"  element={  <TestAdd/> } />
                         <Route exact path="/addTest/:id/addQuestion"  element={  <TestAddQuestion/> } />
                         <Route exact path="/takeTest" element={ <TestTake/> } />
+                        <Route exact path="/apiTest" element={ <ApiTest/> } />
                     </Routes>
                 </div>
-            </div>TestAddQuestion
+            </div>
         </Router>
     );
     
 }
+
+function ApiTest() {
+    const api = new TesteroAPI();
+    const [response, setResponse] = useState("");
+
+    function getUser(){
+        api.getUser().then( showResponse );
+    }
+
+    function allTests(){
+        api.allTests().then( showResponse ).catch( showError );
+    }
+
+    function takeTest(){
+        api.takeTest().then( showResponse );
+    }
+
+    function giveAnswer(){
+        api.giveAnswer().then( showResponse );
+    }
+
+    function addTest(){
+        api.addTest("asd" ,true,false).then( showResponse );
+    }
+
+    function addQuestion(){
+        api.addQuestion().then( showResponse );
+    }
+
+    function showResponse(data){
+        const dump = JSON.stringify(response, null, 2);
+        setResponse( dump );
+    }
+
+    function showError(err){
+        setResponse( err.message );
+    }
+
+    // <!-- <button className="api-test-bar-clear" onClick={clear}>clear</button> -->
+    return (
+        <div className="api-test-main">
+            <div className='api-test-bar btn-bar'>
+                <button onClick={getUser}>getUser</button>
+                <button onClick={allTests}>allTests</button>
+                <button onClick={takeTest}>takeTest</button>
+                <button onClick={giveAnswer}>giveAnswer</button>
+                <button onClick={addTest}>addTest</button>
+                <button onClick={addQuestion}>addQuestion</button>
+            </div>
+            <pre className='api-test-results' id="api-test-resuls">
+                { response }
+            </pre>
+        </div>
+    );
+
+}
+
+
 
 function NavBar() {
     return (
         <div className='menu-main btn-bar'>
             <Link to="/"> Test List </Link>
             <Link to="/addTest"> Add Test </Link>
+            <Link to="/apiTest"> API Test </Link>
         </div>
     );
-    
+
 }
 
 

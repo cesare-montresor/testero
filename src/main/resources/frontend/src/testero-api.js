@@ -34,6 +34,35 @@ class TesteroAPI {
 
         return this.fetch(query, vars);
     }
+
+    getUser(){
+        const query = gql`
+            query {
+                getUser{
+                    id, username, name, roles, active
+                }
+        }`;
+
+        return this.fetch(query);
+    }
+
+    allTests(){
+        const query = gql`
+            query {
+                allTests{
+                    id, nome, data, ordineCasuale, domandeConNumero
+                }
+            }`;
+
+        return this.fetch(query);
+    }
+
+    takeTest(){}
+
+    giveAnswer(){}
+
+    addQuestion(){}
+
 };
 
 export { TesteroAPI }
