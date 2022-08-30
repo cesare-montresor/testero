@@ -1,0 +1,26 @@
+.header  {
+    margin: 10px calc(2%);
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header  ul {
+    list-style-type: none;
+    text-align: right;
+
+}
+
+.header ul li {
+    display: inline;
+    padding-inline: 15px;
+}
+
+.header ul li img{
+    width: 13px;
+}
+
+.header h1{
+    padding-top: 50px;
+    font-weight: 400;
+    font-size: 40px;
+}

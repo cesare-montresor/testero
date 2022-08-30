@@ -2,7 +2,7 @@
 -- PostgreSQL database cluster dump
 --
 
--- Started on 2022-08-29 17:25:39 CEST
+-- Started on 2022-08-30 17:51:35 CEST
 
 SET default_transaction_read_only = off;
 
@@ -13,8 +13,8 @@ SET standard_conforming_strings = on;
 -- Roles
 --
 
---CREATE ROLE postgres;
---ALTER ROLE postgres WITH SUPERUSER INHERIT CREATEROLE CREATEDB LOGIN REPLICATION BYPASSRLS PASSWORD 'SCRAM-SHA-256$4096:ialDfrR2qc0zUlOHeRE/Fg==$zAzS2wiSjCj8fLprGoVUQ1gm65kbfDbHyFJsGlxs7yo=:CuLSK30Brs68BqdipAWZ8V3ibRTa43kxR6ylRP0V1QY=';
+CREATE ROLE postgres;
+ALTER ROLE postgres WITH SUPERUSER INHERIT CREATEROLE CREATEDB LOGIN REPLICATION BYPASSRLS PASSWORD 'SCRAM-SHA-256$4096:ialDfrR2qc0zUlOHeRE/Fg==$zAzS2wiSjCj8fLprGoVUQ1gm65kbfDbHyFJsGlxs7yo=:CuLSK30Brs68BqdipAWZ8V3ibRTa43kxR6ylRP0V1QY=';
 CREATE ROLE testero_auth;
 ALTER ROLE testero_auth WITH NOSUPERUSER NOINHERIT NOCREATEROLE NOCREATEDB LOGIN NOREPLICATION NOBYPASSRLS PASSWORD 'SCRAM-SHA-256$4096:IlK5G7UEabxeAYXxsgLhCA==$z7x94awuMQYRqdQHahFpydPoOymZD+hY/z93Igl4v4k=:mZjY4ma3G5RPdEdkqL3g1CpUlg23SAiQzctViPuwLFA=';
 CREATE ROLE testero_core;
@@ -44,7 +44,7 @@ ALTER ROLE testero_resp WITH NOSUPERUSER NOINHERIT NOCREATEROLE NOCREATEDB LOGIN
 -- Dumped from database version 14.5 (Ubuntu 14.5-1.pgdg20.04+1)
 -- Dumped by pg_dump version 14.5 (Ubuntu 14.5-1.pgdg20.04+1)
 
--- Started on 2022-08-29 17:25:39 CEST
+-- Started on 2022-08-30 17:51:35 CEST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -57,7 +57,7 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
--- Completed on 2022-08-29 17:25:39 CEST
+-- Completed on 2022-08-30 17:51:35 CEST
 
 --
 -- PostgreSQL database dump complete
@@ -76,7 +76,7 @@ SET row_security = off;
 -- Dumped from database version 14.5 (Ubuntu 14.5-1.pgdg20.04+1)
 -- Dumped by pg_dump version 14.5 (Ubuntu 14.5-1.pgdg20.04+1)
 
--- Started on 2022-08-29 17:25:39 CEST
+-- Started on 2022-08-30 17:51:35 CEST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -89,7 +89,7 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
--- Completed on 2022-08-29 17:25:39 CEST
+-- Completed on 2022-08-30 17:51:35 CEST
 
 --
 -- PostgreSQL database dump complete
@@ -106,7 +106,7 @@ SET row_security = off;
 -- Dumped from database version 14.5 (Ubuntu 14.5-1.pgdg20.04+1)
 -- Dumped by pg_dump version 14.5 (Ubuntu 14.5-1.pgdg20.04+1)
 
--- Started on 2022-08-29 17:25:39 CEST
+-- Started on 2022-08-30 17:51:35 CEST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -225,7 +225,7 @@ ALTER TABLE ONLY testero_auth."user"
     ADD CONSTRAINT "User_username_unique" UNIQUE (username);
 
 
--- Completed on 2022-08-29 17:25:39 CEST
+-- Completed on 2022-08-30 17:51:36 CEST
 
 --
 -- PostgreSQL database dump complete
@@ -242,7 +242,7 @@ ALTER TABLE ONLY testero_auth."user"
 -- Dumped from database version 14.5 (Ubuntu 14.5-1.pgdg20.04+1)
 -- Dumped by pg_dump version 14.5 (Ubuntu 14.5-1.pgdg20.04+1)
 
--- Started on 2022-08-29 17:25:39 CEST
+-- Started on 2022-08-30 17:51:36 CEST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -298,7 +298,7 @@ SET default_table_access_method = heap;
 --
 
 CREATE TABLE testero_core.domanda (
-                                      id integer NOT NULL,
+                                      id bigint NOT NULL,
                                       nome character varying NOT NULL,
                                       testo character varying NOT NULL,
                                       punti numeric(5,2),
@@ -343,10 +343,10 @@ ALTER TABLE testero_core.in_test OWNER TO testero_core;
 --
 
 CREATE TABLE testero_core.risposta (
-                                       id integer NOT NULL,
+                                       id bigint NOT NULL,
                                        testo character varying NOT NULL,
-                                       punteggio numeric(5,4),
-                                       domanda character varying,
+                                       punteggio numeric(5,4) NOT NULL,
+                                       domanda bigint NOT NULL,
                                        CONSTRAINT risposta_punteggio_check CHECK ((punteggio <= 1.0))
 );
 
@@ -384,7 +384,7 @@ ALTER SEQUENCE testero_core.risposta_id_seq OWNED BY testero_core.risposta.id;
 --
 
 CREATE TABLE testero_core.test (
-                                   id integer NOT NULL,
+                                   id bigint NOT NULL,
                                    data time without time zone NOT NULL,
                                    nome character varying NOT NULL,
                                    ordinecasuale boolean DEFAULT false,
@@ -395,7 +395,7 @@ CREATE TABLE testero_core.test (
 ALTER TABLE testero_core.test OWNER TO testero_core;
 
 --
--- TOC entry 3185 (class 2604 OID 24669)
+-- TOC entry 3185 (class 2604 OID 24806)
 -- Name: risposta id; Type: DEFAULT; Schema: testero_core; Owner: testero_core
 --
 
@@ -412,6 +412,7 @@ INSERT INTO testero_core.domanda VALUES (8, 'Tempo aaa', 'Che tempo fa?', 10.00,
 INSERT INTO testero_core.domanda VALUES (17, 'Tempo asdasd', 'Che tempo fa?', 10.00, false, false);
 INSERT INTO testero_core.domanda VALUES (22, 'Tempo a', 'Che tempo fa?', 10.00, false, false);
 INSERT INTO testero_core.domanda VALUES (20, ' sdad', 'Che tempo fa?', 10.00, false, false);
+INSERT INTO testero_core.domanda VALUES (107, 'domanda A', 'domanda giusta?', 10.00, true, false);
 
 
 --
@@ -428,9 +429,11 @@ INSERT INTO testero_core.domanda VALUES (20, ' sdad', 'Che tempo fa?', 10.00, fa
 -- Data for Name: risposta; Type: TABLE DATA; Schema: testero_core; Owner: testero_core
 --
 
-INSERT INTO testero_core.risposta VALUES (23, 'Sole', 1.0000, '22');
-INSERT INTO testero_core.risposta VALUES (24, 'Pioggia', 0.0000, '22');
-INSERT INTO testero_core.risposta VALUES (25, 'Neve', 0.0000, '22');
+INSERT INTO testero_core.risposta VALUES (23, 'Sole', 1.0000, 1);
+INSERT INTO testero_core.risposta VALUES (24, 'Pioggia', 0.0000, 1);
+INSERT INTO testero_core.risposta VALUES (25, 'Neve', 0.0000, 1);
+INSERT INTO testero_core.risposta VALUES (108, 'Giusta', 1.0000, 1);
+INSERT INTO testero_core.risposta VALUES (109, 'Sbagliata', 0.0000, 1);
 
 
 --
@@ -441,6 +444,41 @@ INSERT INTO testero_core.risposta VALUES (25, 'Neve', 0.0000, '22');
 
 INSERT INTO testero_core.test VALUES (73, '16:35:57.802316', 'nomeeee', true, false);
 INSERT INTO testero_core.test VALUES (74, '17:12:07.636959', 'nomeeee', true, false);
+INSERT INTO testero_core.test VALUES (75, '10:06:02.604126', 'asd', true, false);
+INSERT INTO testero_core.test VALUES (76, '10:06:05.576729', 'asd', true, false);
+INSERT INTO testero_core.test VALUES (77, '10:06:09.751859', 'asd', true, false);
+INSERT INTO testero_core.test VALUES (78, '10:06:11.05068', 'asd', true, false);
+INSERT INTO testero_core.test VALUES (79, '10:06:12.3204', 'asd', true, false);
+INSERT INTO testero_core.test VALUES (80, '10:06:17.637502', 'asd', true, false);
+INSERT INTO testero_core.test VALUES (81, '10:06:19.05565', 'asd', true, false);
+INSERT INTO testero_core.test VALUES (82, '10:06:37.38051', 'asd', true, false);
+INSERT INTO testero_core.test VALUES (83, '10:06:48.802124', 'asd', true, false);
+INSERT INTO testero_core.test VALUES (84, '10:11:11.564887', 'asd', true, false);
+INSERT INTO testero_core.test VALUES (85, '10:11:53.267495', 'asd', true, false);
+INSERT INTO testero_core.test VALUES (86, '10:13:34.80282', 'asd', true, false);
+INSERT INTO testero_core.test VALUES (87, '10:13:35.906075', 'asd', true, false);
+INSERT INTO testero_core.test VALUES (88, '10:27:53.394627', 'asd', true, false);
+INSERT INTO testero_core.test VALUES (89, '10:28:20.216492', 'asd', true, false);
+INSERT INTO testero_core.test VALUES (90, '10:28:53.462523', 'asd', true, false);
+INSERT INTO testero_core.test VALUES (91, '10:30:08.414938', 'asd', true, false);
+INSERT INTO testero_core.test VALUES (92, '10:31:08.042616', 'asd', true, false);
+INSERT INTO testero_core.test VALUES (93, '10:35:43.051944', 'asd', true, false);
+INSERT INTO testero_core.test VALUES (94, '10:50:43.454873', 'asd', true, false);
+INSERT INTO testero_core.test VALUES (95, '10:51:43.348283', 'asd', true, false);
+INSERT INTO testero_core.test VALUES (96, '11:22:22.965584', 'asd', true, false);
+INSERT INTO testero_core.test VALUES (97, '11:23:17.770137', 'asd', true, false);
+INSERT INTO testero_core.test VALUES (98, '11:23:39.075233', 'asd', true, false);
+INSERT INTO testero_core.test VALUES (99, '11:25:42.752664', 'asd', true, false);
+INSERT INTO testero_core.test VALUES (100, '11:25:44.103618', 'asd', true, false);
+INSERT INTO testero_core.test VALUES (101, '11:26:33.883872', 'asd', true, false);
+INSERT INTO testero_core.test VALUES (102, '11:26:35.468285', 'asd', true, false);
+INSERT INTO testero_core.test VALUES (103, '11:26:38.502388', 'asd', true, false);
+INSERT INTO testero_core.test VALUES (104, '11:26:39.887706', 'asd', true, false);
+INSERT INTO testero_core.test VALUES (105, '11:26:45.388306', 'asd', true, false);
+INSERT INTO testero_core.test VALUES (106, '11:31:20.868544', 'asd', true, false);
+INSERT INTO testero_core.test VALUES (111, '15:29:49.357688', 'asd', true, false);
+INSERT INTO testero_core.test VALUES (112, '15:31:09.906682', 'asd', true, false);
+INSERT INTO testero_core.test VALUES (113, '15:58:21.72534', 'asd', true, false);
 
 
 --
@@ -449,7 +487,7 @@ INSERT INTO testero_core.test VALUES (74, '17:12:07.636959', 'nomeeee', true, fa
 -- Name: hibernate_sequence; Type: SEQUENCE SET; Schema: testero_core; Owner: testero_core
 --
 
-SELECT pg_catalog.setval('testero_core.hibernate_sequence', 74, true);
+SELECT pg_catalog.setval('testero_core.hibernate_sequence', 114, true);
 
 
 --
@@ -471,7 +509,7 @@ ALTER TABLE ONLY testero_core.domanda
 
 
 --
--- TOC entry 3198 (class 2606 OID 24734)
+-- TOC entry 3198 (class 2606 OID 24789)
 -- Name: domanda domanda_pkey; Type: CONSTRAINT; Schema: testero_core; Owner: testero_core
 --
 
@@ -489,7 +527,7 @@ ALTER TABLE ONLY testero_core.in_test
 
 
 --
--- TOC entry 3194 (class 2606 OID 24674)
+-- TOC entry 3194 (class 2606 OID 24808)
 -- Name: risposta risposta_pkey; Type: CONSTRAINT; Schema: testero_core; Owner: testero_core
 --
 
@@ -507,7 +545,7 @@ ALTER TABLE ONLY testero_core.test
 
 
 --
--- TOC entry 3202 (class 2606 OID 24767)
+-- TOC entry 3202 (class 2606 OID 24816)
 -- Name: test test_pkey; Type: CONSTRAINT; Schema: testero_core; Owner: testero_core
 --
 
@@ -515,7 +553,7 @@ ALTER TABLE ONLY testero_core.test
     ADD CONSTRAINT test_pkey PRIMARY KEY (id);
 
 
--- Completed on 2022-08-29 17:25:40 CEST
+-- Completed on 2022-08-30 17:51:36 CEST
 
 --
 -- PostgreSQL database dump complete
@@ -532,7 +570,7 @@ ALTER TABLE ONLY testero_core.test
 -- Dumped from database version 14.5 (Ubuntu 14.5-1.pgdg20.04+1)
 -- Dumped by pg_dump version 14.5 (Ubuntu 14.5-1.pgdg20.04+1)
 
--- Started on 2022-08-29 17:25:40 CEST
+-- Started on 2022-08-30 17:51:36 CEST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -546,7 +584,7 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 3326 (class 1262 OID 24773)
+-- TOC entry 3331 (class 1262 OID 24773)
 -- Name: testero_resp; Type: DATABASE; Schema: -; Owner: testero_resp
 --
 
@@ -583,53 +621,77 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- TOC entry 209 (class 1259 OID 24776)
+-- TOC entry 211 (class 1259 OID 24855)
 -- Name: compilazione; Type: TABLE; Schema: testero_resp; Owner: testero_resp
 --
 
 CREATE TABLE testero_resp.compilazione (
-                                           id integer NOT NULL,
-                                           test integer NOT NULL,
-                                           completo boolean DEFAULT false NOT NULL,
-                                           "user" bigint NOT NULL
+                                           id bigint NOT NULL,
+                                           user_id bigint NOT NULL,
+                                           test_id bigint NOT NULL,
+                                           completo boolean DEFAULT false NOT NULL
 );
 
 
 ALTER TABLE testero_resp.compilazione OWNER TO testero_resp;
 
 --
--- TOC entry 210 (class 1259 OID 24782)
+-- TOC entry 209 (class 1259 OID 24782)
 -- Name: compilazione_risposta; Type: TABLE; Schema: testero_resp; Owner: testero_resp
 --
 
 CREATE TABLE testero_resp.compilazione_risposta (
-                                                    id integer NOT NULL,
-                                                    compilazione integer NOT NULL,
-                                                    domanda integer NOT NULL,
-                                                    risposta integer NOT NULL
+                                                    id bigint NOT NULL,
+                                                    compilazione bigint NOT NULL,
+                                                    domanda_id bigint NOT NULL,
+                                                    risposta_id bigint DEFAULT '-1'::integer
 );
 
 
 ALTER TABLE testero_resp.compilazione_risposta OWNER TO testero_resp;
 
 --
--- TOC entry 3319 (class 0 OID 24776)
--- Dependencies: 209
+-- TOC entry 210 (class 1259 OID 24787)
+-- Name: hibernate_sequence; Type: SEQUENCE; Schema: testero_resp; Owner: testero_resp
+--
+
+CREATE SEQUENCE testero_resp.hibernate_sequence
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE testero_resp.hibernate_sequence OWNER TO testero_resp;
+
+--
+-- TOC entry 3325 (class 0 OID 24855)
+-- Dependencies: 211
 -- Data for Name: compilazione; Type: TABLE DATA; Schema: testero_resp; Owner: testero_resp
 --
 
 
 
 --
--- TOC entry 3320 (class 0 OID 24782)
--- Dependencies: 210
+-- TOC entry 3323 (class 0 OID 24782)
+-- Dependencies: 209
 -- Data for Name: compilazione_risposta; Type: TABLE DATA; Schema: testero_resp; Owner: testero_resp
 --
 
 
 
 --
--- TOC entry 3177 (class 2606 OID 24781)
+-- TOC entry 3332 (class 0 OID 0)
+-- Dependencies: 210
+-- Name: hibernate_sequence; Type: SEQUENCE SET; Schema: testero_resp; Owner: testero_resp
+--
+
+SELECT pg_catalog.setval('testero_resp.hibernate_sequence', 1, false);
+
+
+--
+-- TOC entry 3183 (class 2606 OID 24860)
 -- Name: compilazione compilazione_pkey; Type: CONSTRAINT; Schema: testero_resp; Owner: testero_resp
 --
 
@@ -638,7 +700,16 @@ ALTER TABLE ONLY testero_resp.compilazione
 
 
 --
--- TOC entry 3179 (class 2606 OID 24786)
+-- TOC entry 3179 (class 2606 OID 24854)
+-- Name: compilazione_risposta compilazione_risposta_comp_domanda_unique; Type: CONSTRAINT; Schema: testero_resp; Owner: testero_resp
+--
+
+ALTER TABLE ONLY testero_resp.compilazione_risposta
+    ADD CONSTRAINT compilazione_risposta_comp_domanda_unique UNIQUE (compilazione, domanda_id);
+
+
+--
+-- TOC entry 3181 (class 2606 OID 24835)
 -- Name: compilazione_risposta compilazione_risposta_pkey; Type: CONSTRAINT; Schema: testero_resp; Owner: testero_resp
 --
 
@@ -646,13 +717,13 @@ ALTER TABLE ONLY testero_resp.compilazione_risposta
     ADD CONSTRAINT compilazione_risposta_pkey PRIMARY KEY (id);
 
 
--- Completed on 2022-08-29 17:25:40 CEST
+-- Completed on 2022-08-30 17:51:36 CEST
 
 --
 -- PostgreSQL database dump complete
 --
 
--- Completed on 2022-08-29 17:25:40 CEST
+-- Completed on 2022-08-30 17:51:36 CEST
 
 --
 -- PostgreSQL database cluster dump complete
