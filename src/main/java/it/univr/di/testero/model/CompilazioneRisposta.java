@@ -1,44 +1,35 @@
 package it.univr.di.testero.model;
 
-import javax.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-/*
-CREATE TABLE IF NOT EXISTS testero_core.compilazione_risposta (
-    id integer PRIMARY KEY,
-    compilazione integer NOT NULL,
-    domanda integer NOT NULL,
-    risposta integer NOT NULL,
-);
-TABLESPACE pg_default;
-ALTER TABLE IF EXISTS testero_core.compilazione_risposta OWNER to testero_core;
-*/
+import javax.persistence.*;
 
 @Entity
 @Table(name="compilazione_risposta", schema = "testero_core")
+@NoArgsConstructor
 public class CompilazioneRisposta {
-
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    public Long id = 0L;
+    @Getter
+    private Long id = 0L;
 
     @ManyToOne
-    public Compilazione compilazione;
+    @Getter @Setter
+    private Compilazione compilazione;
 
     @ManyToOne
-    public Domanda domanda;
+    @Getter @Setter
+    private Domanda domanda;
 
     @ManyToOne
-    public Risposta risposta;
-
-
-
-    public CompilazioneRisposta() {}
+    @Getter @Setter
+    private Risposta risposta;
 
     public CompilazioneRisposta(Compilazione compilazione, Domanda domanda, Risposta risposta){
         this.compilazione=compilazione;
         this.domanda=domanda;
         this.risposta=risposta;
     }
-
-
 }

@@ -17,10 +17,10 @@ public class UserAuthDetails implements UserDetails {
     private List<GrantedAuthority> authorities;
 
     public UserAuthDetails(User user) {
-        this.username = user.username;
-        this.password = user.password;
-        this.active = user.active;
-        var roles = user.roles.split(",");
+        this.username = user.getUsername();
+        this.password = user.getPassword();
+        this.active = user.getActive();
+        var roles = user.getRoles().split(",");
         this.authorities = Arrays.stream(roles)
                                  .map(SimpleGrantedAuthority::new)
                                  .collect(Collectors.toList());
