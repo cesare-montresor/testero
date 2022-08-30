@@ -35,37 +35,41 @@ function ApiTest() {
     const [response, setResponse] = useState("");
 
     function getUser(){
-        api.getUser().then( showResponse );
+        api.getUser().then( showResponse ).then( showResponse ).catch( showError );
     }
 
     function allTests(){
-        api.allTests().then( showResponse ).catch( showError );
+        api.allTests().then( showResponse ).then( showResponse ).catch( showError );
     }
 
     function takeTest(){
-        api.takeTest().then( showResponse );
+        setResponse( "takeTest: Not Implemented" );
+        //api.takeTest().then( showResponse ).then( showResponse ).catch( showError );
     }
 
     function giveAnswer(){
-        api.giveAnswer().then( showResponse );
+        setResponse( "giveAnswer: Not Implemented" );
+        //api.giveAnswer().then( showResponse ).then( showResponse ).catch( showError );
     }
 
     function addTest(){
-        api.addTest("asd" ,true,false).then( showResponse );
+        api.addTest("asd" ,true,false).then( showResponse ).catch( showError );
     }
 
     function addQuestion(){
-        api.addQuestion().then( showResponse );
+        setResponse( "addQuestion: Not Implemented" );
+        //api.addQuestion().then( showResponse ).then( showResponse ).catch( showError );
     }
 
     function showResponse(data){
-        const dump = JSON.stringify(response, null, 2);
+        const dump = JSON.stringify(data, null, 2);
         setResponse( dump );
     }
 
     function showError(err){
         setResponse( err.message );
     }
+
 
     // <!-- <button className="api-test-bar-clear" onClick={clear}>clear</button> -->
     return (
