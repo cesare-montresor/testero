@@ -18,7 +18,6 @@ import java.util.Optional;
 
 @Service
 public class UserService implements UserDetailsService {
-
     @Autowired
     private UserRepository userRepository;
 
@@ -59,6 +58,7 @@ public class UserService implements UserDetailsService {
     public User userGet() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (! (auth.getPrincipal() instanceof UserAuthDetails )){ return null; } // auth.getPrincipal() returns an empty string when not authenticated
+
         UserAuthDetails details = (UserAuthDetails) auth.getPrincipal();
 
         Optional<User> user = userRepository.findByUsername( details.getUsername() );

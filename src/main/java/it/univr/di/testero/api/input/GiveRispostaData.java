@@ -7,9 +7,11 @@ import lombok.Setter;
 
 @NoArgsConstructor
 @AllArgsConstructor
-public class AddRispostaData {
-    @Setter @Getter
-    private String testo;
-    @Setter @Getter
-    private Float punteggio;
+public class GiveRispostaData {
+    @Getter @Setter
+    private Long idCompilazione;
+    @Getter @Setter
+    private Long idDomanda;
+    @Getter @Setter
+    private Long idRisposta;
 }

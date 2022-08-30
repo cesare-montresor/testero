@@ -1,17 +1,5 @@
 package it.univr.di.testero.api.input;
 
-/*
-input AddDomandaData{
-    nome: String!
-    testo: String!
-    punti: Float!
-    ordineCasuale: Boolean!
-    risposteConNumero: Boolean!
-    risposte: [AddRispostaData]!
-}
-
-*/
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -24,13 +24,6 @@ public class MainController implements ErrorController {
     @Autowired
     UserService userService;
 
-    @Autowired
-    TestRepository testRepository;
-    @Autowired
-    DomandaRepository domandaRepository;
-    @Autowired
-    RispostaRepository rispostaRepository;
-
     @GetMapping("/")
     public String getIndex() {
         User authUser = userService.userGet();

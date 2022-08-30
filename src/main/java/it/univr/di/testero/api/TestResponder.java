@@ -5,17 +5,20 @@ import graphql.GraphqlErrorException;
 import it.univr.di.testero.api.input.AddDomandaData;
 import it.univr.di.testero.api.input.AddRispostaData;
 import it.univr.di.testero.api.input.AddTestData;
-import it.univr.di.testero.model.Domanda;
-import it.univr.di.testero.model.Risposta;
-import it.univr.di.testero.model.Test;
-import it.univr.di.testero.repository.DomandaRepository;
-import it.univr.di.testero.repository.RispostaRepository;
-import it.univr.di.testero.repository.TestRepository;
+import it.univr.di.testero.api.input.GiveRispostaData;
+import it.univr.di.testero.model.*;
+import it.univr.di.testero.repository.*;
+import it.univr.di.testero.services.IProfessorService;
+import it.univr.di.testero.services.IStudentService;
+import it.univr.di.testero.services.UserService;
+import org.hibernate.graph.Graph;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.client.GraphQlClientException;
 import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.time.OffsetDateTime;
@@ -26,34 +29,53 @@ import java.util.Optional;
 @Controller
 public class TestResponder {
     @Autowired
-    TestRepository testRepository;
+    private IProfessorService professorService;
     @Autowired
-    DomandaRepository domandaRepository;
+    private IStudentService studentService;
     @Autowired
-    RispostaRepository rispostaRepository;
+    private UserService userService;
 
-    @SchemaMapping(typeName = "Mutation", field = "addTest")
-    public Test addTest(@Argument("input") AddTestData input){
-        Test t = new Test(OffsetDateTime.ofInstant(Instant.now(), ZoneOffset.UTC), input.getNome(), input.getOrdineCasuale(), input.getDomandeConNumero());
-        return testRepository.save(t);
+    @MutationMapping
+    public Test addTest(@Argument AddTestData input){
+        return professorService.addTest(input.getNome(), input.getOrdineCasuale(), input.getDomandeConNumero());
     }
 
-    @SchemaMapping(typeName = "Mutation", field = "addQuestion")
-    public Domanda addQuestion(@Argument("input") AddDomandaData input){
-        Domanda domanda = new Domanda(input.getNome(), input.getTesto(), input.getPunti(), input.getOrdineCasuale(), input.getRisposteConNumero());
-        domanda = domandaRepository.save(domanda);
+    @MutationMapping
+    public Domanda addQuestion(@Argument AddDomandaData input){
+        Domanda domanda = professorService.addQuestion(input.getNome(), input.getTesto(), input.getPunti(), input.getOrdineCasuale(), input.getRisposteConNumero());
 
-        List<AddRispostaData> rispostaDataList = input.getRisposte();
-        for(AddRispostaData addRispostaData: rispostaDataList){
-            rispostaRepository.save(new Risposta(addRispostaData.getTesto(), addRispostaData.getPunteggio(), domanda));
+        for(AddRispostaData addRispostaData: input.getRisposte()){
+            professorService.addAnswerToQuestion(addRispostaData.getTesto(), addRispostaData.getPunteggio(), domanda);
         }
 
-        Optional<Domanda> result = domandaRepository.findById(domanda.getId());
+        domanda = professorService.findQuestion(domanda.getId());
 
-        if(result.isEmpty()){
+        if(domanda == null){
             throw new GraphQLException();
         }
 
-        return result.get();
+        return domanda;
+    }
+
+    @MutationMapping
+    public Compilazione takeTest(@Argument Long input){
+        Compilazione compilazione = studentService.takeTest(input, userService.userGet());
+
+        if(compilazione == null){
+            throw new GraphQLException();
+        }
+
+        return compilazione;
+    }
+
+    @MutationMapping
+    public CompilazioneRisposta giveAnswer(@Argument GiveRispostaData input){
+        CompilazioneRisposta compilazioneRisposta = studentService.giveAnswer(input.getIdCompilazione(), input.getIdDomanda(), input.getIdRisposta());
+
+        if(compilazioneRisposta == null){
+            throw new GraphQLException();
+        }
+
+        return compilazioneRisposta;
     }
 }
