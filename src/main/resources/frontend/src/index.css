@@ -13,10 +13,12 @@ a, a:hover, a:visited, a:active{
 
 /* COMMON */
 
-.btn-bar a{
+.btn-bar a, .btn-bar button{
   padding: 10px;
   background-color: orange;
   border-radius: 5px;
+  border: 0;
+  cursor: pointer;
 }
 
 /* MAIN PAGE */
@@ -91,4 +93,32 @@ a, a:hover, a:visited, a:active{
 .test-add-main-controls{
   display: flex;
   justify-content: center;
+}
+
+
+/* API TEST */
+
+.api-test-main{
+  display: flex;
+  flex-direction: row;
+  max-width: 100%;
+}
+
+.api-test-bar{
+  display: flex;
+  flex-direction: column;
+}
+
+.api-test-bar button{
+  margin-bottom: 10px;
+  background-color: dodgerblue;
+}
+
+.api-test-results{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 10;
+  margin: 10px;
+  border: 1px solid dodgerblue;
+  white-space: pre-wrap;
 }
