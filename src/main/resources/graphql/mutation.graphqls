@@ -1,5 +1,5 @@
 type Mutation {
-    takeTest(input: Int!): Compilazione!
+    takeTest(input: ID!): Compilazione!
     giveAnswer(input: GiveRispostaData!): CompilazioneRisposta!
 
     addTest(input: AddTestData!): Test!

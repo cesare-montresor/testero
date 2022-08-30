@@ -19,7 +19,7 @@ input AddRispostaData{
 }
 
 input GiveRispostaData{
-    idCompilazione: Int!
-    idDomanda: Int!
-    idRisposta: Int!
+    idCompilazione: ID!
+    idDomanda: ID!
+    idRisposta: ID!
 }

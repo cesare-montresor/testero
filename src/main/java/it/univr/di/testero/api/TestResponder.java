@@ -8,6 +8,7 @@ import it.univr.di.testero.api.input.AddTestData;
 import it.univr.di.testero.api.input.GiveRispostaData;
 import it.univr.di.testero.model.*;
 import it.univr.di.testero.repository.*;
+import it.univr.di.testero.services.ICompilationService;
 import it.univr.di.testero.services.IProfessorService;
 import it.univr.di.testero.services.IStudentService;
 import it.univr.di.testero.services.UserService;
@@ -33,6 +34,8 @@ public class TestResponder {
     private IProfessorService professorService;
     @Autowired
     private IStudentService studentService;
+    @Autowired
+    private ICompilationService compilationService;
     @Autowired
     private UserService userService;
 
@@ -65,7 +68,13 @@ public class TestResponder {
 
     @MutationMapping
     public Compilazione takeTest(@Argument Long input){
-        Compilazione compilazione = studentService.takeTest(input, userService.userGet());
+        Test test = studentService.findTest(input);
+
+        if(test == null){
+            throw new GraphQLException();
+        }
+
+        Compilazione compilazione = compilationService.takeTest(test, userService.userGet());
 
         if(compilazione == null){
             throw new GraphQLException();
@@ -76,7 +85,14 @@ public class TestResponder {
 
     @MutationMapping
     public CompilazioneRisposta giveAnswer(@Argument GiveRispostaData input){
-        CompilazioneRisposta compilazioneRisposta = studentService.giveAnswer(input.getIdCompilazione(), input.getIdDomanda(), input.getIdRisposta());
+        Domanda domanda = studentService.findQuestion(input.getIdDomanda());
+        Risposta risposta = studentService.findAnswer(input.getIdRisposta());
+
+        if(domanda == null || risposta == null){
+            throw new GraphQLException();
+        }
+
+        CompilazioneRisposta compilazioneRisposta = compilationService.giveAnswer(input.getIdCompilazione(), domanda, risposta);
 
         if(compilazioneRisposta == null){
             throw new GraphQLException();

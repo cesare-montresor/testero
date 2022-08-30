@@ -7,7 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name="compilazione_risposta", schema = "testero_core")
+@Table(name="compilazione_risposta", schema = "testero_resp")
 @NoArgsConstructor
 public class CompilazioneRisposta {
     @Id

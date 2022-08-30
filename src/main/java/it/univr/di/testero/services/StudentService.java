@@ -17,10 +17,6 @@ public class StudentService implements IStudentService{
     private DomandaRepository domandaRepository;
     @Autowired
     private RispostaRepository rispostaRepository;
-    @Autowired
-    private CompilazioneRepository compilazioneRepository;
-    @Autowired
-    private CompilazioneRispostaRepository compilazioneRispostaRepository;
 
     @Override
     public List<Test> allTests(){
@@ -28,34 +24,35 @@ public class StudentService implements IStudentService{
     }
 
     @Override
-    public Compilazione takeTest(Long testId, User user) {
+    public Test findTest(Long testId){
         Optional<Test> result = testRepository.findById(testId);
 
         if(result.isEmpty()){
             return null;
         }
 
-        Test test = result.get();
-
-        Compilazione compilazione = new Compilazione(test, user, false);
-        return compilazioneRepository.save(compilazione);
+        return result.get();
     }
 
     @Override
-    public CompilazioneRisposta giveAnswer(Long idCompilazione, Long idDomanda, Long idRisposta) {
-        Optional<Compilazione> compilazioneResult = compilazioneRepository.findById(idCompilazione);
-        Optional<Domanda> domandaResult = domandaRepository.findById(idDomanda);
-        Optional<Risposta> rispostaResult = rispostaRepository.findById(idRisposta);
+    public Domanda findQuestion(Long domandaId){
+        Optional<Domanda> result = domandaRepository.findById(domandaId);
 
-        if(domandaResult.isEmpty() || rispostaResult.isEmpty() || compilazioneResult.isEmpty()){
+        if(result.isEmpty()){
             return null;
         }
 
-        Compilazione compilazione = compilazioneResult.get();
-        Domanda domanda = domandaResult.get();
-        Risposta risposta = rispostaResult.get();
+        return result.get();
+    }
 
-        CompilazioneRisposta compilazioneRisposta = new CompilazioneRisposta(compilazione, domanda, risposta);
-        return compilazioneRispostaRepository.save(compilazioneRisposta);
+    @Override
+    public Risposta findAnswer(Long answerId){
+        Optional<Risposta> result = rispostaRepository.findById(answerId);
+
+        if(result.isEmpty()){
+            return null;
+        }
+
+        return result.get();
     }
 }

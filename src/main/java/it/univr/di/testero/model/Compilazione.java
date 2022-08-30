@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-@Table(name="compilazione", schema = "testero_core")
+@Table(name="compilazione", schema = "testero_resp")
 @NoArgsConstructor
 public class Compilazione {
 
