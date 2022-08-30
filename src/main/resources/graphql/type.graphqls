@@ -1,31 +1,35 @@
 type Test{
-    id: ID!
+    id: Int!
     data: DateTime!
     nome: String!
     ordineCasuale: Boolean!
     domandeConNumero: Boolean!
-    domande: [Domanda]
+    domande: [Domanda]!
 }
 
 type Domanda{
-    id: ID!
+    id: Int!
     nome: String!
     testo: String!
     punti: Float!
     ordineCasuale: Boolean!
     risposteConNumero: Boolean!
-    risposte: [Risposta]
+    risposte: [Risposta]!
 }
 
 type Risposta{
-    id: ID!
+    id: Int!
     testo: String!
-    punteggio: Float
     domanda: Domanda
 }
 
+type TestInfo{
+    compilazione: Compilazione!
+    test: Test!
+}
+
 type User{
-    id: ID!
+    id: Int!
     username: String
     name: String
     roles: String
@@ -33,13 +37,13 @@ type User{
 }
 
 type CompilazioneRisposta{
-    id: ID!
+    id: Int!
     domanda: Domanda!
     risposta: Risposta!
 }
 
 type Compilazione{
-    id: ID!
+    id: Int!
     test: Test!
     compilazioni: [CompilazioneRisposta]!
     user: User
