@@ -2,7 +2,7 @@
 -- PostgreSQL database cluster dump
 --
 
--- Started on 2022-08-30 17:37:32 CEST
+-- Started on 2022-08-30 17:51:35 CEST
 
 SET default_transaction_read_only = off;
 
@@ -13,8 +13,8 @@ SET standard_conforming_strings = on;
 -- Roles
 --
 
---CREATE ROLE postgres;
---ALTER ROLE postgres WITH SUPERUSER INHERIT CREATEROLE CREATEDB LOGIN REPLICATION BYPASSRLS PASSWORD 'SCRAM-SHA-256$4096:ialDfrR2qc0zUlOHeRE/Fg==$zAzS2wiSjCj8fLprGoVUQ1gm65kbfDbHyFJsGlxs7yo=:CuLSK30Brs68BqdipAWZ8V3ibRTa43kxR6ylRP0V1QY=';
+CREATE ROLE postgres;
+ALTER ROLE postgres WITH SUPERUSER INHERIT CREATEROLE CREATEDB LOGIN REPLICATION BYPASSRLS PASSWORD 'SCRAM-SHA-256$4096:ialDfrR2qc0zUlOHeRE/Fg==$zAzS2wiSjCj8fLprGoVUQ1gm65kbfDbHyFJsGlxs7yo=:CuLSK30Brs68BqdipAWZ8V3ibRTa43kxR6ylRP0V1QY=';
 CREATE ROLE testero_auth;
 ALTER ROLE testero_auth WITH NOSUPERUSER NOINHERIT NOCREATEROLE NOCREATEDB LOGIN NOREPLICATION NOBYPASSRLS PASSWORD 'SCRAM-SHA-256$4096:IlK5G7UEabxeAYXxsgLhCA==$z7x94awuMQYRqdQHahFpydPoOymZD+hY/z93Igl4v4k=:mZjY4ma3G5RPdEdkqL3g1CpUlg23SAiQzctViPuwLFA=';
 CREATE ROLE testero_core;
@@ -44,7 +44,7 @@ ALTER ROLE testero_resp WITH NOSUPERUSER NOINHERIT NOCREATEROLE NOCREATEDB LOGIN
 -- Dumped from database version 14.5 (Ubuntu 14.5-1.pgdg20.04+1)
 -- Dumped by pg_dump version 14.5 (Ubuntu 14.5-1.pgdg20.04+1)
 
--- Started on 2022-08-30 17:37:32 CEST
+-- Started on 2022-08-30 17:51:35 CEST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -57,7 +57,7 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
--- Completed on 2022-08-30 17:37:32 CEST
+-- Completed on 2022-08-30 17:51:35 CEST
 
 --
 -- PostgreSQL database dump complete
@@ -76,7 +76,7 @@ SET row_security = off;
 -- Dumped from database version 14.5 (Ubuntu 14.5-1.pgdg20.04+1)
 -- Dumped by pg_dump version 14.5 (Ubuntu 14.5-1.pgdg20.04+1)
 
--- Started on 2022-08-30 17:37:32 CEST
+-- Started on 2022-08-30 17:51:35 CEST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -89,7 +89,7 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
--- Completed on 2022-08-30 17:37:32 CEST
+-- Completed on 2022-08-30 17:51:35 CEST
 
 --
 -- PostgreSQL database dump complete
@@ -106,7 +106,7 @@ SET row_security = off;
 -- Dumped from database version 14.5 (Ubuntu 14.5-1.pgdg20.04+1)
 -- Dumped by pg_dump version 14.5 (Ubuntu 14.5-1.pgdg20.04+1)
 
--- Started on 2022-08-30 17:37:32 CEST
+-- Started on 2022-08-30 17:51:35 CEST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -225,7 +225,7 @@ ALTER TABLE ONLY testero_auth."user"
     ADD CONSTRAINT "User_username_unique" UNIQUE (username);
 
 
--- Completed on 2022-08-30 17:37:33 CEST
+-- Completed on 2022-08-30 17:51:36 CEST
 
 --
 -- PostgreSQL database dump complete
@@ -242,7 +242,7 @@ ALTER TABLE ONLY testero_auth."user"
 -- Dumped from database version 14.5 (Ubuntu 14.5-1.pgdg20.04+1)
 -- Dumped by pg_dump version 14.5 (Ubuntu 14.5-1.pgdg20.04+1)
 
--- Started on 2022-08-30 17:37:33 CEST
+-- Started on 2022-08-30 17:51:36 CEST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -553,7 +553,7 @@ ALTER TABLE ONLY testero_core.test
     ADD CONSTRAINT test_pkey PRIMARY KEY (id);
 
 
--- Completed on 2022-08-30 17:37:33 CEST
+-- Completed on 2022-08-30 17:51:36 CEST
 
 --
 -- PostgreSQL database dump complete
@@ -570,7 +570,7 @@ ALTER TABLE ONLY testero_core.test
 -- Dumped from database version 14.5 (Ubuntu 14.5-1.pgdg20.04+1)
 -- Dumped by pg_dump version 14.5 (Ubuntu 14.5-1.pgdg20.04+1)
 
--- Started on 2022-08-30 17:37:33 CEST
+-- Started on 2022-08-30 17:51:36 CEST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -584,7 +584,7 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 3328 (class 1262 OID 24773)
+-- TOC entry 3331 (class 1262 OID 24773)
 -- Name: testero_resp; Type: DATABASE; Schema: -; Owner: testero_resp
 --
 
@@ -621,22 +621,22 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- TOC entry 209 (class 1259 OID 24776)
+-- TOC entry 211 (class 1259 OID 24855)
 -- Name: compilazione; Type: TABLE; Schema: testero_resp; Owner: testero_resp
 --
 
 CREATE TABLE testero_resp.compilazione (
                                            id bigint NOT NULL,
+                                           user_id bigint NOT NULL,
                                            test_id bigint NOT NULL,
-                                           completo boolean DEFAULT false NOT NULL,
-                                           user_id bigint NOT NULL
+                                           completo boolean DEFAULT false NOT NULL
 );
 
 
 ALTER TABLE testero_resp.compilazione OWNER TO testero_resp;
 
 --
--- TOC entry 210 (class 1259 OID 24782)
+-- TOC entry 209 (class 1259 OID 24782)
 -- Name: compilazione_risposta; Type: TABLE; Schema: testero_resp; Owner: testero_resp
 --
 
@@ -644,14 +644,14 @@ CREATE TABLE testero_resp.compilazione_risposta (
                                                     id bigint NOT NULL,
                                                     compilazione bigint NOT NULL,
                                                     domanda_id bigint NOT NULL,
-                                                    risposta_id bigint NOT NULL
+                                                    risposta_id bigint DEFAULT '-1'::integer
 );
 
 
 ALTER TABLE testero_resp.compilazione_risposta OWNER TO testero_resp;
 
 --
--- TOC entry 211 (class 1259 OID 24787)
+-- TOC entry 210 (class 1259 OID 24787)
 -- Name: hibernate_sequence; Type: SEQUENCE; Schema: testero_resp; Owner: testero_resp
 --
 
@@ -666,24 +666,24 @@ CREATE SEQUENCE testero_resp.hibernate_sequence
 ALTER TABLE testero_resp.hibernate_sequence OWNER TO testero_resp;
 
 --
--- TOC entry 3320 (class 0 OID 24776)
--- Dependencies: 209
+-- TOC entry 3325 (class 0 OID 24855)
+-- Dependencies: 211
 -- Data for Name: compilazione; Type: TABLE DATA; Schema: testero_resp; Owner: testero_resp
 --
 
 
 
 --
--- TOC entry 3321 (class 0 OID 24782)
--- Dependencies: 210
+-- TOC entry 3323 (class 0 OID 24782)
+-- Dependencies: 209
 -- Data for Name: compilazione_risposta; Type: TABLE DATA; Schema: testero_resp; Owner: testero_resp
 --
 
 
 
 --
--- TOC entry 3329 (class 0 OID 0)
--- Dependencies: 211
+-- TOC entry 3332 (class 0 OID 0)
+-- Dependencies: 210
 -- Name: hibernate_sequence; Type: SEQUENCE SET; Schema: testero_resp; Owner: testero_resp
 --
 
@@ -691,7 +691,7 @@ SELECT pg_catalog.setval('testero_resp.hibernate_sequence', 1, false);
 
 
 --
--- TOC entry 3178 (class 2606 OID 24825)
+-- TOC entry 3183 (class 2606 OID 24860)
 -- Name: compilazione compilazione_pkey; Type: CONSTRAINT; Schema: testero_resp; Owner: testero_resp
 --
 
@@ -700,7 +700,16 @@ ALTER TABLE ONLY testero_resp.compilazione
 
 
 --
--- TOC entry 3180 (class 2606 OID 24835)
+-- TOC entry 3179 (class 2606 OID 24854)
+-- Name: compilazione_risposta compilazione_risposta_comp_domanda_unique; Type: CONSTRAINT; Schema: testero_resp; Owner: testero_resp
+--
+
+ALTER TABLE ONLY testero_resp.compilazione_risposta
+    ADD CONSTRAINT compilazione_risposta_comp_domanda_unique UNIQUE (compilazione, domanda_id);
+
+
+--
+-- TOC entry 3181 (class 2606 OID 24835)
 -- Name: compilazione_risposta compilazione_risposta_pkey; Type: CONSTRAINT; Schema: testero_resp; Owner: testero_resp
 --
 
@@ -708,13 +717,13 @@ ALTER TABLE ONLY testero_resp.compilazione_risposta
     ADD CONSTRAINT compilazione_risposta_pkey PRIMARY KEY (id);
 
 
--- Completed on 2022-08-30 17:37:33 CEST
+-- Completed on 2022-08-30 17:51:36 CEST
 
 --
 -- PostgreSQL database dump complete
 --
 
--- Completed on 2022-08-30 17:37:33 CEST
+-- Completed on 2022-08-30 17:51:36 CEST
 
 --
 -- PostgreSQL database cluster dump complete
