@@ -28,7 +28,6 @@ function TesteroApp() {
             </div>
         </Router>
     );
-    
 }
 
 function ApiTest() {

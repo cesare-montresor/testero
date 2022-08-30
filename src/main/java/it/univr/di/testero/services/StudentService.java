@@ -6,6 +6,7 @@ import it.univr.di.testero.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,6 +21,11 @@ public class StudentService implements IStudentService{
     private CompilazioneRepository compilazioneRepository;
     @Autowired
     private CompilazioneRispostaRepository compilazioneRispostaRepository;
+
+    @Override
+    public List<Test> allTests(){
+        return testRepository.findAll();
+    }
 
     @Override
     public Compilazione takeTest(Long testId, User user) {
