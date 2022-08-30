@@ -1,4 +1,4 @@
-package it.univr.di.testero.config;
+package it.univr.di.testero.services;
 
 import it.univr.di.testero.model.User;
 import it.univr.di.testero.model.UserAuthDetails;
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class AuthService implements UserDetailsService {
+public class UserService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;

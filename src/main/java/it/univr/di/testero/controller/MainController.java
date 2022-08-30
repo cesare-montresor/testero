@@ -1,18 +1,13 @@
 package it.univr.di.testero.controller;
 
 
-import it.univr.di.testero.api.input.AddTestData;
-import it.univr.di.testero.config.AuthService;
-import it.univr.di.testero.model.Test;
+import it.univr.di.testero.services.UserService;
 import it.univr.di.testero.model.User;
 import it.univr.di.testero.repository.DomandaRepository;
 import it.univr.di.testero.repository.RispostaRepository;
 import it.univr.di.testero.repository.TestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.error.ErrorController;
-import org.springframework.graphql.data.method.annotation.Argument;
-import org.springframework.graphql.data.method.annotation.QueryMapping;
-import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,15 +17,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
-import java.time.Instant;
-import java.time.OffsetDateTime;
-import java.time.ZoneOffset;
 
 
 @Controller
 public class MainController implements ErrorController {
     @Autowired
-    AuthService authService;
+    UserService userService;
 
     @Autowired
     TestRepository testRepository;
@@ -41,7 +33,7 @@ public class MainController implements ErrorController {
 
     @GetMapping("/")
     public String getIndex() {
-        User authUser = authService.userGet();
+        User authUser = userService.userGet();
 
         if (authUser == null) {
             return "redirect:/login";
@@ -52,14 +44,14 @@ public class MainController implements ErrorController {
 
     @GetMapping("/home")
     public String getHome(Model model) {
-        User authUser = authService.userGet();
+        User authUser = userService.userGet();
         model.addAttribute("user", authUser);
         return "redirect:/app/index.html";
     }
 
     @GetMapping("/login")
     public String getLogin() {
-        User userAuth = authService.userGet();
+        User userAuth = userService.userGet();
         if (userAuth!=null){
             return "redirect:/home";
         }
