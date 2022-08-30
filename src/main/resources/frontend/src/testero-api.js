@@ -41,7 +41,7 @@ class TesteroAPI {
                 getUser{
                     id, username, name, roles, active
                 }
-        }`;
+            }`;
 
         return this.fetch(query);
     }
@@ -57,11 +57,61 @@ class TesteroAPI {
         return this.fetch(query);
     }
 
-    takeTest(){}
+    takeTest(idTest){
+        const query = gql`
+            mutation takeTest($input: Int!) {
+                takeTest(input: $input) {
+                    id,
+                }
+            }`;
 
-    giveAnswer(){}
+        const vars = {
+            "input": idTest
+        };
 
-    addQuestion(){}
+        return this.fetch(query, vars);
+    }
+
+    giveAnswer(idCompilazione, idDomanda, idRisposta){
+        const query = gql`
+            mutation giveAnswer($input: GiveRispostaData!) {
+                giveAnswer(input: $input) {
+                    id
+                }
+            }`;
+
+        const vars = {
+            "input": {
+                "idCompilazione": idCompilazione,
+                "idDomanda": idDomanda,
+                "idRisposta": idRisposta
+            }
+        };
+
+        return this.fetch(query, vars);
+    }
+
+    addQuestion(nome, testo, punti, ordineCasuale, risposteConNumero, risposte ){
+        const query = gql`
+            mutation addQuestion($input: AddDomandaData!) {
+                addQuestion(input: $input) {
+                    id
+                }
+            }`;
+
+        const vars = {
+            "input": {
+                "nome": nome,
+                "testo": testo,
+                "punti": punti,
+                "ordineCasuale": ordineCasuale,
+                "risposteConNumero": risposteConNumero,
+                "risposte": risposte
+            }
+        };
+
+        return this.fetch(query, vars);
+    }
 
 };
 

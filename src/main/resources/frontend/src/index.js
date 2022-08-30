@@ -35,21 +35,19 @@ function ApiTest() {
     const [response, setResponse] = useState("");
 
     function getUser(){
-        api.getUser().then( showResponse ).then( showResponse ).catch( showError );
+        api.getUser().then( showResponse ).catch( showError );
     }
 
     function allTests(){
-        api.allTests().then( showResponse ).then( showResponse ).catch( showError );
+        api.allTests().then( showResponse ).catch( showError );
     }
 
     function takeTest(){
-        setResponse( "takeTest: Not Implemented" );
-        //api.takeTest().then( showResponse ).then( showResponse ).catch( showError );
+        api.takeTest(73).then( showResponse ).catch( showError );
     }
 
     function giveAnswer(){
-        setResponse( "giveAnswer: Not Implemented" );
-        //api.giveAnswer().then( showResponse ).then( showResponse ).catch( showError );
+        api.giveAnswer(73,21,3).then( showResponse ).catch( showError );
     }
 
     function addTest(){
@@ -57,8 +55,11 @@ function ApiTest() {
     }
 
     function addQuestion(){
-        setResponse( "addQuestion: Not Implemented" );
-        //api.addQuestion().then( showResponse ).then( showResponse ).catch( showError );
+        const risposte = [
+            {"testo": "Giusta", "punteggio":1.0},
+            {"testo": "Sbagliata", "punteggio":0.0}
+        ];
+        api.addQuestion("domanda A", "domanda giusta?", 10, true, false, risposte ).then( showResponse ).catch( showError );
     }
 
     function showResponse(data){

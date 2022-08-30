@@ -55,7 +55,7 @@ public class JpaConfigCore {
     {
         return builder
           .dataSource(dataSource)
-          .packages( Test.class, Risposta.class, Domanda.class, Compilazione.class, CompilazioneRisposta.class )
+          .packages( Test.class, Risposta.class, Domanda.class )
           .build();
     }
 
