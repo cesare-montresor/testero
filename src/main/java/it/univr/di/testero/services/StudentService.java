@@ -11,15 +11,15 @@ import java.util.Optional;
 @Service
 public class StudentService implements IStudentService{
     @Autowired
-    TestRepository testRepository;
+    private TestRepository testRepository;
     @Autowired
-    DomandaRepository domandaRepository;
+    private DomandaRepository domandaRepository;
     @Autowired
-    RispostaRepository rispostaRepository;
+    private RispostaRepository rispostaRepository;
     @Autowired
-    CompilazioneRepository compilazioneRepository;
+    private CompilazioneRepository compilazioneRepository;
     @Autowired
-    CompilazioneRispostaRepository compilazioneRispostaRepository;
+    private CompilazioneRispostaRepository compilazioneRispostaRepository;
 
     @Override
     public Compilazione takeTest(Long testId, User user) {

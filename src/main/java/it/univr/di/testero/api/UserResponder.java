@@ -11,7 +11,7 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class UserResponder {
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @QueryMapping
     public User getUser() {
