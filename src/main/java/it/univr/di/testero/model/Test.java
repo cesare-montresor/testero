@@ -8,31 +8,13 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-/*
-CREATE TABLE test (
-    data TIMESTAMP NOT NULL ,
-    nome VARCHAR NOT NULL ,
-    ordineCasuale BOOLEAN DEFAULT FALSE , -- le domande devono essere presentate in ordine casuale
-    domandeConNumero BOOLEAN DEFAULT FALSE , -- le domande devono essere numerate
-    PRIMARY KEY ( data , nome )
-);
-
-CREATE TABLE in_test (
-    domanda VARCHAR REFERENCES Domanda ,
-    dataTest TIMESTAMP NOT NULL ,
-    nomeTest VARCHAR NOT NULL ,
-    FOREIGN KEY ( dataTest , nomeTest ) REFERENCES Test
-);
-*/
-
 @Entity
 @Table(name="test", schema = "testero_core")
 @NoArgsConstructor
 public class Test {
-
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Getter @Setter
+    @Getter
     private Long id;
     @Getter @Setter
     private OffsetDateTime data;

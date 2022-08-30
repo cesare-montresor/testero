@@ -19,7 +19,6 @@ input AddRispostaData{
 }
 
 input GiveRispostaData{
-    idTest: Int!
     idCompilazione: Int!
     idDomanda: Int!
     idRisposta: Int!
