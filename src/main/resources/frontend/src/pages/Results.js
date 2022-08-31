@@ -1,8 +1,8 @@
 import {useEffect} from "react";
-import Header from "../../components/Header/Header";
+import Header from "../components/Header";
 import {useNavigate} from "react-router-dom";
 
-import "./results.css"
+import "../assets/results.css"
 
 
 export default function Results({selectedExam, questions}){
