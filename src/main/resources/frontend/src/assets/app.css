@@ -49,10 +49,7 @@ a, a:hover, a:visited, a:active{
     padding: 10px;
 }
 
-.page-title{
-    font-size: 30px;
 
-}
 
 /* MENU */
 .menu-main{
@@ -62,28 +59,33 @@ a, a:hover, a:visited, a:active{
 .menu-main a{
     margin-right: 10px;
 }
-.header  {
-    margin: 10px calc(2%);
+
+
+.main-header  {
     justify-content: space-between;
-    align-items: center;
+    display: flex;
+    flex-direction: row;
 }
 
-.header  ul {
-    list-style-type: none;
-    text-align: right;
-
+.main-header-title{
+    font-size: 30px;
 }
 
-.header ul li {
-    display: inline;
-    padding-inline: 15px;
+.main-header-status {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
 }
 
-.header ul li img{
+.main-header-status div {
+    margin-right: 20px;
+}
+
+.main-header-status div img{
     width: 13px;
 }
 
-.header h1{
+.main-header h1{
     padding-top: 50px;
     font-weight: 400;
     font-size: 40px;
