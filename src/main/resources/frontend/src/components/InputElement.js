@@ -1,5 +1,6 @@
+import React from "react";
 
-export function InputFields(props){
+function InputElement(props){
   return (
     <div className={ props.className }>
       <label htmlFor={ props.id }>{props.label}</label>
@@ -8,16 +9,16 @@ export function InputFields(props){
   );
 }
 
-export function InputText(props){
-  return (
-    <div className={ props.className }>
-      <label htmlFor={ props.id }>{props.label}</label>
-      <input type={props.type} name={ props.id } id={ props.id }/>
-    </div>
-  );
+
+function InputCheckbox(props){
+    return ( <InputElement type="checkbox" className={props.className} id={props.id} label={props.label} />);
 }
 
-export function InputRadioButton(props) {
+function InputText(props){
+    return ( <InputElement type="text" className={props.className} id={props.id} label={props.label} />);
+}
+
+function InputRadioButton(props) {
   return (
     <div className={props.className}>
       <input type="radio" key={props.id} name={props.id} id={props.id} value={props.value} checked={props.checked} onChange={props.onChange} />
@@ -25,3 +26,8 @@ export function InputRadioButton(props) {
     </div>
   );
 }
+
+
+
+
+export {InputElement, InputCheckbox, InputText, InputRadioButton}

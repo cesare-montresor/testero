@@ -1,5 +1,5 @@
 import Header from "../components/Header";
-import {InputFields, InputText} from "../components/InputFields";
+import {InputElement, InputText} from "../components/InputElement";
 
 
 export default function CreateExam() {
@@ -13,8 +13,8 @@ export default function CreateExam() {
 
         <div className='basic-info'>
           <InputText label="Nome" className="test-add-main-nome" id="test-name"/>
-          <InputFields label="Ordine Casuale" className="test-add-main-order" id="test-order"/>
-          <InputFields label="Domanda con numero" className="test-add-main-numbered" id="test-numbered"/>
+          <InputElement label="Ordine Casuale" className="test-add-main-order" id="test-order"/>
+          <InputElement label="Domanda con numero" className="test-add-main-numbered" id="test-numbered"/>
 
           <div className='next-form'>
             <button type="button" >Avanti</button>
