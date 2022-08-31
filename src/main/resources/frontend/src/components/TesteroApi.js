@@ -1,6 +1,6 @@
 import { GraphQLClient, gql } from 'graphql-request'
 
-class TesteroAPI {
+class TesteroApi {
     constructor(){
         this.endpoint = 'http://localhost:8080/graphql';
         this.headers = {
@@ -120,4 +120,4 @@ class TesteroAPI {
 
 };
 
-export { TesteroAPI }
+export { TesteroApi };

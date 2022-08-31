@@ -2,14 +2,18 @@ import ReactDOM from 'react-dom/client';
 import {Routes, Route, Link, BrowserRouter } from "react-router-dom";
 import React, {useEffect, useState} from "react";
 
-import ExamList from "./pages/ExamList";
-import SelectedExam from "./pages/SelectedExam";
-import Results from "./pages/Results";
-import NoPage from "./pages/NoPage";
-import CreateExam from "./pages/CreateExam";
+import {NavBar} from "./components/NavBar";
+import {Header} from "./components/Header";
+
+
+import {ExamList} from "./pages/ExamList";
+import {SelectedExam} from "./pages/SelectedExam";
+import {Results} from "./pages/Results";
+import {NoPage} from "./pages/NoPage";
 import {AddTest} from "./pages/AddTest";
 import {AddQuestion} from "./pages/AddQuestion";
 import {ApiTest} from "./pages/ApiTest";
+
 
 import "./assets/app.css"
 
@@ -54,7 +58,7 @@ function App() {
     return (
         <BrowserRouter>
             <div className='page-main'>
-                <div className='page-title'>Testero&#8482;</div>
+                <Header/>
                 <NavBar/>
                 <div className='page-content'>
                     <Routes>
@@ -63,7 +67,6 @@ function App() {
                         <Route path="/selectedExam" element={<SelectedExam selectedExam={selectedExam} questions={questions}
                                                                            currentQuestion={currentQuestion} setCurrentQuestion={setCurrentQuestion} setQuestions={setQuestions}/>} />
                         <Route path="/results" element={<Results selectedExam={selectedExam} questions={questions}/>} />
-                        <Route path="/createExam" element={<CreateExam />}/>
                         <Route exact path="/apiTest" element={ <ApiTest/> } />
                         <Route exact path="/addTest"  element={  <AddTest/> } />
                         <Route exact path="/addTest/:id/addQuestion"  element={  <AddQuestion/> } />
@@ -72,19 +75,6 @@ function App() {
                 </div>
             </div>
         </BrowserRouter>
-    );
-}
-
-
-
-
-function NavBar() {
-    return (
-        <div className='menu-main btn-bar'>
-            <Link to="/"> Test List </Link>
-            <Link to="/addTest"> Add Test </Link>
-            <Link to="/apiTest"> API Test </Link>
-        </div>
     );
 }
 

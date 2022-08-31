@@ -1,8 +1,8 @@
-import {TesteroAPI} from "../components/testero-api";
+import {TesteroApi} from "../components/TesteroApi";
 import React, {useState} from "react";
 
 function ApiTest() {
-    const api = new TesteroAPI();
+    const api = new TesteroApi();
     const [response, setResponse] = useState("");
 
     function getUser(){

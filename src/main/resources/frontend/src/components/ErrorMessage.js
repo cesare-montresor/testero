@@ -1,5 +1,5 @@
 
-const ErrorMessage = ({ children }) => {
+function ErrorMessage({children}){
   return (
     <div
       style={{
@@ -16,6 +16,6 @@ const ErrorMessage = ({ children }) => {
       {children}
     </div>
   );
-};
+}
 
-export default ErrorMessage;
+export {ErrorMessage};

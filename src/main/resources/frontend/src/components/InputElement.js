@@ -30,4 +30,4 @@ function InputRadioButton(props) {
 
 
 
-export {InputElement, InputCheckbox, InputText, InputRadioButton}
+export {InputElement, InputCheckbox, InputText, InputRadioButton};
