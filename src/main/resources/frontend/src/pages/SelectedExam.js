@@ -1,8 +1,8 @@
-import Header from "../../components/Header/Header";
+import Header from "../components/Header";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {InputRadioButton} from "../../components/InputFields/InputFields";
-import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import {InputRadioButton} from "../components/InputFields";
+import ErrorMessage from "../components/ErrorMessage";
 
 
 export default function SelectedExam({selectedExam, questions, currentQuestion, setCurrentQuestion, setQuestions}){

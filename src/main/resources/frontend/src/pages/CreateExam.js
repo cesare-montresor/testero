@@ -1,5 +1,5 @@
-import Header from "../../components/Header/Header";
-import {InputFields, InputText} from "../../components/InputFields/InputFields";
+import Header from "../components/Header";
+import {InputFields, InputText} from "../components/InputFields";
 
 
 export default function CreateExam() {

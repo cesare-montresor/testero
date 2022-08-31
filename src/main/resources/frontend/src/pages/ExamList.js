@@ -1,8 +1,8 @@
-import {getExams} from "../../Exams";
+import {getExams} from "../data/Exams";
 import {useNavigate} from "react-router-dom";
-import Header from "../../components/Header/Header";
+import Header from "../components/Header";
 import {useEffect, useState} from "react";
-import Questions from "../../Questions";
+import Questions from "../data/Questions";
 
 
 export default function ExamList({setSelectedExam, setQuestions, setCurrentQuestion}){
