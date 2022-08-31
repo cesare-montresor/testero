@@ -27,6 +27,7 @@ function AddQuestion(){
     function addAnswer(){
         alert("1");
     }
+
     function addQuestion(){
         alert("2");
     }
