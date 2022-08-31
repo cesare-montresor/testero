@@ -1,20 +1,13 @@
-import {useEffect} from "react";
-import Header from "../components/Header";
 import {useNavigate} from "react-router-dom";
 
-import "../assets/results.css"
-
-
-export default function Results({selectedExam, questions}){
+function Results({selectedExam, questions}){
   let numQuestion = 0;
   let examPoints = 0;
   let userScore = 0;
   const navigate = useNavigate();
 
   return(
-    <>
-      <Header> </Header>
-
+    <section>
       <h1>Risultati</h1>
       <h2>{selectedExam.Name}</h2>
       <div className={"questionList"}>
@@ -78,6 +71,8 @@ export default function Results({selectedExam, questions}){
         window.history.replaceState(null, "", "/");
         navigate("/");
       }}>Torna alla home</button>
-    </>
+    </section>
   );
 }
+
+export {Results}

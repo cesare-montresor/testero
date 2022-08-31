@@ -57,15 +57,15 @@ public class UserService implements UserDetailsService {
 
     public User userGet() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        //TODO remove
         if (! (auth.getPrincipal() instanceof UserAuthDetails )){ return null; } // auth.getPrincipal() returns an empty string when not authenticated
 
         UserAuthDetails details = (UserAuthDetails) auth.getPrincipal();
 
         Optional<User> user = userRepository.findByUsername( details.getUsername() );
-        if (user.isEmpty() ) {return null;}
+        //TODO remove
+        if (user.isEmpty() ) { return null; }
 
         return user.get();
     }
-
-
 }

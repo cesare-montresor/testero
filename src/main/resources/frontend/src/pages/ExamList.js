@@ -1,11 +1,9 @@
 import {getExams} from "../data/Exams";
 import {useNavigate} from "react-router-dom";
-import Header from "../components/Header";
-import {useEffect, useState} from "react";
 import Questions from "../data/Questions";
 
 
-export default function ExamList({setSelectedExam, setQuestions, setCurrentQuestion}){
+function ExamList({setSelectedExam, setQuestions, setCurrentQuestion}){
   let examList = getExams();
   let navigate = useNavigate();
 
@@ -21,9 +19,6 @@ export default function ExamList({setSelectedExam, setQuestions, setCurrentQuest
   };
 
   return (
-    <>
-      <Header></Header>
-
       <section className='AvailableTest'>
         <h2>Test disponibili</h2>
 
@@ -49,7 +44,8 @@ export default function ExamList({setSelectedExam, setQuestions, setCurrentQuest
         </ul>
       </section>
 
-      <button onClick={() => {navigate("/createExam")}}> Crea nuovo esame </button>
-    </>
+
   );
 }
+
+export {ExamList}
