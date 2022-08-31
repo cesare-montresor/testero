@@ -33,16 +33,10 @@ public class Test {
     )
     public List<Domanda> domande;
 
-    @OneToMany(mappedBy = "test", orphanRemoval = true, cascade = CascadeType.ALL)
-    Collection<Compilazione> compilazioni;
-
-
     public Test(OffsetDateTime data, String nome, Boolean ordineCasuale, Boolean domandeConNumero) {
         this.data = data;
         this.nome = nome;
         this.ordineCasuale = ordineCasuale;
         this.domandeConNumero = domandeConNumero;
-        this.domande = domande;
-        this.compilazioni = compilazioni;
     }
 }

@@ -31,26 +31,6 @@ function AddQuestion(){
         alert("2");
     }
 
-
-    /*
-    public String nome;
-    public String testo;
-    public String punti;
-    public Boolean ordineCasuale;
-    public Boolean risposteConNumero;
-    public List<AddRispostaData> risposte;
-    */
-
-    /*
-
-    input AddRispostaData{
-        testo: String!
-        punteggio: Float
-    }
-
-    */
-
-
     return (
         <div className='test-add-question'>
             <div className='test-add-question-main'>
