@@ -60,8 +60,13 @@ class TesteroAPI {
     takeTest(idTest){
         const query = gql`
             mutation takeTest($input: Int!) {
-                takeTest(input: $input) {
-                    id,
+                takeTest(input: $input){
+                    test{
+                        nome
+                    }
+                    compilazione {
+                        id
+                    }
                 }
             }`;
 

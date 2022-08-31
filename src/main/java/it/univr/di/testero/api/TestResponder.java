@@ -6,6 +6,7 @@ import it.univr.di.testero.api.input.AddDomandaData;
 import it.univr.di.testero.api.input.AddRispostaData;
 import it.univr.di.testero.api.input.AddTestData;
 import it.univr.di.testero.api.input.GiveRispostaData;
+import it.univr.di.testero.api.output.TestInfo;
 import it.univr.di.testero.model.*;
 import it.univr.di.testero.repository.*;
 import it.univr.di.testero.services.ICompilationService;
@@ -67,20 +68,21 @@ public class TestResponder {
     }
 
     @MutationMapping
-    public Compilazione takeTest(@Argument Long input){
-        Test test = studentService.findTest(input);
+    public TestInfo takeTest(@Argument String input){
+        Long inputLong = Long.parseLong(input);
+        Test test = studentService.findTest(inputLong);
 
         if(test == null){
             throw new GraphQLException();
         }
 
-        Compilazione compilazione = compilationService.takeTest(test, userService.userGet());
+        Compilazione compilazione = compilationService.takeTest(test.getId(), userService.userGet().getId());
 
         if(compilazione == null){
             throw new GraphQLException();
         }
 
-        return compilazione;
+        return new TestInfo(compilazione, test);
     }
 
     @MutationMapping
@@ -92,7 +94,7 @@ public class TestResponder {
             throw new GraphQLException();
         }
 
-        CompilazioneRisposta compilazioneRisposta = compilationService.giveAnswer(input.getIdCompilazione(), domanda, risposta);
+        CompilazioneRisposta compilazioneRisposta = compilationService.giveAnswer(input.getIdCompilazione(), domanda.getId(), risposta.getId());
 
         if(compilazioneRisposta == null){
             throw new GraphQLException();

@@ -16,14 +16,14 @@ public class CompilationService implements ICompilationService{
     private CompilazioneRispostaRepository compilazioneRispostaRepository;
 
     @Override
-    public Compilazione takeTest(Test test, User user) {
-        Compilazione compilazione = new Compilazione(test, user, false);
+    public Compilazione takeTest(Long testId, Long userId) {
+        Compilazione compilazione = new Compilazione(testId, userId, false);
         return compilazioneRepository.save(compilazione);
     }
 
     @Override
-    public CompilazioneRisposta giveAnswer(Long idCompilazione, Domanda domanda, Risposta risposta) {
-        Optional<Compilazione> compilazioneResult = compilazioneRepository.findById(idCompilazione);
+    public CompilazioneRisposta giveAnswer(Long compilazioneId, Long domandaId, Long rispostaId) {
+        Optional<Compilazione> compilazioneResult = compilazioneRepository.findById(compilazioneId);
 
         if(compilazioneResult.isEmpty()){
             return null;
@@ -31,7 +31,7 @@ public class CompilationService implements ICompilationService{
 
         Compilazione compilazione = compilazioneResult.get();
 
-        CompilazioneRisposta compilazioneRisposta = new CompilazioneRisposta(compilazione, domanda, risposta);
+        CompilazioneRisposta compilazioneRisposta = new CompilazioneRisposta(compilazione, domandaId, rispostaId);
         return compilazioneRispostaRepository.save(compilazioneRisposta);
     }
 }

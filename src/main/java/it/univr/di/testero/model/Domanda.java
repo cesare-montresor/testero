@@ -11,7 +11,6 @@ import java.util.Collection;
 @Table(name="domanda", schema = "testero_core")
 @NoArgsConstructor
 public class Domanda {
-
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Getter
