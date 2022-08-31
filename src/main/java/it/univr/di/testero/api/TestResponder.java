@@ -37,8 +37,7 @@ public class TestResponder {
 
     @QueryMapping
     public List<Test> allTests(){
-        throw new GraphQLCustomError("Lol", null);
-        //return studentService.allTests();
+        return studentService.allTests();
     }
 
     @MutationMapping
