@@ -1,33 +1,28 @@
 import React from "react";
 
-function InputElement(props){
-  return (
+const InputElement = React.forwardRef((props, ref) => (
     <div className={ props.className }>
-      <label htmlFor={ props.id }>{props.label}</label>
-      <input type={props.type} name={ props.id } id={ props.id }/>
+        <label htmlFor={ props.id }>{props.label}</label>
+        <input ref={ref} type={props.type} name={ props.id } id={ props.id }/>
+        {props.children}
     </div>
-  );
-}
+));
 
 
-function InputCheckbox(props){
-    return ( <InputElement type="checkbox" className={props.className} id={props.id} label={props.label} />);
-}
+const InputCheckbox = React.forwardRef((props, ref) => (
+    <InputElement type="checkbox" {...props} ref={ref}/>
+));
 
-function InputText(props){
-    return ( <InputElement type="text" className={props.className} id={props.id} label={props.label} />);
-}
+const InputText = React.forwardRef((props, ref) => (
+    <InputElement type="text" {...props} ref={ref}/>
+));
 
-function InputRadioButton(props) {
-  return (
+const InputRadioButton = React.forwardRef((props, ref) => (
     <div className={props.className}>
-      <input type="radio" key={props.id} name={props.id} id={props.id} value={props.value} checked={props.checked} onChange={props.onChange} />
-      <label htmlFor={ props.id }>{props.label}</label>
+        <input type="radio" key={props.id} name={props.id} id={props.id} value={props.value} checked={props.checked} onChange={props.onChange} />
+        <label htmlFor={ props.id }>{props.label}</label>
+        {props.children}
     </div>
-  );
-}
-
-
-
+));
 
 export {InputElement, InputCheckbox, InputText, InputRadioButton};
