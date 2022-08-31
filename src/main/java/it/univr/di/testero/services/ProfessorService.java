@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ProfessorService implements IProfessorService{
+public class ProfessorService{
     @Autowired
     private TestRepository testRepository;
     @Autowired
@@ -32,25 +32,31 @@ public class ProfessorService implements IProfessorService{
     @Autowired
     private RispostaRepository rispostaRepository;
 
-    @Override
     public Test addTest(String nome, Boolean ordineCasuale, Boolean domandeConNumero){
         Test t = new Test(OffsetDateTime.ofInstant(Instant.now(), ZoneOffset.UTC), nome, ordineCasuale, domandeConNumero);
         return testRepository.save(t);
     }
 
-    @Override
-    public Domanda addQuestion(String nome, String testo, Float punti, Boolean ordineCasuale, Boolean risposteConNumero){
+    public Domanda addQuestion(Long testId, String nome, String testo, Float punti, Boolean ordineCasuale, Boolean risposteConNumero){
+        Optional<Test> result = testRepository.findById(testId);
+
+        if(result.isEmpty()){
+            return null;
+        }
+
+        Test test = result.get();
         Domanda domanda = new Domanda(nome, testo, punti, ordineCasuale, risposteConNumero);
         domanda = domandaRepository.save(domanda);
+
+        test.domande.add(domanda);
+
         return domanda;
     }
 
-    @Override
     public Risposta addAnswerToQuestion(String testo, Float punteggio, Domanda domanda){
         return rispostaRepository.save(new Risposta(testo, punteggio, domanda));
     }
 
-    @Override
     public Domanda findQuestion(Long questionId){
         Optional<Domanda> result = domandaRepository.findById(questionId);
 

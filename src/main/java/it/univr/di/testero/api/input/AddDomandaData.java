@@ -11,6 +11,8 @@ import java.util.List;
 @AllArgsConstructor
 public class AddDomandaData {
     @Setter @Getter
+    private Long testId;
+    @Setter @Getter
     private String nome;
     @Setter @Getter
     private String testo;
