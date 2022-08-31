@@ -1,11 +1,10 @@
-import Header from "../components/Header";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {InputRadioButton} from "../components/InputElement";
-import ErrorMessage from "../components/ErrorMessage";
+import {ErrorMessage} from "../components/ErrorMessage";
 
 
-export default function SelectedExam({selectedExam, questions, currentQuestion, setCurrentQuestion, setQuestions}){
+function SelectedExam({selectedExam, questions, currentQuestion, setCurrentQuestion, setQuestions}){
   const navigate = useNavigate();
   let ansNum = 0;
   const [error, setError] = useState(false);
@@ -39,9 +38,7 @@ export default function SelectedExam({selectedExam, questions, currentQuestion, 
   };
 
   return (
-    <>
-      <Header></Header>
-
+    <section>
       <h1>{selectedExam.Name}</h1>
 
       {questions && questions[currentQuestion]?
@@ -103,7 +100,9 @@ export default function SelectedExam({selectedExam, questions, currentQuestion, 
         )
         : (<h1>Caricando</h1>)}
 
-    </>
+    </section>
   );
 
 }
+
+export {SelectedExam}

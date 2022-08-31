@@ -1,5 +1,5 @@
 import {useNavigate} from "react-router-dom";
-import {TesteroAPI} from "../components/testero-api";
+import {TesteroApi} from "../components/TesteroApi";
 import React from "react";
 import {InputCheckbox, InputText} from "../components/InputElement";
 
@@ -7,7 +7,7 @@ function AddTest(){
     let navigate = useNavigate();
 
     async function saveTest(){
-        const api = new TesteroAPI();
+        const api = new TesteroApi();
         const req = api.addTest("nomeeee" , true, false);
         req.then((data) => {
             const id =data["addTest"]["id"];
