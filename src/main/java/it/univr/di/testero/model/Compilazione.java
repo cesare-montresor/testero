@@ -12,7 +12,7 @@ import java.util.Collection;
 @NoArgsConstructor
 public class Compilazione {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Getter
     private Long id = 0L;
 
