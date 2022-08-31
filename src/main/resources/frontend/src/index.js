@@ -7,6 +7,9 @@ import SelectedExam from "./pages/SelectedExam";
 import Results from "./pages/Results";
 import NoPage from "./pages/NoPage";
 import CreateExam from "./pages/CreateExam";
+import {AddTest} from "./pages/AddTest";
+import {AddQuestion} from "./pages/AddQuestion";
+import {ApiTest} from "./pages/ApiTest";
 
 import "./assets/app.css"
 
@@ -55,11 +58,15 @@ function App() {
                 <NavBar/>
                 <div className='page-content'>
                     <Routes>
+                        <Route path="/app/" element={<ExamList setSelectedExam={setSelectedExam} setQuestions={setQuestions} setCurrentQuestion={setCurrentQuestion}/>} />
                         <Route path="/" element={<ExamList setSelectedExam={setSelectedExam} setQuestions={setQuestions} setCurrentQuestion={setCurrentQuestion}/>} />
                         <Route path="/selectedExam" element={<SelectedExam selectedExam={selectedExam} questions={questions}
                                                                            currentQuestion={currentQuestion} setCurrentQuestion={setCurrentQuestion} setQuestions={setQuestions}/>} />
                         <Route path="/results" element={<Results selectedExam={selectedExam} questions={questions}/>} />
-                        <Route path="/createExam" element={<CreateExam />}></Route>
+                        <Route path="/createExam" element={<CreateExam />}/>
+                        <Route exact path="/apiTest" element={ <ApiTest/> } />
+                        <Route exact path="/addTest"  element={  <AddTest/> } />
+                        <Route exact path="/addTest/:id/addQuestion"  element={  <AddQuestion/> } />
                         <Route path="*" element={<NoPage />} />
                     </Routes>
                 </div>
@@ -67,6 +74,8 @@ function App() {
         </BrowserRouter>
     );
 }
+
+
 
 
 function NavBar() {

@@ -1,7 +1,7 @@
 import Header from "../components/Header";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {InputRadioButton} from "../components/InputFields";
+import {InputRadioButton} from "../components/InputElement";
 import ErrorMessage from "../components/ErrorMessage";
 
 

@@ -2,9 +2,6 @@ import {useEffect} from "react";
 import Header from "../components/Header";
 import {useNavigate} from "react-router-dom";
 
-import "../assets/results.css"
-
-
 export default function Results({selectedExam, questions}){
   let numQuestion = 0;
   let examPoints = 0;
@@ -81,3 +78,4 @@ export default function Results({selectedExam, questions}){
     </>
   );
 }
+

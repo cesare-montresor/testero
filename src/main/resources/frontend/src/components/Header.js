@@ -2,7 +2,6 @@ import React from 'react'
 
 import logout_icon from "../assets/power-off.png"     //In create-react-app relative paths for images don't seem to work. Instead, you can import an image -> stackoverflow 2016
 
-import "../assets/header.css"
 
 const user = "Utente 1"
 const role = "Studente"

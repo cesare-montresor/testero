@@ -1,13 +1,172 @@
+/* HTML override */
+
 * {
     margin: 0;
     padding: 0;
 }
 
 body {
-    margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%
+}
+
+a, a:hover, a:visited, a:active{
+    text-decoration: none;
+    color: black;
+}
+
+/* COMMON */
+
+.btn-bar a, .btn-bar button{
+    padding: 10px;
+    background-color: orange;
+    border-radius: 5px;
+    border: 0;
+    cursor: pointer;
+}
+
+/* MAIN PAGE */
+
+.page-main{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height:max-content;
+    padding: 10px;
+}
+
+.page-content{
+    padding: 10px;
+}
+
+.page-title{
+    font-size: 30px;
+
+}
+
+/* MENU */
+.menu-main{
+    padding: 10px;
+}
+
+.menu-main a{
+    margin-right: 10px;
+}
+.header  {
+    margin: 10px calc(2%);
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header  ul {
+    list-style-type: none;
+    text-align: right;
+
+}
+
+.header ul li {
+    display: inline;
+    padding-inline: 15px;
+}
+
+.header ul li img{
+    width: 13px;
+}
+
+.header h1{
+    padding-top: 50px;
+    font-weight: 400;
+    font-size: 40px;
+}
+
+
+/* TEST LIST */
+
+.test-list{
+    display: flex;
+    flex-direction: column;
+}
+
+.test-list-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+/* ADD TEST */
+
+.test-add{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.test-add-main{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    min-width: 300px;
+}
+
+.test-add-main-nome{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.test-add-main-order, .test-add-main-numbered{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.test-add-main-controls{
+    display: flex;
+    justify-content: center;
+}
+
+
+/* API TEST */
+
+.api-test-main{
+    display: flex;
+    flex-direction: row;
+    max-width: 100%;
+}
+
+.api-test-bar{
+    display: flex;
+    flex-direction: column;
+}
+
+.api-test-bar button{
+    margin-bottom: 10px;
+    background-color: dodgerblue;
+}
+
+.api-test-results{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 10;
+    margin: 10px;
+    border: 1px solid dodgerblue;
+    white-space: pre-wrap;
+}
+
+
+/* TAKE TEST */
+
+
+.question{
+    margin: 20px 0;
 }
