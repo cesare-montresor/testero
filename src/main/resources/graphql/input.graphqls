@@ -5,6 +5,7 @@ input AddTestData{
 }
 
 input AddDomandaData{
+    testId: Int!
     nome: String!
     testo: String!
     punti: Float!

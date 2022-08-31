@@ -1,61 +1,66 @@
 package it.univr.di.testero.api;
 
 import graphql.GraphQLException;
-import graphql.GraphqlErrorException;
 import it.univr.di.testero.api.input.AddDomandaData;
 import it.univr.di.testero.api.input.AddRispostaData;
 import it.univr.di.testero.api.input.AddTestData;
 import it.univr.di.testero.api.input.GiveRispostaData;
 import it.univr.di.testero.api.output.TestInfo;
+import it.univr.di.testero.config.GraphQLCustomError;
+import it.univr.di.testero.config.UserRoles;
 import it.univr.di.testero.model.*;
-import it.univr.di.testero.repository.*;
-import it.univr.di.testero.services.ICompilationService;
-import it.univr.di.testero.services.IProfessorService;
-import it.univr.di.testero.services.IStudentService;
+import it.univr.di.testero.services.CompilationService;
+import it.univr.di.testero.services.ProfessorService;
+import it.univr.di.testero.services.StudentService;
 import it.univr.di.testero.services.UserService;
-import org.hibernate.graph.Graph;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.graphql.client.GraphQlClientException;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
-import org.springframework.graphql.data.method.annotation.SchemaMapping;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
-import java.time.Instant;
-import java.time.OffsetDateTime;
-import java.time.ZoneOffset;
 import java.util.List;
-import java.util.Optional;
+import java.util.Objects;
 
 @Controller
 public class TestResponder {
     @Autowired
-    private IProfessorService professorService;
+    private ProfessorService professorService;
     @Autowired
-    private IStudentService studentService;
+    private StudentService studentService;
     @Autowired
-    private ICompilationService compilationService;
+    private CompilationService compilationService;
     @Autowired
     private UserService userService;
 
     @QueryMapping
     public List<Test> allTests(){
-        return studentService.allTests();
+        throw new GraphQLCustomError("Lol", null);
+        //return studentService.allTests();
     }
 
     @MutationMapping
     public Test addTest(@Argument AddTestData input){
+        if(!userService.userGet().getRoles().equals(UserRoles.TEACHER.name())) {
+            throw new GraphQLException();
+        }
+
         return professorService.addTest(input.getNome(), input.getOrdineCasuale(), input.getDomandeConNumero());
     }
 
     @MutationMapping
     public Domanda addQuestion(@Argument AddDomandaData input){
-        Domanda domanda = professorService.addQuestion(input.getNome(), input.getTesto(), input.getPunti(), input.getOrdineCasuale(), input.getRisposteConNumero());
+        if(!userService.userGet().getRoles().equals(UserRoles.TEACHER.name())){
+            throw new GraphQLException();
+        }
+
+        Domanda domanda = professorService.addQuestion(input.getTestId(), input.getNome(), input.getTesto(), input.getPunti(), input.getOrdineCasuale(), input.getRisposteConNumero());
 
         for(AddRispostaData addRispostaData: input.getRisposte()){
-            professorService.addAnswerToQuestion(addRispostaData.getTesto(), addRispostaData.getPunteggio(), domanda);
+            Risposta risposta = professorService.addAnswerToQuestion(addRispostaData.getTesto(), addRispostaData.getPunteggio(), domanda);
+            domanda.risposte.add(risposta);
         }
 
         domanda = professorService.findQuestion(domanda.getId());
@@ -94,7 +99,21 @@ public class TestResponder {
             throw new GraphQLException();
         }
 
-        CompilazioneRisposta compilazioneRisposta = compilationService.giveAnswer(input.getIdCompilazione(), domanda.getId(), risposta.getId());
+        List<Risposta> risposteDomanda = domanda.risposte;
+
+        Compilazione compilazione = compilationService.getCompilazione(input.getIdCompilazione());
+
+        if(!Objects.equals(userService.userGet().getId(), compilazione.getUser())){
+            throw new GraphQLException();
+        }
+
+        Test test = studentService.findTest(compilazione.getTest());
+
+        if(test == null || !test.domande.contains(domanda) || !risposteDomanda.contains(risposta)){
+            throw new GraphQLException();
+        }
+
+        CompilazioneRisposta compilazioneRisposta = compilationService.giveAnswer(compilazione, domanda.getId(), risposta.getId());
 
         if(compilazioneRisposta == null){
             throw new GraphQLException();
