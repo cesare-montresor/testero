@@ -1,8 +1,9 @@
 import React from "react";
 import {InputText, InputCheckbox} from "../components/InputElement";
-
+import { useParams } from 'react-router-dom';
 
 function InputAnswer(props){
+    let { id, num } = useParams();
     let elementId = props.id+"-"+props.num;
 
     function removeAnswer(){
