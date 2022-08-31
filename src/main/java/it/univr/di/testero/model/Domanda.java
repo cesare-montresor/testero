@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name="domanda", schema = "testero_core")
@@ -27,14 +28,10 @@ public class Domanda {
     private Boolean risposteConNumero;
 
     @OneToMany(mappedBy = "domanda", orphanRemoval = true, cascade = CascadeType.ALL)
-    public Collection<Risposta> risposte;
-
+    public List<Risposta> risposte;
 
     @ManyToMany(mappedBy = "domande")
-    public Collection<Test> tests;
-
-    @OneToMany(mappedBy = "domanda", orphanRemoval = true, cascade = CascadeType.ALL)
-    public Collection<CompilazioneRisposta> compilazioniRisposte;
+    public List<Test> tests;
 
     public Domanda(String nome, String testo, Float punti, Boolean ordineCasuale, Boolean risposteConNumero ){
         this.nome=nome;

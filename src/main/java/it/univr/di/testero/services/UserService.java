@@ -37,10 +37,8 @@ public class UserService implements UserDetailsService {
         return user.map(UserAuthDetails::new).get();
     }
 
-
     public User userAdd(String username, String password, String name, String roles) {
         // Username is already present
-
 
         Optional<User> userExists = userRepository.findByUsername(username);
         if (userExists.isPresent()) return null;
@@ -53,7 +51,6 @@ public class UserService implements UserDetailsService {
 
         return userRepository.save(user);
     }
-
 
     public User userGet() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

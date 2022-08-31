@@ -27,29 +27,10 @@ function AddQuestion(){
     function addAnswer(){
         alert("1");
     }
+
     function addQuestion(){
         alert("2");
     }
-
-
-    /*
-    public String nome;
-    public String testo;
-    public String punti;
-    public Boolean ordineCasuale;
-    public Boolean risposteConNumero;
-    public List<AddRispostaData> risposte;
-    */
-
-    /*
-
-    input AddRispostaData{
-        testo: String!
-        punteggio: Float
-    }
-
-    */
-
 
     return (
         <div className='test-add-question'>

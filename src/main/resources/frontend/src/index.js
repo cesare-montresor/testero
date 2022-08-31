@@ -69,7 +69,7 @@ function App() {
                         <Route path="/results" element={<Results selectedExam={selectedExam} questions={questions}/>} />
                         <Route exact path="/apiTest" element={ <ApiTest/> } />
                         <Route exact path="/addTest"  element={  <AddTest/> } />
-                        <Route exact path="/addTest/:id/addQuestion"  element={  <AddQuestion/> } />
+                        <Route exact path="/addTest/:id/addQuestion/:num"  element={  <AddQuestion/> } />
                         <Route path="*" element={<NoPage />} />
                     </Routes>
                 </div>

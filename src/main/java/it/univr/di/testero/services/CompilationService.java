@@ -9,28 +9,28 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class CompilationService implements ICompilationService{
+public class CompilationService{
     @Autowired
     private CompilazioneRepository compilazioneRepository;
     @Autowired
     private CompilazioneRispostaRepository compilazioneRispostaRepository;
 
-    @Override
+    public Compilazione getCompilazione(Long compilazioneId){
+        Optional<Compilazione> compilazione = compilazioneRepository.findById(compilazioneId);
+
+        if(compilazione.isEmpty()){
+            return null;
+        }
+
+        return compilazione.get();
+    }
+
     public Compilazione takeTest(Long testId, Long userId) {
         Compilazione compilazione = new Compilazione(testId, userId, false);
         return compilazioneRepository.save(compilazione);
     }
 
-    @Override
-    public CompilazioneRisposta giveAnswer(Long compilazioneId, Long domandaId, Long rispostaId) {
-        Optional<Compilazione> compilazioneResult = compilazioneRepository.findById(compilazioneId);
-
-        if(compilazioneResult.isEmpty()){
-            return null;
-        }
-
-        Compilazione compilazione = compilazioneResult.get();
-
+    public CompilazioneRisposta giveAnswer(Compilazione compilazione, Long domandaId, Long rispostaId) {
         CompilazioneRisposta compilazioneRisposta = new CompilazioneRisposta(compilazione, domandaId, rispostaId);
         return compilazioneRispostaRepository.save(compilazioneRisposta);
     }
