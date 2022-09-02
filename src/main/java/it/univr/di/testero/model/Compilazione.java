@@ -25,8 +25,8 @@ public class Compilazione {
     @Getter @Setter @Column(name = "user_id")
     private Long user;
 
-    @OneToMany(mappedBy = "compilazione", orphanRemoval = true, cascade = CascadeType.ALL)
-    @Getter @Setter @Column(name = "compilazione")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "compilazione", orphanRemoval = true, cascade = CascadeType.ALL)
+    @Getter @Setter
     private Collection<CompilazioneRisposta> compilazioniRisposte;
 
     public Compilazione(Long test, Long user, Boolean completo){
