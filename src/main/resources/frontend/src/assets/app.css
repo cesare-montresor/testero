@@ -1,10 +1,5 @@
 /* HTML override */
 
-* {
-    margin: 0;
-    padding: 0;
-}
-
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -46,7 +41,7 @@ a, a:hover, a:visited, a:active{
 }
 
 .page-content{
-    padding: 10px;
+    margin: 10px;
 }
 
 
@@ -94,15 +89,32 @@ a, a:hover, a:visited, a:active{
 
 /* TEST LIST */
 
-.test-list{
+.page-testlist-list{
     display: flex;
     flex-direction: column;
+    margin: 10px;
 }
 
-.test-list-row{
+.page-testlist-row{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    padding: 5px;
+    background-color: lightcyan;
+}
+
+.page-testlist-row:hover{
+    background-color: lightyellow;
+}
+
+.page-testlist-row-info{
+    display: flex;
+    flex-direction: row;
+
+}
+
+.page-testlist-row-data{
+    margin-right: 10px;
 }
 
 /* ADD TEST */
