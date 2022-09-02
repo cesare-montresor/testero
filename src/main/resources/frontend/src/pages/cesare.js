@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate, useParams } from 'react-router-dom';
-import { TesteroApi } from '../components/TesteroApi.js'
+import { api } from '../components/TesteroAPI.js'
 
 
 

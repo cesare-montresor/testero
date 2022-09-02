@@ -1,9 +1,18 @@
-import {TesteroApi} from "../components/TesteroApi";
+import {TesteroAPI as API, TesteroAPI as api} from "../components/TesteroAPI";
 import React, {useState} from "react";
 
 function ApiTest() {
-    const api = new TesteroApi();
     const [response, setResponse] = useState("");
+
+    function login(){
+        alert(document.cookie);
+        API.login("mario","rossi").then( parseResponse ).catch( showError );
+    }
+
+    function parseResponse(response){
+        showResponse(response.status);
+        return true;
+    }
 
     function getUser(){
         api.getUser().then( showResponse ).catch( showError );
@@ -14,7 +23,7 @@ function ApiTest() {
     }
 
     function takeTest(){
-        api.takeTest("73").then( showResponse ).catch( showError );
+        api.takeTest(73).then( showResponse ).catch( showError );
     }
 
     function giveAnswer(){
@@ -47,6 +56,7 @@ function ApiTest() {
     return (
         <div className="api-test-main">
             <div className='api-test-bar btn-bar'>
+                <button onClick={login}>login</button>
                 <button onClick={getUser}>getUser</button>
                 <button onClick={allTests}>allTests</button>
                 <button onClick={takeTest}>takeTest</button>

@@ -52,7 +52,24 @@ public class UserService implements UserDetailsService {
         return userRepository.save(user);
     }
 
+    public User userGet(Boolean safe) {
+        User user = userAuthenticated();
+        if ( !safe ){ return user; }
+        if (user == null && safe ){
+            Optional<User> req = userRepository.findByUsername("mario");
+            if ( req.isPresent() ){
+                user = req.get();
+            }
+        }
+        return user;
+    }
+
     public User userGet() {
+        return userGet(true); //TODO: change to false in production
+    }
+
+
+    public User userAuthenticated() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         //TODO remove
         if (! (auth.getPrincipal() instanceof UserAuthDetails )){ return null; } // auth.getPrincipal() returns an empty string when not authenticated

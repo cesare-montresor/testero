@@ -37,8 +37,7 @@ public class TestResponder {
 
     @QueryMapping
     public List<Test> allTests(){
-        throw new GraphQLCustomError("Lol", null);
-        //return studentService.allTests();
+        return studentService.allTests();
     }
 
     @MutationMapping
@@ -80,8 +79,7 @@ public class TestResponder {
         if(test == null){
             throw new GraphQLException();
         }
-
-        Compilazione compilazione = compilationService.takeTest(test.getId(), userService.userGet().getId());
+        Compilazione compilazione = compilationService.takeTest( userService.userGet().getId(), test.getId());
 
         if(compilazione == null){
             throw new GraphQLException();
