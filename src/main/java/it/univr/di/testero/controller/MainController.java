@@ -37,7 +37,7 @@ public class MainController implements ErrorController {
 
     @GetMapping("/home")
     public String getHome(Model model) {
-        User authUser = userService.userGet();
+        User authUser = userService.userAuthenticated();
         model.addAttribute("user", authUser);
         return "redirect:/app/index.html";
     }

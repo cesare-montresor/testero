@@ -1,18 +1,22 @@
 import { GraphQLClient, gql } from 'graphql-request'
 
-class TesteroApi {
+import nodeFetch from 'node-fetch'
+import fetchCookie from 'fetch-cookie'
+
+class TesteroSDK {
     constructor(){
-        this.endpoint = 'http://localhost:8080/graphql';
+        this.endpoint = 'http://localhost:8080';
         this.headers = {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
             'Access-Control-Allow-Origin': '*'
         };
-        this.client = new GraphQLClient(this.endpoint);
-        this.client.setHeaders(this.headers);
+        this.client = new GraphQLClient(this.endpoint + '/graphql' );
     }
 
-    fetch( query, vars ) {
+
+    request( query, vars ) {
+        this.client.setHeaders(this.headers);
         return this.client.request(query, vars);
     }
 
@@ -32,7 +36,7 @@ class TesteroApi {
             }
         };
 
-        return this.fetch(query, vars);
+        return this.request(query, vars);
     }
 
     getUser(){
@@ -43,7 +47,7 @@ class TesteroApi {
                 }
             }`;
 
-        return this.fetch(query);
+        return this.request(query);
     }
 
     allTests(){
@@ -54,7 +58,7 @@ class TesteroApi {
                 }
             }`;
 
-        return this.fetch(query);
+        return this.request(query);
     }
 
     takeTest(idTest){
@@ -74,7 +78,7 @@ class TesteroApi {
             "input": idTest
         };
 
-        return this.fetch(query, vars);
+        return this.request(query, vars);
     }
 
     giveAnswer(idCompilazione, idDomanda, idRisposta){
@@ -93,7 +97,7 @@ class TesteroApi {
             }
         };
 
-        return this.fetch(query, vars);
+        return this.request(query, vars);
     }
 
     addQuestion(nome, testo, punti, ordineCasuale, risposteConNumero, risposte ){
@@ -115,9 +119,11 @@ class TesteroApi {
             }
         };
 
-        return this.fetch(query, vars);
+        return this.request(query, vars);
     }
+}
 
-};
 
-export { TesteroApi };
+const TesteroAPI = new TesteroSDK();
+
+export { TesteroAPI };

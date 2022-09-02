@@ -74,7 +74,7 @@ a, a:hover, a:visited, a:active{
 .main-header-status {
     display: flex;
     flex-direction: row;
-    align-items: end;
+    align-items: flex-end;
 }
 
 .main-header-status div {

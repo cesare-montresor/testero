@@ -2,6 +2,7 @@ import ReactDOM from 'react-dom/client';
 import {Routes, Route, Link, BrowserRouter } from "react-router-dom";
 import React, {useEffect, useState} from "react";
 
+import {TesteroAPI as API} from "./components/TesteroAPI";
 import {NavBar} from "./components/NavBar";
 import {Header} from "./components/Header";
 
@@ -17,8 +18,9 @@ import {ApiTest} from "./pages/ApiTest";
 
 import "./assets/app.css"
 
-
 function App() {
+
+
     const [selectedExam, setSelectedExam] = useState({Name: "initial", Questions: [{Text: "initial test"}]});
     const [questions, setQuestions] = useState(null);
     const [currentQuestion, setCurrentQuestion] = useState(0);
