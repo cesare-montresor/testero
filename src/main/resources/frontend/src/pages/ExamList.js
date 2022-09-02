@@ -22,37 +22,46 @@ function ExamList({setSelectedExam, setQuestions, setCurrentQuestion}){
     setExamList( err.message );
   }
 
+  function zeroPad(num){
+    return num.toString().padStart(2,'0');
+  }
+
+  function formatDate(date){
+    var d  = new Date(date);
+    var date_string = zeroPad(d.getDate()) + '-'+ zeroPad(d.getMonth()+1) +'-'+ d.getFullYear();
+    var time_string = zeroPad(d.getHours()) + ':'+ zeroPad(d.getMinutes());
+    return date_string + ' ' + time_string;
+  }
+
   return (
-      <section className='AvailableTest'>
+      <div className='page-testlist-main'>
         <h2>Test disponibili</h2>
 
-        <ul className='testList'>
+        <div className='page-testlist-list'>
           {examList? (
             examList.allTests.map((elem) => {
               return (
-                <li className='test' key={elem.id}>
-                  <div>
-                    <h4>{elem.nome}</h4>
-                    <div>
-                      <p>Data aggiunta: {elem.data.toString()}</p>
+                <div className='page-testlist-row' key={elem.id}>
+                    <div className='page-testlist-row-info'>
+                      <div className='page-testlist-row-data'>{formatDate(elem.data)}</div>
+                      <div className='page-testlist-row-nome'>{elem.nome}</div>
+                    </div>
+                    <div className='page-testlist-row-actions btn-bar'>
                       <button onClick={() => {
                         setSelectedExam(elem);
                         setCurrentQuestion(0);
-
                         setQuestions(() => {});
-
-                        navigate("/selectedExam")
+                        navigate("/selectedExam/"+elem.id)
                       }}>Avvia esame</button>
-                    </div>
                   </div>
-                </li>
+                </div>
               )
             })
           ) : (
             <h1> Caricando </h1>
             )}
-        </ul>
-      </section>
+        </div>
+      </div>
 
 
   );
