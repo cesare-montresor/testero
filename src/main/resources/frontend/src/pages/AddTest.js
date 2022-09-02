@@ -1,11 +1,10 @@
 import {useNavigate} from "react-router-dom";
-import {TesteroApi} from "../components/TesteroApi";
+import {TesteroAPI as api} from "../components/TesteroAPI";
 import React from "react";
 import {InputCheckbox, InputText} from "../components/InputElement";
 
 function AddTest(){
     let navigate = useNavigate();
-    const api = new TesteroApi();
 
     const nameRef = React.createRef();
     const orderRef = React.createRef();

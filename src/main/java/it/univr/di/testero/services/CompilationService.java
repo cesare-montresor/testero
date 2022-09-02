@@ -3,13 +3,19 @@ package it.univr.di.testero.services;
 import it.univr.di.testero.model.*;
 import it.univr.di.testero.repository.CompilazioneRepository;
 import it.univr.di.testero.repository.CompilazioneRispostaRepository;
+import it.univr.di.testero.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class CompilationService{
+
+    @Autowired
+    private UserRepository userRepository;
+
     @Autowired
     private CompilazioneRepository compilazioneRepository;
     @Autowired
@@ -25,9 +31,20 @@ public class CompilationService{
         return compilazione.get();
     }
 
-    public Compilazione takeTest(Long testId, Long userId) {
-        Compilazione compilazione = new Compilazione(testId, userId, false);
-        return compilazioneRepository.save(compilazione);
+    public Compilazione takeTest(Long userId, Long testId) {
+
+        List<Compilazione> result = compilazioneRepository.findByUserAndTestAndCompleto(userId, testId, false);
+
+        Compilazione compilazione;
+        if (result.isEmpty()){
+            compilazione = new Compilazione(testId, userId, false);
+            compilazione = compilazioneRepository.save(compilazione);
+
+        }else{
+            compilazione = result.get(0);
+        }
+
+        return compilazione;
     }
 
     public CompilazioneRisposta giveAnswer(Compilazione compilazione, Long domandaId, Long rispostaId) {
