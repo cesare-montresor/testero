@@ -49,11 +49,13 @@ public class CompilationService{
             if (testResult.isEmpty()) { return null; }
             Test test = testResult.get();
             List<CompilazioneRisposta> crs = new ArrayList<CompilazioneRisposta>();
+
             for (Domanda domanda: test.domande ) {
                 CompilazioneRisposta cr = new CompilazioneRisposta(compilazione, domanda.getId(), null);
                 cr = compilazioneRispostaRepository.save(cr);
                 crs.add(cr);
             }
+
             compilazione.setCompilazioniRisposte(crs);
             compilazione = compilazioneRepository.save(compilazione);
         }else{

@@ -66,7 +66,9 @@ class TesteroSDK {
                         nome
                     }
                     compilazione {
-                        id
+                        id, compilazioni {
+                            id
+                        }
                     }
                 }
             }`;
@@ -97,7 +99,7 @@ class TesteroSDK {
         return this.request(query, vars);
     }
 
-    addQuestion(nome, testo, punti, ordineCasuale, risposteConNumero, risposte ){
+    addQuestion(testId, nome, testo, punti, ordineCasuale, risposteConNumero, risposte ){
         const query = gql`
             mutation addQuestion($input: AddDomandaData!) {
                 addQuestion(input: $input) {
@@ -107,6 +109,7 @@ class TesteroSDK {
 
         const vars = {
             "input": {
+                "testId": testId,
                 "nome": nome,
                 "testo": testo,
                 "punti": punti,
