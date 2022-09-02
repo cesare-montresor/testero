@@ -1,8 +1,5 @@
 import { GraphQLClient, gql } from 'graphql-request'
 
-import nodeFetch from 'node-fetch'
-import fetchCookie from 'fetch-cookie'
-
 class TesteroSDK {
     constructor(){
         this.endpoint = 'http://localhost:8080';
