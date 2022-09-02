@@ -1,46 +1,57 @@
 import {getExams} from "../data/Exams";
 import {useNavigate} from "react-router-dom";
 import Questions from "../data/Questions";
+import {useEffect, useState} from "react";
+import {TesteroApi} from "../components/TesteroApi";
 
 
 function ExamList({setSelectedExam, setQuestions, setCurrentQuestion}){
-  let examList = getExams();
   let navigate = useNavigate();
+  const api = new TesteroApi();
+  const [examList, setExamList] = useState(null);
 
-  const getQuestions = () => {
-    const data = Questions.Questions;
-    const shuffled = handleShuffle(data);
+  useEffect(() => {
+    api.allTests().then( showResponse ).catch( showError );
+  }, []);
 
-    setQuestions(shuffled);
-  };
+  function showResponse(data){
+    console.log("examList", data);
+    setExamList( data );
+  }
 
-  const handleShuffle = (questionsList) => {
-    return questionsList.sort(() => Math.random() - 0.5);
-  };
+  function showError(err){
+    setExamList( err.message );
+  }
 
   return (
       <section className='AvailableTest'>
         <h2>Test disponibili</h2>
 
         <ul className='testList'>
-          {examList.map((elem) => {
-            return (
-              <li className='test' key={elem.Name + "_" + elem.Date.toString()}>
-                <div>
-                  <h4>{elem.Name}</h4>
+          {examList? (
+            examList.allTests.map((elem) => {
+              return (
+                <li className='test' key={elem.id}>
                   <div>
-                    <p>Data aggiunta: {elem.Date.toString()}</p>
-                    <button onClick={() => {
-                      setSelectedExam(elem);
-                      setCurrentQuestion(0);
-                      getQuestions();
-                      navigate("/selectedExam")
-                    }}>Avvia esame</button>
+                    <h4>{elem.nome}</h4>
+                    <div>
+                      <p>Data aggiunta: {elem.data.toString()}</p>
+                      <button onClick={() => {
+                        setSelectedExam(elem);
+                        setCurrentQuestion(0);
+
+                        setQuestions(() => {});
+
+                        navigate("/selectedExam")
+                      }}>Avvia esame</button>
+                    </div>
                   </div>
-                </div>
-              </li>
-            )
-          })}
+                </li>
+              )
+            })
+          ) : (
+            <h1> Caricando </h1>
+            )}
         </ul>
       </section>
 

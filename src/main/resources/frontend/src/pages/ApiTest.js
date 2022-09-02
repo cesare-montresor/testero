@@ -23,7 +23,7 @@ function ApiTest() {
     }
 
     function takeTest(){
-        api.takeTest("73").then( showResponse ).catch( showError );
+        api.takeTest(73).then( showResponse ).catch( showError );
     }
 
     function giveAnswer(){
