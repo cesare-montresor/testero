@@ -2,12 +2,11 @@ import {getExams} from "../data/Exams";
 import {useNavigate} from "react-router-dom";
 import Questions from "../data/Questions";
 import {useEffect, useState} from "react";
-import {TesteroApi} from "../components/TesteroApi";
+import {TesteroAPI as api} from "../components/TesteroAPI";
 
 
 function ExamList({setSelectedExam, setQuestions, setCurrentQuestion}){
   let navigate = useNavigate();
-  const api = new TesteroApi();
   const [examList, setExamList] = useState(null);
 
   useEffect(() => {
