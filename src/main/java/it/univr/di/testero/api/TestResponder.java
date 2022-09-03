@@ -5,6 +5,7 @@ import it.univr.di.testero.api.input.AddDomandaData;
 import it.univr.di.testero.api.input.AddRispostaData;
 import it.univr.di.testero.api.input.AddTestData;
 import it.univr.di.testero.api.input.GiveRispostaData;
+import it.univr.di.testero.api.output.DomandaInfo;
 import it.univr.di.testero.api.output.TestInfo;
 import it.univr.di.testero.config.GraphQLCustomError;
 import it.univr.di.testero.config.UserRoles;
@@ -21,6 +22,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -50,25 +52,38 @@ public class TestResponder {
     }
 
     @MutationMapping
-    public Domanda addQuestion(@Argument AddDomandaData input){
+    public DomandaInfo addQuestion(@Argument AddDomandaData input){
+        Domanda domanda = professorService.findQuestionByName(input.getNome());
+
+        if(domanda != null){
+            return new DomandaInfo(domanda.getId(), true);
+        }
+
         if(!userService.userGet().getRoles().equals(UserRoles.TEACHER.name())){
             throw new GraphQLException();
         }
 
-        Domanda domanda = professorService.addQuestion(input.getTestId(), input.getNome(), input.getTesto(), input.getPunti(), input.getOrdineCasuale(), input.getRisposteConNumero());
-
-        for(AddRispostaData addRispostaData: input.getRisposte()){
-            Risposta risposta = professorService.addAnswerToQuestion(addRispostaData.getTesto(), addRispostaData.getPunteggio(), domanda);
-            domanda.risposte.add(risposta);
-        }
-
-        domanda = professorService.findQuestion(domanda.getId());
+        domanda = professorService.addQuestion(input.getTestId(), input.getNome(), input.getTesto(), input.getPunti(), input.getOrdineCasuale(), input.getRisposteConNumero());
 
         if(domanda == null){
             throw new GraphQLException();
         }
 
-        return domanda;
+        ArrayList<String> texts = new ArrayList<>();
+        ArrayList<Float> scores = new ArrayList<>();
+
+        for(AddRispostaData addRispostaData: input.getRisposte()){
+            texts.add(addRispostaData.getTesto());
+            scores.add(addRispostaData.getPunteggio());
+        }
+
+        ArrayList<Risposta> risposte = professorService.addAnswersToQuestion(texts, scores, domanda);
+
+        if(risposte.size() != input.getRisposte().size()){
+            throw new GraphQLException();
+        }
+
+        return new DomandaInfo(domanda.getId(), false);
     }
 
     @MutationMapping
