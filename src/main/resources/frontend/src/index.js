@@ -20,46 +20,6 @@ import "./assets/app.css"
 
 function App() {
 
-
-    const [selectedExam, setSelectedExam] = useState({Name: "initial", Questions: [{Text: "initial test"}]});
-    const [questions, setQuestions] = useState(null);
-    const [currentQuestion, setCurrentQuestion] = useState(0);
-
-    useEffect(() => {
-        const data = JSON.parse(window.sessionStorage.getItem("selectedExam"));
-        if(data) {
-            setSelectedExam(data);
-        }
-    }, []);
-
-    useEffect(() => {
-        window.sessionStorage.setItem("selectedExam", JSON.stringify(selectedExam));
-    }, [selectedExam]);
-
-    useEffect(() => {
-        const data = window.sessionStorage.getItem("questions");
-        if(data != "undefined" && data != null)
-        {
-            setQuestions(JSON.parse(data));
-        }
-    }, []);
-
-    useEffect(() => {
-        window.sessionStorage.setItem("questions", JSON.stringify(questions));
-    }, [questions]);
-
-    useEffect(() => {
-        const data = window.sessionStorage.getItem("currentQuestion");
-
-        if(data != "undefined" && data != null) {
-            setCurrentQuestion(parseInt(JSON.parse(data)));
-        }
-    }, []);
-
-    useEffect(() => {
-        window.sessionStorage.setItem("currentQuestion", JSON.stringify(currentQuestion));
-    }, [currentQuestion]);
-
     return (
         <BrowserRouter>
             <div className='page-main'>
@@ -67,11 +27,10 @@ function App() {
                 <NavBar/>
                 <div className='page-content'>
                     <Routes>
-                        <Route path="/app/" element={<ExamList setSelectedExam={setSelectedExam} setQuestions={setQuestions} setCurrentQuestion={setCurrentQuestion}/>} />
-                        <Route path="/" element={<ExamList setSelectedExam={setSelectedExam} setQuestions={setQuestions} setCurrentQuestion={setCurrentQuestion}/>} />
-                        <Route path="/selectedExam/:id" element={<SelectedExam selectedExam={selectedExam} questions={questions}
-                                                                           currentQuestion={currentQuestion} setCurrentQuestion={setCurrentQuestion} setQuestions={setQuestions}/>} />
-                        <Route path="/results" element={<Results selectedExam={selectedExam} questions={questions}/>} />
+                        <Route path="/app/" element={<ExamList />} />
+                        <Route path="/" element={<ExamList />} />
+                        <Route path=":examId/question/:questionNum" element={<SelectedExam />} />
+                        <Route path="/results" element={<Results />} />
                         <Route exact path="/apiTest" element={ <ApiTest/> } />
                         <Route exact path="/addTest"  element={  <AddTest/> } />
                         <Route exact path="/addTest/:id/addQuestion/:num"  element={  <AddQuestion/> } />

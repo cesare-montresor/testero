@@ -1,108 +1,104 @@
-import {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {useEffect, useState} from "react";
+import {useNavigate, useParams} from "react-router-dom";
 import {InputRadioButton} from "../components/InputElement";
 import {ErrorMessage} from "../components/ErrorMessage";
+import {TesteroAPI as api} from "../components/TesteroAPI";
 
 
-function SelectedExam({selectedExam, questions, currentQuestion, setCurrentQuestion, setQuestions}){
+function SelectedExam(){
   const navigate = useNavigate();
+  const urlParams = useParams();
   let ansNum = 0;
   const [error, setError] = useState(false);
+  const [compilazione, setCompilazione] = useState(null);
+  const [test, setTest] = useState(null);
 
-  console.log("questions: ", questions);
+  useEffect(() => {
+    api.takeTest(parseInt(urlParams.examId, 10)).then((data) => {
+      setCompilazione(data["takeTest"].compilazione);
+      setTest(data["takeTest"].test);
+    }).catch((error) => {console.log(error)});
+  }, []);
 
   const handleChangeRadioButton = event => {
-    let tmp = [...questions];
-    tmp[currentQuestion].Answers.forEach((elem) => (elem.id == event.target.value? elem.Selected = true : elem.Selected = false))
-    setQuestions(tmp);
+    let tmp = {...compilazione};
+    tmp.compilazioniRisposte[urlParams.questionNum].risposta = event.target.value;
+    setCompilazione(tmp);
     setError(false);
-  };
-
-  const handleClickNavigationButton = () => {
-    if(questions[currentQuestion].Answers.find((elem) => (elem.Selected === true))) {
-      //resetto il radio button per il prossimo render
-      let allRadioButtons = document.querySelectorAll(".radioButton");
-      allRadioButtons.forEach((radio) => radio.checked = false);
-
-      if(questions.length === currentQuestion+1){
-        //il back button del browser premuto in Result.js riporta a "/"
-        window.history.replaceState(null, "", "/");
-        navigate("/results");
-      }
-
-      setCurrentQuestion(currentQuestion+1);
-    } else
-    {
-      setError(true);
-    }
   };
 
   return (
     <section>
-      <h1>{selectedExam.Name}</h1>
-
-      {questions && questions[currentQuestion]?
+      {compilazione && test?
         (
-          <div>
-            <h4>{questions[currentQuestion].Text}</h4>
+          <>
+            <h1>{test.nome}</h1>
 
-            <form>
-              {questions[currentQuestion].Answers.map(ans => {
-                ansNum += 1;
-                let selected = (questions[currentQuestion].Answers.find((elem) => (elem.Selected === true)))?.id;
-                return (
-                  <InputRadioButton
-                    type="radio"
-                    className="radioButton"
-                    key={ans.id}
-                    id={ans.id}
-                    label={questions[currentQuestion].NumberedAnswers? (ansNum).toString() + ". " + ans.Text : ans.Text}
-                    value={ans.id}
-                    checked={selected == ans.id}
-                    onChange={handleChangeRadioButton}
-                  />
+            <div>
+              <h4>{test.domande[urlParams.questionNum].testo}</h4>
+
+              <form>
+                {test.domande[urlParams.questionNum].risposte.map(ans => {
+                  ansNum += 1;
+                  let selected = (compilazione.compilazioniRisposte[urlParams.questionNum].risposta);
+                  return (
+                    <InputRadioButton
+                      type="radio"
+                      className="radioButton"
+                      key={ans.id}
+                      id={ans.id}
+                      label={test.domande[urlParams.questionNum].domandeConNumero? (ansNum).toString() + ". " + ans.testo : ans.testo}
+                      value={ans.id}
+                      checked={selected == ans.id}
+                      onChange={handleChangeRadioButton}
+                    />
+                  )}
                 )}
+              </form>
+
+              {parseInt(urlParams.questionNum, 10) > 0? (
+                <button className={"movementButton"} onClick={() => {
+                  navigate(`/${urlParams.examId}/question/${parseInt(urlParams.questionNum, 10) - 1}`);
+                }}>Domanda precedente</button>
+              ) : (
+                <></>
               )}
-            </form>
 
-            {currentQuestion > 0? (
               <button className={"movementButton"} onClick={() => {
-                setCurrentQuestion(currentQuestion-1);
-              }}>Domanda precedente</button>
-            ) : (
-              <></>
-            )}
+                if(compilazione.compilazioniRisposte[urlParams.questionNum].risposta !== null) {
+                  api.giveAnswer(compilazione.id, compilazione.compilazioniRisposte[urlParams.questionNum].domanda, compilazione.compilazioniRisposte[urlParams.questionNum].risposta).then(() => {
+                    //il back button del browser premuto in Result.js riporta a "/"
+                    window.history.replaceState(null, "", "/");
+                    if(test.domande.length === parseInt(urlParams.questionNum, 10)+1){
+                      navigate("/results");
+                    }
+                    else
+                    {
+                      navigate(`/${urlParams.examId}/question/${parseInt(urlParams.questionNum, 10) + 1}`);
+                    }
+                  }).catch((error) => {console.log(error)});
 
-            <button className={"movementButton"} onClick={() => {
-              if(questions[currentQuestion].Answers.find((elem) => (elem.Selected === true))) {
-                //resetto il radio button per il prossimo render
-                let allRadioButtons = document.querySelectorAll(".radioButton");
-                allRadioButtons.forEach((radio) => radio.checked = false);
-
-                if(questions.length === currentQuestion+1){
-                  //il back button del browser premuto in Result.js riporta a "/"
-                  window.history.replaceState(null, "", "/");
-                  navigate("/results");
+                } else
+                {
+                  setError(true);
                 }
+              }}>
+                {test.domande.length === parseInt(urlParams.questionNum, 10)+1? "Risultati" : "Domanda successiva"}
+              </button>
 
-                setCurrentQuestion(currentQuestion+1);
-              } else
-              {
-                setError(true);
-              }
-            }}>
-              {questions.length === currentQuestion+1? "Risultati" : "Domanda successiva"}
-            </button>
-
-            {error && <ErrorMessage>{error}</ErrorMessage>}
-          </div>
-
+              {error && <ErrorMessage>{error}</ErrorMessage>}
+            </div>
+          </>
         )
         : (<h1>Caricando</h1>)}
 
     </section>
   );
 
+
+
+
+
 }
 
-export {SelectedExam}
+export {SelectedExam};
