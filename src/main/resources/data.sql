@@ -1,8 +1,3 @@
-
-
-INSERT INTO testero_core.risposta VALUES (77, 'Giusta', 1.0000, 76);
-INSERT INTO testero_core.risposta VALUES (78, 'Sbagliata', 0.0000, 76);
-
 ---------------------- TEST ----------------------
 
 INSERT INTO testero_core.test VALUES (1, '16:35:57.802316', 'Test A', true, true);
