@@ -1,11 +1,9 @@
-import {getExams} from "../data/Exams";
 import {useNavigate} from "react-router-dom";
-import Questions from "../data/Questions";
 import {useEffect, useState} from "react";
 import {TesteroAPI as api} from "../components/TesteroAPI";
 
 
-function ExamList({setSelectedExam, setQuestions, setCurrentQuestion}){
+function ExamList(){
   let navigate = useNavigate();
   const [examList, setExamList] = useState(null);
 
@@ -33,9 +31,10 @@ function ExamList({setSelectedExam, setQuestions, setCurrentQuestion}){
     return date_string + ' ' + time_string;
   }
 
+
   return (
       <div className='page-testlist-main'>
-        <h2>Test disponibili</h2>
+        <h1>Test disponibili</h1>
 
         <div className='page-testlist-list'>
           {examList? (
@@ -45,13 +44,24 @@ function ExamList({setSelectedExam, setQuestions, setCurrentQuestion}){
                     <div className='page-testlist-row-info'>
                       <div className='page-testlist-row-data'>{formatDate(elem.data)}</div>
                       <div className='page-testlist-row-nome'>{elem.nome}</div>
+                      <div className='page-testlist-row-chevron' onClick={() => {
+                        let btn_bar = document.querySelectorAll(".page-testlist-row-actions");
+                        btn_bar.forEach((div) => {
+                          if (div.id === `btn-bar${elem.id}`) {
+                            console.log(div.style.display);
+                            if (div.style.display === "none" || div.style.display === "")
+                              div.style.display = "block";
+                            else
+                              div.style.display = "none";
+                          } else {
+                            div.style.display = "none";
+                          }
+                        });
+                      }}> chevron </div>
                     </div>
-                    <div className='page-testlist-row-actions btn-bar'>
+                    <div className='page-testlist-row-actions btn-bar' id={`btn-bar${elem.id}`}>
                       <button onClick={() => {
-                        setSelectedExam(elem);
-                        setCurrentQuestion(0);
-                        setQuestions(() => {});
-                        navigate("/selectedExam/"+elem.id)
+                        navigate(`/${elem.id}/question/0`);
                       }}>Avvia esame</button>
                   </div>
                 </div>

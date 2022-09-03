@@ -51,7 +51,7 @@ class TesteroSDK {
         const query = gql`
             query {
                 allTests{
-                    id, nome, data, ordineCasuale, domandeConNumero
+                    id, nome, data, ordineCasuale, domandeConNumero, domande{testo}
                 }
             }`;
 
@@ -63,12 +63,19 @@ class TesteroSDK {
             mutation takeTest($input: Int!) {
                 takeTest(input: $input){
                     test{
-                        nome
+                        id,
+                        nome,
+                        domande {
+                            id, nome, testo, risposteConNumero,
+                            risposte {
+                                id, testo
+                            }
+                        }
                     }
                     compilazione {
-                        id, compilazioni {
-                            id
-                        }
+                        id, compilazioniRisposte {
+                            domanda, risposta
+                        } 
                     }
                 }
             }`;
