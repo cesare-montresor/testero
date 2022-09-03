@@ -5,7 +5,7 @@ import {useEffect, useState} from "react";
 import {TesteroAPI as api} from "../components/TesteroAPI";
 
 
-function ExamList({setSelectedExam, setQuestions, setCurrentQuestion}){
+function ExamList(){
   let navigate = useNavigate();
   const [examList, setExamList] = useState(null);
 
@@ -43,11 +43,14 @@ function ExamList({setSelectedExam, setQuestions, setCurrentQuestion}){
               return (
                 <div className='page-testlist-row' key={elem.id}>
                     <div className='page-testlist-row-info'>
-                      <div className='page-testlist-row-data'>{formatDate(elem.data)}</div>
-                      <div className='page-testlist-row-nome'>{elem.nome}</div>
+                      <div className='page-testlist-row-data' aria-label="Data del test"  aria-required="true">{formatDate(elem.data)}</div>
+                      <div className='page-testlist-row-nome' aria-label="Nome del test"  aria-required="true">{elem.nome}</div>
                     </div>
                     <div className='page-testlist-row-actions btn-bar'>
-                      <button onClick={() => {
+                      <button
+                          aria-label="Avvia esame"
+                          aria-required="true"
+                          onClick={() => {
                         setSelectedExam(elem);
                         setCurrentQuestion(0);
                         setQuestions(() => {});

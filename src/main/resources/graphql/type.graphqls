@@ -38,8 +38,8 @@ type User{
 
 type CompilazioneRisposta{
     id: Int!
-    domanda: Domanda!
-    risposta: Risposta
+    domanda: Int!
+    risposta: Int
 }
 
 type Compilazione{

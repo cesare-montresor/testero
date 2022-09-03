@@ -8,4 +8,6 @@ import java.util.Optional;
 public interface CompilazioneRispostaRepository extends CrudRepository<CompilazioneRisposta, Long> {
     List<CompilazioneRisposta> findAll();
     Optional<CompilazioneRisposta> findById(Long id);
+
+    Optional<CompilazioneRisposta> findByCompilazioneAndDomanda(Long compilazione, Long domanda);
 }
