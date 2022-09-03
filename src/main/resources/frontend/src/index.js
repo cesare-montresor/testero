@@ -30,7 +30,7 @@ function App() {
                         <Route path="/app/" element={<ExamList />} />
                         <Route path="/" element={<ExamList />} />
                         <Route path=":examId/question/:questionNum" element={<SelectedExam />} />
-                        <Route path="/results" element={<Results />} />
+                        <Route path=":examId/results" element={<Results />} />
                         <Route exact path="/apiTest" element={ <ApiTest/> } />
                         <Route exact path="/addTest"  element={  <AddTest/> } />
                         <Route exact path="/addTest/:id/addQuestion/:num"  element={  <AddQuestion/> } />
