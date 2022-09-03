@@ -39,12 +39,12 @@ type User{
 type CompilazioneRisposta{
     id: Int!
     domanda: Domanda!
-    risposta: Risposta!
+    risposta: Risposta
 }
 
 type Compilazione{
     id: Int!
     test: Test!
-    compilazioni: [CompilazioneRisposta]!
+    compilazioniRisposte: [CompilazioneRisposta]!
     user: User
 }

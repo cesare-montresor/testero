@@ -79,7 +79,10 @@ public class TestResponder {
         if(test == null){
             throw new GraphQLException();
         }
-        Compilazione compilazione = compilationService.takeTest( userService.userGet().getId(), test.getId());
+
+        boolean randomizeOrder = test.getOrdineCasuale();
+
+        Compilazione compilazione = compilationService.takeTest( userService.userGet().getId(), test.getId(), randomizeOrder);
 
         if(compilazione == null){
             throw new GraphQLException();
