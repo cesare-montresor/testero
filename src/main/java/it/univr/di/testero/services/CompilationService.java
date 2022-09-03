@@ -17,7 +17,7 @@ import java.util.Optional;
 public class CompilationService{
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     @Autowired
     private TestRepository testRepository;
@@ -74,7 +74,14 @@ public class CompilationService{
     }
 
     public CompilazioneRisposta giveAnswer(Compilazione compilazione, Long domandaId, Long rispostaId) {
-        CompilazioneRisposta compilazioneRisposta = new CompilazioneRisposta(compilazione, domandaId, rispostaId);
-        return compilazioneRispostaRepository.save(compilazioneRisposta);
+        User user = userService.userGet();
+        if ( user == null || compilazione.getUser() != user.getId()){ return null; }
+
+        Optional<CompilazioneRisposta> result = compilazioneRispostaRepository.findByCompilazioneAndDomanda(compilazione, domandaId);
+        if ( result.isEmpty() ) return null;
+
+        CompilazioneRisposta cr = result.get();
+        cr.setRisposta(rispostaId);
+        return compilazioneRispostaRepository.save(cr);
     }
 }
