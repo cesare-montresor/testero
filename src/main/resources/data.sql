@@ -87,7 +87,7 @@ INSERT INTO testero_core.risposta VALUES (28, 'Siamo due che...', 1.0000, 10);
 INSERT INTO testero_core.risposta VALUES (29, 'No ma sempre uno', 0.5000, 10);
 INSERT INTO testero_core.risposta VALUES (30, 'Ma sono quello di prima', 0.5000, 10);
 
-INSERT INTO testero_core.risposta VALUES (31, 'Caciotta, pane...', 1.0000, 11);S
+INSERT INTO testero_core.risposta VALUES (31, 'Caciotta, pane...', 1.0000, 11);
 INSERT INTO testero_core.risposta VALUES (32, 'Forbici e forbinice', 0.0000, 11);
 INSERT INTO testero_core.risposta VALUES (33, 'Coltelli da prosciutto', 0.0000, 11);
 
