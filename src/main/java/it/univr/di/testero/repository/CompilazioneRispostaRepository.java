@@ -1,4 +1,5 @@
 package it.univr.di.testero.repository;
+import it.univr.di.testero.model.Compilazione;
 import it.univr.di.testero.model.CompilazioneRisposta;
 import org.springframework.data.repository.CrudRepository;
 
@@ -9,5 +10,5 @@ public interface CompilazioneRispostaRepository extends CrudRepository<Compilazi
     List<CompilazioneRisposta> findAll();
     Optional<CompilazioneRisposta> findById(Long id);
 
-    Optional<CompilazioneRisposta> findByCompilazioneAndDomanda(Long compilazione, Long domanda);
+    Optional<CompilazioneRisposta> findByCompilazioneAndDomanda(Compilazione compilazione, Long domanda);
 }

@@ -77,7 +77,7 @@ public class CompilationService{
         User user = userService.userGet();
         if ( user == null || compilazione.getUser() != user.getId()){ return null; }
 
-        Optional<CompilazioneRisposta> result = compilazioneRispostaRepository.findByCompilazioneAndDomanda(compilazione.getId(), domandaId);
+        Optional<CompilazioneRisposta> result = compilazioneRispostaRepository.findByCompilazioneAndDomanda(compilazione, domandaId);
         if ( result.isEmpty() ) return null;
 
         CompilazioneRisposta cr = result.get();
