@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name="compilazione", schema = "testero_resp")
@@ -27,7 +28,7 @@ public class Compilazione {
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "compilazione", orphanRemoval = true, cascade = CascadeType.ALL)
     @Getter @Setter
-    private Collection<CompilazioneRisposta> compilazioniRisposte;
+    private List<CompilazioneRisposta> compilazioniRisposte;
 
     public Compilazione(Long test, Long user, Boolean completo){
         this.test=test;
