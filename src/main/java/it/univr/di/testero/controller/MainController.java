@@ -26,7 +26,7 @@ public class MainController implements ErrorController {
 
     @GetMapping("/")
     public String getIndex() {
-        User authUser = userService.userGet();
+        User authUser = userService.userAuthenticated();
 
         if (authUser == null) {
             return "redirect:/login";
@@ -44,7 +44,7 @@ public class MainController implements ErrorController {
 
     @GetMapping("/login")
     public String getLogin() {
-        User userAuth = userService.userGet();
+        User userAuth = userService.userAuthenticated();
         if (userAuth!=null){
             return "redirect:/home";
         }
