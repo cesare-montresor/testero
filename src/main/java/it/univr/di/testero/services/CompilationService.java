@@ -1,5 +1,6 @@
 package it.univr.di.testero.services;
 
+import graphql.GraphQLException;
 import it.univr.di.testero.model.*;
 import it.univr.di.testero.repository.CompilazioneRepository;
 import it.univr.di.testero.repository.CompilazioneRispostaRepository;
@@ -83,5 +84,26 @@ public class CompilationService{
         CompilazioneRisposta cr = result.get();
         cr.setRisposta(rispostaId);
         return compilazioneRispostaRepository.save(cr);
+    }
+
+    public Compilazione completeCompilation(Long compilazioneId){
+        Compilazione compilazione = getCompilazione(compilazioneId);
+
+        if(compilazione == null){
+            return null;
+        }
+
+        List<CompilazioneRisposta> compilazioneRisposte = compilazione.getCompilazioniRisposte();
+
+        for(CompilazioneRisposta compilazioneRisposta: compilazioneRisposte){
+            if(compilazioneRisposta.getRisposta() == null){
+                return null;
+            }
+        }
+
+        compilazione.setCompleto(true);
+        compilazione = compilazioneRepository.save(compilazione);
+
+        return compilazione;
     }
 }

@@ -137,4 +137,15 @@ public class TestResponder {
 
         return compilazioneRisposta;
     }
+
+    @MutationMapping
+    public Compilazione completeCompilation(@Argument Long input){
+        Compilazione compilazione = compilationService.completeCompilation(input);
+
+        if(compilazione == null){
+            throw new GraphQLException();
+        }
+
+        return compilazione;
+    }
 }
