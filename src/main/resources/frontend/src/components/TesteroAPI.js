@@ -63,10 +63,9 @@ class TesteroSDK {
             mutation takeTest($input: Int!) {
                 takeTest(input: $input){
                     test{
-                        id,
-                        nome,
+                        id, nome, domandeConNumero,
                         domande {
-                            id, nome, testo, risposteConNumero,
+                            id, nome, testo, risposteConNumero, ordineCasuale,
                             risposte {
                                 id, testo
                             }
