@@ -1,9 +1,9 @@
 ---------------------- TEST ----------------------
 
-INSERT INTO testero_core.test VALUES (1, '16:35:57.802316', 'Test A', true, true);
-INSERT INTO testero_core.test VALUES (2, '17:12:07.636959', 'Test B', true, false);
-INSERT INTO testero_core.test VALUES (3, '14:30:37.297855', 'Test C', false, true);
-INSERT INTO testero_core.test VALUES (4, '14:30:37.297855', 'Test D', false, false);
+INSERT INTO testero_core.test VALUES (1, '2022-09-01T16:35:57.802316', 'Test A', true, true);
+INSERT INTO testero_core.test VALUES (2, '2022-09-01T17:12:07.636959', 'Test B', true, false);
+INSERT INTO testero_core.test VALUES (3, '2022-09-01T14:30:37.297855', 'Test C', false, true);
+INSERT INTO testero_core.test VALUES (4, '2022-09-01T14:30:37.297855', 'Test D', false, false);
 
 ---------------------- DOMANDA ----------------------
 

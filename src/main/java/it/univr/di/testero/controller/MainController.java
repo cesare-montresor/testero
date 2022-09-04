@@ -34,6 +34,11 @@ public class MainController implements ErrorController {
         return "../static/index.html";
     }
 
+    @GetMapping("/login")
+    public String getLogin() {
+        return "redirect:/";
+    }
+
     @RequestMapping("/error")
     public String handleError(HttpServletRequest request, Model model) {
         String error_message = "Unknown Error";
