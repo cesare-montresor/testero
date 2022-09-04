@@ -36,8 +36,8 @@ function ApiTest() {
 
     function addQuestion(){
         const risposte = [
-            {"testo": "Giusta", "punteggio":1.0},
-            {"testo": "Sbagliata", "punteggio":0.0}
+            {"name": 0},
+            {"name": 1}
         ];
         api.addQuestion("domanda A", "domanda giusta?", 10, true, false, risposte ).then( showResponse ).catch( showError );
     }

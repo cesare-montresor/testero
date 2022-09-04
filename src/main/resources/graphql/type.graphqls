@@ -28,6 +28,11 @@ type TestInfo{
     test: Test!
 }
 
+type DomandaInfo{
+    id: Int!
+    alreadyExists: Boolean!
+}
+
 type User{
     id: Int!
     username: String

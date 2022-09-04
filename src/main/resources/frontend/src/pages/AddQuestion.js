@@ -15,13 +15,10 @@ function InputAnswer(props){
     props.scoreRefs.push(scoreRef);
 
     return (
-        <div className={props.className} id={props.id+"-"+props.num}>
+        <div className={props.className} id={props.num}>
             <div className={props.className+"-num"}>{props.num}</div>
-            <InputText label="Nome" className={props.className+"nome"} id={props.id+"-nome-"+props.num} ref={answerRef}/>
-            <InputText label="Punteggio" className={props.className+"punteggio"} id={props.id+"-punteggio-"+props.num} ref={scoreRef}/>
-            { parseInt(props.num) < 2 ? '' :
-                <button className={props.className+"-btn"} onClick={removeAnswer}> - </button>
-            }
+            <InputText label="Nome" className={props.className+"nome"} id={props.num} ref={answerRef}/>
+            <InputText label="Punteggio" className={props.className+"punteggio"} id={props.num} ref={scoreRef}/>
         </div>
     );
 }
@@ -35,7 +32,7 @@ function AddQuestion(){
     const questionId = urlParams.num;
 
     const [currentAnswers, setCurrentAnswers] = useState(null);
-    let counter = 0;
+    let counter = 2;
 
     const nameRef = React.createRef();
     const textRef = React.createRef();
@@ -43,8 +40,8 @@ function AddQuestion(){
     const randomRef = React.createRef();
     const answerNumberRef = React.createRef();
 
-    const answerRefs = [];
-    const scoreRefs = [];
+    let answerRefs = [];
+    let scoreRefs = [];
 
     useEffect(() => {
         const data = window.sessionStorage.getItem("currentAnswers");
@@ -57,41 +54,102 @@ function AddQuestion(){
         window.sessionStorage.setItem("currentAnswers", JSON.stringify(currentAnswers));
     }, [currentAnswers])
 
-    function removeAnswer(num){
-        currentAnswers.splice(num, 1);
-        setCurrentAnswers(currentAnswers.slice());
+    function removeAnswer(){
+        if(currentAnswers.length > 2) {
+            currentAnswers.pop();
+            setCurrentAnswers(currentAnswers.slice());
+
+            answerRefs.pop();
+            scoreRefs.pop();
+        }
     }
 
     function addAnswer(){
-        let tmp = currentAnswers? [...currentAnswers, {name: "lol" + counter}] : ([{name: "lol" + counter}]);
+        let tmp = currentAnswers? [...currentAnswers, {name: counter}] : ([{name: counter}]);
         counter += 1;
         setCurrentAnswers(tmp);
     }
 
     function addQuestion(){
-        if(currentAnswers.length < 2) {
-            alert("PosenatoException: non puoi inserire meno di due risposte per una domanda.");
+        const name = nameRef.current.value;
+        const text = textRef.current.value;
+        const score = parseFloat(scoreRef.current.value);
+        const random = randomRef.current.checked;
+        const answerNumber = answerNumberRef.current.checked;
+
+        if(score <= 0){
+            alert("Errore, il punteggio della domanda deve essere maggiore di 0.");
+            return;
         }
-        else {
-            const name = nameRef.current.value;
-            const text = textRef.current.value;
-            const score = scoreRef.current.value;
-            const random = randomRef.current.checked;
-            const answerNumber = answerNumberRef.current.checked;
+        else if(isNaN(score)){
+            alert("Errore, il punteggio della domanda non è valido.");
+            return;
+        }
 
-            const answers = [];
+        const answers = [];
+        const answerScores = [];
 
-            for(let i = 0; i < answerRefs.length; i++){
-                let answerRef = answerRefs[i];
-                let answerScoreRef = scoreRefs[i];
+        scoreRefs.forEach(function(scoreRef){
+            answerScores.push(parseFloat(scoreRef.current.value));
+        });
 
-                answers.push({testo: answerRef.current.value, punteggio: answerScoreRef.current.value});
+        if(!answerScores.includes(1.0)){
+            alert("Errore, almeno una delle risposte deve avere un punteggio pari a 1.");
+            return;
+        }
+
+        for(let i = 0; i < answerRefs.length; i++){
+            let answerRef = answerRefs[i];
+            let answerScore = answerScores[i];
+
+            if(answerScore < 0 || answerScore > 1){
+                alert("Errore, il punteggio di ogni risposta deve essere compreso fra 0 e 1.");
+                return;
+            }
+            else if(isNaN(answerScore)){
+                alert("Errore, il punteggio di ogni risposta deve essere valido.");
+                return;
             }
 
-            api.addQuestion(parseInt(testId), name , text, score, random, answerNumber, answers).then((data) => {
-                navigate("/addTest/"+testId+"/addQuestion/"+(parseInt(questionId) + 1));
-            });
+            answers.push({testo: answerRef.current.value, punteggio: answerScore});
         }
+
+        api.addQuestion(parseInt(testId), name , text, score, random, answerNumber, answers).then((data) => {
+            if(data["addQuestion"]["alreadyExists"]){
+                alert("Errore, il nome della domanda inserito esiste già.");
+                return;
+            }
+
+            setCurrentAnswers([
+                {"name": 0},
+                {"name": 1}
+            ]);
+
+            answerRefs = answerRefs.slice(0, 2);
+            scoreRefs = scoreRefs.slice(0, 2);
+
+            nameRef.current.value = "";
+            textRef.current.value = "";
+            scoreRef.current.value = "";
+            randomRef.current.checked = false;
+            answerNumberRef.current.checked = false;
+
+            answerRefs.forEach(function(answerRef){
+                answerRef.current.value = "";
+            });
+
+            scoreRefs.forEach(function(scoreRef){
+                scoreRef.current.value = "";
+            });
+
+            navigate("/addTest/"+testId+"/addQuestion/"+(parseInt(questionId) + 1));
+        }).catch((error) => {
+            alert("Errore durante l'inserimento della domanda.");
+        });
+    }
+
+    function finishCreation(){
+        navigate("/");
     }
 
     return (
@@ -106,16 +164,22 @@ function AddQuestion(){
 
             <div className='test-add-answer-main'>
                 Add answer<button type="button" onClick={addAnswer}> + </button>
+                {
+                    (currentAnswers !== null && currentAnswers !== "undefined" && currentAnswers.length > 2) ?
+                        (<button className='test-remove-answer-main' onClick={removeAnswer}> - </button>)
+                        : ('')
+                }
                 <br/>
                 {
                     currentAnswers?
-                        (currentAnswers.map((answer, index) => (<InputAnswer key={answer.name} className="test-add-answer-main-entry" id={answer.name} num={index} removeAnswer={removeAnswer} answerRefs={answerRefs} scoreRefs={scoreRefs}/>)))
+                        (currentAnswers.map((answer, index) => (<InputAnswer key={index} className="test-add-answer-main-entry" id={index} num={index} removeAnswer={removeAnswer} answerRefs={answerRefs} scoreRefs={scoreRefs}/>)))
                         : (<h1>Caricando</h1>)
                 }
             </div>
 
             <div className='test-add-question-main-controls'>
                 <button type="button" onClick={addQuestion}>Next &rarr;</button>
+                <button type="button" onClick={finishCreation}>Finish &rarr;</button>
             </div>
         </div>
     );
