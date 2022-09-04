@@ -10,16 +10,8 @@ function ExamList(){
   const [examList, setExamList] = useState(null);
 
   useEffect(() => {
-    api.allTests().then( showResponse ).catch( showError );
+    api.allTests().then((data) => (setExamList(data))).catch((error) => (alert("Errore durante il caricamento dei test.")));
   }, []);
-
-  function showResponse(data){
-    setExamList( data );
-  }
-
-  function showError(err){
-    setExamList( err.message );
-  }
 
   function zeroPad(num){
     return num.toString().padStart(2,'0');
@@ -43,7 +35,6 @@ function ExamList(){
         else
           div.style.display = "none";
 
-        console.log(chevrons);
         chevrons.forEach((chevron) => {
           console.log("transform", chevron.style);
           if(chevron.id === `chevron${elemId}`)
@@ -59,14 +50,14 @@ function ExamList(){
   }
 
   return (
-      <div className='page-testlist-main'>
+      <section className='page-centered-container'>
         <h1>Test disponibili</h1>
 
         <div className='page-testlist-list'>
           {examList? (
             examList.allTests.map((elem) => {
               return (
-                <div className='page-testlist-row' key={elem.id}>
+                <div className='page-container-row' key={elem.id}>
                     <div className='page-testlist-row-container'>
                       <div className='page-testlist-row-info'>
                         <div className='page-testlist-row-data'>{formatDate(elem.data)}</div>
@@ -88,7 +79,7 @@ function ExamList(){
             <h1> Caricando </h1>
             )}
         </div>
-      </div>
+      </section>
 
 
   );

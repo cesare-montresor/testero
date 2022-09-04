@@ -3,7 +3,6 @@ import {useNavigate, useParams} from "react-router-dom";
 import {InputRadioButton} from "../components/InputElement";
 import {ErrorMessage} from "../components/ErrorMessage";
 import {TesteroAPI as api} from "../components/TesteroAPI";
-import {NavigationButton} from "../components/NavigationButton";
 
 
 const reducer = (state, action) => {
@@ -47,16 +46,14 @@ function SelectedExam(){
 
   useEffect(() => {
     api.takeTest(parseInt(urlParams.examId, 10)).then((data) => {
-      console.log("compilazione id", data["takeTest"].compilazione.id);
-      console.log("compilazione entrata", data["takeTest"].compilazione.compilazioniRisposte);
       data["takeTest"].test.domande.forEach((elem) => {
-        if(elem.ordineCasuale === true) {
+        if(elem.ordineCasuale === true)
           shuffleArray(elem.risposte);
-        }
-      })
+      });
 
       dispach({type:"initialize", payload: {data: data, questionNum: urlParams.questionNum}});
-    }).catch((error) => {console.log(error); //window.confirm("Error")
+    }).catch((error) => {
+      alert("Errore durante il recupero delle domande.");
     });
   }, []);
 
@@ -68,21 +65,22 @@ function SelectedExam(){
   function changeRenderedQuestion(event) {
     if(state.currentCompilazioniRisposte.risposta !== null) {
       const text = event.target.textContent || event.target.innerText;
-      const newQuestionNum = (text === "Domanda successiva" || text === "Risultati")? parseInt(urlParams.questionNum, 10) + 1 : parseInt(urlParams.questionNum, 10) - 1;
+      const newQuestionNum = (text === "Domanda successiva" || text === "Termina esame")? parseInt(urlParams.questionNum, 10) + 1 : parseInt(urlParams.questionNum, 10) - 1;
 
       api.giveAnswer(state.compilazione.id, state.currentCompilazioniRisposte.domanda, state.currentCompilazioniRisposte.risposta).then(() => {
-        //il back button del browser premuto in Result.js riporta a "/"
         window.history.replaceState(null, "", "/");
+
         if(state.test.domande.length === newQuestionNum){
-          navigate(`/${urlParams.examId}/results`);
+          api.completeCompilation(state.compilazione.id).then(data => navigate(`/${urlParams.examId}/results`)).catch(error => alert("Errore nel salvataggio della risposta "+ error))
         }
         else
         {
           dispach({type: "changeQuestion", payload: newQuestionNum});
           navigate(state.test.domande.length === newQuestionNum? `/${urlParams.examId}/results` : `/${urlParams.examId}/question/${newQuestionNum}`);
         }
-      }).catch((error) => {console.log(error)});
-
+      }).catch((error) => {
+        alert("Errore durante il salvataggio della risposta.");
+      });
     } else
     {
       dispach({type: "setError", payload: true});
@@ -90,25 +88,25 @@ function SelectedExam(){
   }
 
   return (
-    <section>
+    <section className={"page-centered-container"}>
       {state?
         (
           <>
             <h1>{state.test.nome}</h1>
 
             <div>
-              <h4>
+              <h2 className={"page-container-row"}>
                 {(state.test.domandeConNumero? (`${parseInt(urlParams.questionNum, 10) + 1}. `) : ("") ) + state.currentQuestion.testo}
-              </h4>
+              </h2>
 
-              <form>
+              <form className={"page-question-radioButton"}>
                 {state.currentQuestion.risposte.map(ans => {
                   ansNum += 1;
                   let selected = (state.currentCompilazioniRisposte.risposta);
                   return (
                     <InputRadioButton
                       type="radio"
-                      className="radioButton"
+                      className="page-question-radioButton-option"
                       key={ans.id}
                       id={ans.id}
                       label={state.currentQuestion.risposteConNumero? (ansNum).toString() + ". " + ans.testo : ans.testo}
@@ -120,17 +118,20 @@ function SelectedExam(){
                 )}
               </form>
 
-              {parseInt(urlParams.questionNum, 10) > 0? (
-                <button className={"movementButton"} onClick={changeRenderedQuestion}>Domanda precedente</button>
-              ) : (
-                <></>
-              )}
+              {state.error && <ErrorMessage>{"Selezionare una risposta per proseguire"}</ErrorMessage>}
 
-              <button className={"movementButton"} onClick={changeRenderedQuestion}>
-                {state.test.domande.length === parseInt(urlParams.questionNum, 10)+1? "Risultati" : "Domanda successiva"}
-              </button>
+              <div className={"page-question-movementButton btn-bar"}>
+                {parseInt(urlParams.questionNum, 10) > 0? (
+                  <button onClick={changeRenderedQuestion}>Domanda precedente</button>
+                ) : (
+                  <></>
+                )}
 
-              {state.error && <ErrorMessage>{state.error}</ErrorMessage>}
+                <button onClick={changeRenderedQuestion}>
+                  {state.test.domande.length === parseInt(urlParams.questionNum, 10)+1? "Termina esame" : "Domanda successiva"}
+                </button>
+              </div>
+
             </div>
           </>
         )
@@ -138,11 +139,6 @@ function SelectedExam(){
 
     </section>
   );
-
-
-
-
-
 }
 
 export {SelectedExam};

@@ -30,6 +30,17 @@ a, a:hover, a:visited, a:active{
     cursor: pointer;
 }
 
+.page-centered-container{
+    margin: 100px calc(10%);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.page-container-row{
+    margin: 0;
+    padding: 20px;
+    border-bottom: 1px solid #dee2e6;
+}
+
 /* MAIN PAGE */
 
 .page-main{
@@ -43,8 +54,6 @@ a, a:hover, a:visited, a:active{
 .page-content{
     margin: 10px;
 }
-
-
 
 /* MENU */
 .menu-main{
@@ -89,13 +98,8 @@ a, a:hover, a:visited, a:active{
 
 /* TEST LIST */
 
-.page-testlist-main{
-    margin: 100px calc(10%);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.page-testlist-main h1 {
-    margin-bottom: 0;
+.page-centered-container h1 {
+    margin: 0;
     background-color: #efefef;
     padding: 20px 50px;
     text-align: center;
@@ -109,17 +113,11 @@ a, a:hover, a:visited, a:active{
 
 }
 
-.page-testlist-row{
-    padding: 10px;
-    border-bottom: 1px solid #dee2e6;
-}
-
 .page-testlist-row:hover{
     background-color: lightyellow;
 }
 
 .page-testlist-row-container{
-    padding: 10px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -167,6 +165,31 @@ a, a:hover, a:visited, a:active{
 @media(max-width: 800px) {
 
 }
+
+/* SELECTED EXAM */
+.page-question-radioButton {
+    padding: 20px 30px;
+}
+
+.page-question-radioButton-option {
+    padding-bottom: 10px;
+}
+
+.page-question-movementButton {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    flex-basis: 20px;
+
+}
+
+.page-question-movementButton button{
+    margin: 10px;
+}
+
+/* RESULTS */
+
 
 /* ADD TEST */
 
