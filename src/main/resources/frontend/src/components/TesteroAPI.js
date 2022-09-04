@@ -110,6 +110,7 @@ class TesteroSDK {
             mutation addQuestion($input: AddDomandaData!) {
                 addQuestion(input: $input) {
                     id
+                    alreadyExists
                 }
             }`;
 
