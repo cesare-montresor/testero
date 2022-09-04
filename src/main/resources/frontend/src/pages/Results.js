@@ -29,37 +29,38 @@ function Results(){
 
                   return(
                     <div key={questionNum} className={"page-container-row"}>
-                      <div>{(result.domandeConNumero? (`${questionNum}. `) : ("") ) + elem.testoDomanda}</div>
+                      <h2>{(result.domandeConNumero? (`${questionNum}. `) : ("") ) + elem.testoDomanda}</h2>
 
-                      <div>
+                      <div className="page-results-answer">
                         <div>{"Risposta/e corretta/e:"}</div>
-                        {
-                          elem.correctTestoRispostaList.map((ansText, index) => <div key={index}>{ansText}</div>)
-                        }
+                        <ul>
+                          {
+                            elem.correctTestoRispostaList.map((ansText, index) => <li key={index}>{ansText}</li>)
+                          }
+                        </ul>
                       </div>
-                      <div>
+                      <div className="page-results-answer">
                         <div>{"Risposta selezionata:"}</div>
-                        <div>{elem.selectedTestoRisposta}</div>
+                        <ul>
+                          <li>{elem.selectedTestoRisposta}</li>
+                        </ul>
                       </div>
-                      <div className={"page-results-quesion-scoreInfo"}>
-                        <div>{`Punti risposta: ${elem.puntiDomanda}`}</div>
-                        <div>{`Punti ottenuti: ${elem.selectedRispostaPunteggio}`}</div>
-                      </div>
+                      <div className={"page-results-scoreInfo"}>{`Punti risposta: ${elem.puntiDomanda}`}</div>
+                      <div className={"page-results-scoreInfo"}>{`Punti ottenuti: ${elem.selectedRispostaPunteggio}`}</div>
                     </div>
                   );
                 })
               }
             </div>
 
-            <div>
-              <div>{`Punteggio esame: ${testScore}`}</div>
-              <div>{`Punteggio utente: ${userScore}`}</div>
+            <div className={"page-results-finalScore btn-bar"}>
+              <div className={"page-results-finalScore-text"}>{`Punteggio esame: ${testScore}`}</div>
+              <div className={"page-results-finalScore-text"}>{`Punteggio utente: ${userScore}`}</div>
+              <button onClick={() => {
+                window.history.replaceState(null, "", "/");
+                navigate("/");
+              }}>Torna alla home</button>
             </div>
-
-            <button onClick={() => {
-              window.history.replaceState(null, "", "/");
-              navigate("/");
-            }}>Torna alla home</button>
           </div>
         ) : (
           <h1>Caricando</h1>
