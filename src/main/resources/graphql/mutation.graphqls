@@ -3,5 +3,5 @@ type Mutation {
     giveAnswer(input: GiveRispostaData!): CompilazioneRisposta!
 
     addTest(input: AddTestData!): Test!
-    addQuestion(input: AddDomandaData): Domanda!
+    addQuestion(input: AddDomandaData): DomandaInfo!
 }

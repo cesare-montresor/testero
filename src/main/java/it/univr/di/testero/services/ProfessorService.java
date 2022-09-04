@@ -20,6 +20,7 @@ import java.math.BigInteger;
 import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,12 +50,32 @@ public class ProfessorService{
         domanda = domandaRepository.save(domanda);
 
         test.domande.add(domanda);
+        testRepository.save(test);
 
         return domanda;
     }
 
-    public Risposta addAnswerToQuestion(String testo, Float punteggio, Domanda domanda){
-        return rispostaRepository.save(new Risposta(testo, punteggio, domanda));
+    public ArrayList<Risposta> addAnswersToQuestion(ArrayList<String> texts, ArrayList<Float> scores, Domanda domanda){
+        ArrayList<Risposta> risposte = new ArrayList<>();
+
+        for(int i = 0; i < texts.size(); i++){
+            risposte.add(rispostaRepository.save(new Risposta(texts.get(i), scores.get(i), domanda)));
+        }
+
+        domanda.risposte = risposte;
+        domandaRepository.save(domanda);
+
+        return risposte;
+    }
+
+    public Domanda findQuestionByName(String name){
+        Optional<Domanda> result = domandaRepository.findByNome(name);
+
+        if(result.isEmpty()){
+            return null;
+        }
+
+        return result.get();
     }
 
     public Domanda findQuestion(Long questionId){
