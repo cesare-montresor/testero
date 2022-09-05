@@ -46,7 +46,7 @@ function App() {
     useEffect(() => {
         const data = window.sessionStorage.getItem("currentQuestion");
 
-        if(data != "undefined" && data != null) {
+        if(data !== "undefined" && data != null) {
             setCurrentQuestion(parseInt(JSON.parse(data)));
         }
     }, []);

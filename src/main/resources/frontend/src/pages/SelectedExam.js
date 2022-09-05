@@ -95,13 +95,14 @@ function SelectedExam(){
       {state?
         (
           <>
-            <h1 tabIndex="0">{state.test.nome}</h1>
+            <h1 tabIndex="0" aria-label={`Nome esame: ${state.test.nome}`}>{state.test.nome}</h1>
 
             <div>
 
               {state.error && <ErrorMessage>{"Selezionare una risposta per proseguire"}</ErrorMessage>}
+              <h2 tabIndex="0" className={"page-centered-container-row"} id="question-title"
+                  aria-label={(state.test.domandeConNumero? (`Domanda numero ${parseInt(urlParams.questionNum, 10) + 1}: `) : ("Domanda: ") ) + state.currentQuestion.testo}>
 
-              <h2 tabIndex="0" className="page-centered-container-row" id="question-title">
                 {(state.test.domandeConNumero? (`${parseInt(urlParams.questionNum, 10) + 1}. `) : ("") ) + state.currentQuestion.testo}
               </h2>
 
@@ -116,6 +117,7 @@ function SelectedExam(){
                       key={ans.id}
                       id={ans.id}
                       label={state.currentQuestion.risposteConNumero? (ansNum).toString() + ". " + ans.testo : ans.testo}
+                      ariaLabel={state.currentQuestion.risposteConNumero? "Risposta numero " + (ansNum).toString() + ": " + ans.testo : "Risposta: " + ans.testo}
                       value={ans.id}
                       checked={selected == ans.id}
                       onChange={selectAnswer}

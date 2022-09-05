@@ -9,10 +9,7 @@ import it.univr.di.testero.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class CompilationService{
@@ -76,7 +73,7 @@ public class CompilationService{
 
     public CompilazioneRisposta giveAnswer(Compilazione compilazione, Long domandaId, Long rispostaId) {
         User user = userService.userGet();
-        if ( user == null || compilazione.getUser() != user.getId()){ return null; }
+        if ( user == null || !Objects.equals(compilazione.getUser(), user.getId())){ return null; }
 
         Optional<CompilazioneRisposta> result = compilazioneRispostaRepository.findByCompilazioneAndDomanda(compilazione, domandaId);
         if ( result.isEmpty() ) return null;
