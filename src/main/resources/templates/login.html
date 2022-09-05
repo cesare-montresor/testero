@@ -3,30 +3,27 @@
 <head>
     <title>Testero Login</title>
     <div th:replace="head"></div>
-
 </head>
 
 <body>
 
-<div id="page-content">
-    <div id="page-login">
-        <h1>Login</h1>
-        <form th:action="@{/login}" method="post">
-            <div class="form-group">
+    <div id="page-content">
+        <div id="page-login">
+            <h1>Login</h1>
+            <form th:action="@{/login}" method="post">
+                <div class="form-group">
 
-                <label for="page-login-username">Username</label>
-                <input type="text" name="username" id="page-login-username"/>
+                    <label for="page-login-username">Username</label>
+                    <input type="text" name="username" id="page-login-username"/>
 
-                <label for="page-login-password">Password</label>
-                <input type="password" name="password" id="page-login-password"/>
+                    <label for="page-login-password">Password</label>
+                    <input type="password" name="password" id="page-login-password"/>
 
-                <br>
-                <input class="btn" type="submit" value="Login" id="page-login-submit" />
-            </div>
-        </form>
+                    <br>
+                    <input class="btn" type="submit" value="Login" id="page-login-submit" />
+                </div>
+            </form>
+        </div>
     </div>
-
-
-</div>
 </body>
 </html>

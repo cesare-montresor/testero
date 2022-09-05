@@ -10,6 +10,13 @@ function AddTest(){
     const orderRef = React.createRef();
     const numberedRef = React.createRef();
 
+    api.getIncompleteTest().then((data)=>{
+        if(data.getIncompleteTest==null) return;
+        const id = data.getIncompleteTest.id;
+        const num = data.getIncompleteTest.domande.length;
+        navigate("/addTest/"+id+"/addQuestion/"+num);
+    });
+
     function saveTest(){
         const name = nameRef.current.value;
         const order = orderRef.current.checked;

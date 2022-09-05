@@ -53,3 +53,19 @@ type Compilazione{
     compilazioniRisposte: [CompilazioneRisposta]!
     user: User
 }
+
+type Result{
+    testoDomanda: String!
+    puntiDomanda: Float!
+    risposteConNumero: Boolean!
+    selectedTestoRisposta: String!
+    selectedRispostaPunteggio: Float!
+    correctTestoRispostaList: [String]!
+}
+
+type ResultInfo{
+    nomeTest: String!
+    dataTest: DateTime!
+    domandeConNumero: Boolean!
+    results: [Result]!
+}

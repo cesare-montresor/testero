@@ -6,8 +6,9 @@ import it.univr.di.testero.api.input.AddRispostaData;
 import it.univr.di.testero.api.input.AddTestData;
 import it.univr.di.testero.api.input.GiveRispostaData;
 import it.univr.di.testero.api.output.DomandaInfo;
+import it.univr.di.testero.api.output.Result;
+import it.univr.di.testero.api.output.ResultInfo;
 import it.univr.di.testero.api.output.TestInfo;
-import it.univr.di.testero.config.GraphQLCustomError;
 import it.univr.di.testero.config.UserRoles;
 import it.univr.di.testero.model.*;
 import it.univr.di.testero.services.CompilationService;
@@ -18,11 +19,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.server.ResponseStatusException;
 
+import java.time.Instant;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
@@ -42,13 +45,27 @@ public class TestResponder {
         return studentService.allTests();
     }
 
-    @MutationMapping
-    public Test addTest(@Argument AddTestData input){
-        if(!userService.userGet().getRoles().equals(UserRoles.TEACHER.name())) {
+    @QueryMapping
+    public Test getIncompleteTest(){
+        if(!userService.isTeacher()) {
             throw new GraphQLException();
         }
 
-        return professorService.addTest(input.getNome(), input.getOrdineCasuale(), input.getDomandeConNumero());
+        return professorService.getIncompleteTest();
+    }
+
+    @MutationMapping
+    public Test addTest(@Argument AddTestData input){
+        if(!userService.isTeacher()) {
+            throw new GraphQLException();
+        }
+
+        Test test = professorService.getIncompleteTest();
+        if (test == null) {
+            test = professorService.addTest(input.getNome(), input.getOrdineCasuale(), input.getDomandeConNumero());
+        }
+
+        return test;
     }
 
     @MutationMapping
@@ -59,7 +76,7 @@ public class TestResponder {
             return new DomandaInfo(domanda.getId(), true);
         }
 
-        if(!userService.userGet().getRoles().equals(UserRoles.TEACHER.name())){
+        if(!userService.isTeacher()){
             throw new GraphQLException();
         }
 
@@ -148,4 +165,51 @@ public class TestResponder {
 
         return compilazione;
     }
+
+    private Domanda findByIdDomanda(Collection<Domanda> domandaList, Long idDomanda) {
+        return domandaList.stream().filter(domanda -> idDomanda.equals(domanda.getId())).findFirst().orElse(null);
+    }
+
+    private Risposta findByIdRisposta(Collection<Risposta> rispostaList, Long idRisposta) {
+        return rispostaList.stream().filter(risposta -> idRisposta.equals(risposta.getId())).findFirst().orElse(null);
+    }
+
+    @MutationMapping
+    public ResultInfo getResults(@Argument String input){
+        Long inputLong = Long.parseLong(input);
+        Test test = studentService.findTest(inputLong);
+
+        if(test == null){
+            throw new GraphQLException();
+        }
+
+        Compilazione compilazione = compilationService.getResults( userService.userGet().getId(), test.getId());
+
+        if(compilazione == null){
+            throw new GraphQLException();
+        }
+
+        ResultInfo resultInfo = new ResultInfo(test.getNome(), test.getData(), test.getDomandeConNumero());
+        for (CompilazioneRisposta compilazioneRisposta : compilazione.getCompilazioniRisposte()) {
+            Domanda currentDomanda = this.findByIdDomanda(test.domande, compilazioneRisposta.getDomanda());
+            Risposta selectedRisposta = this.findByIdRisposta(currentDomanda.risposte, compilazioneRisposta.getRisposta());
+
+            String testoDomanda = currentDomanda.getTesto();
+            Float puntiDomanda = currentDomanda.getPunti();
+            Boolean risposteConNumero = currentDomanda.getRisposteConNumero();
+            String selectedTestoRisposta = selectedRisposta.getTesto();
+            Float selectedRispostaPunteggio = currentDomanda.getPunti() * selectedRisposta.getPunteggio();
+            List<String> correctTestoRispostaList = new ArrayList<>();
+            for(Risposta risposta : currentDomanda.risposte) {
+                if(risposta.getPunteggio() == 1.0)
+                    correctTestoRispostaList.add(risposta.getTesto());
+            }
+
+            resultInfo.getResults().add(new Result(testoDomanda, puntiDomanda, risposteConNumero, selectedTestoRisposta,
+                    selectedRispostaPunteggio, correctTestoRispostaList));
+        }
+
+        return resultInfo;
+    }
+
 }

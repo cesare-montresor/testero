@@ -42,6 +42,11 @@ function ApiTest() {
         api.addQuestion("domanda A", "domanda giusta?", 10, true, false, risposte ).then( showResponse ).catch( showError );
     }
 
+    function getIncompleteTest(){
+        api.getIncompleteTest().then( showResponse ).catch( showError );
+    }
+
+
     function showResponse(data){
         const dump = JSON.stringify(data, null, 2);
         setResponse( dump );
@@ -63,6 +68,7 @@ function ApiTest() {
                 <button onClick={giveAnswer}>giveAnswer</button>
                 <button onClick={addTest}>addTest</button>
                 <button onClick={addQuestion}>addQuestion</button>
+                <button onClick={getIncompleteTest}>getIncompleteTest</button>
             </div>
             <pre className='api-test-results' id="api-test-resuls">
                 { response }

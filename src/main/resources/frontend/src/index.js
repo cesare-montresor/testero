@@ -2,9 +2,7 @@ import ReactDOM from 'react-dom/client';
 import {Routes, Route, Link, BrowserRouter } from "react-router-dom";
 import React, {useEffect, useState} from "react";
 
-import {TesteroAPI as API} from "./components/TesteroAPI";
 import {NavBar} from "./components/NavBar";
-import {Header} from "./components/Header";
 
 
 import {ExamList} from "./pages/ExamList";
@@ -61,7 +59,6 @@ function App() {
     return (
         <BrowserRouter>
             <div className='page-main'>
-                <Header/>
                 <NavBar/>
                 <div className='page-content'>
                     <Routes>

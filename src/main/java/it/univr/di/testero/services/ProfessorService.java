@@ -33,6 +33,12 @@ public class ProfessorService{
     @Autowired
     private RispostaRepository rispostaRepository;
 
+    public Test getIncompleteTest(){
+        List<Test> result = testRepository.findByCompleto(false);
+        if (result.size() == 0) {return null;}
+        return result.get(0);
+    }
+
     public Test addTest(String nome, Boolean ordineCasuale, Boolean domandeConNumero){
         Test t = new Test(OffsetDateTime.ofInstant(Instant.now(), ZoneOffset.UTC), nome, ordineCasuale, domandeConNumero);
         return testRepository.save(t);

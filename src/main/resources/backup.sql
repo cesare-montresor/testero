@@ -385,10 +385,11 @@ ALTER SEQUENCE testero_core.risposta_id_seq OWNED BY testero_core.risposta.id;
 
 CREATE TABLE testero_core.test (
                                    id bigint NOT NULL,
-                                   data time without time zone NOT NULL,
+                                   data timestamp without time zone NOT NULL,
                                    nome character varying NOT NULL,
                                    ordinecasuale boolean DEFAULT false,
-                                   domandeconnumero boolean DEFAULT false
+                                   domandeconnumero boolean DEFAULT false,
+                                   completo boolean NOT NULL DEFAULT false
 );
 
 

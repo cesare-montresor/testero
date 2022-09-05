@@ -17,6 +17,17 @@ class TesteroSDK {
         return this.client.request(query, vars);
     }
 
+    getIncompleteTest(){
+        const query = gql`
+            query {
+                getIncompleteTest{
+                    id, domande{ id }
+                }
+            }`;
+
+        return this.request(query);
+    }
+
     addTest(nome, ordineCasuale, domandeConNumero){
         const query = gql`
             mutation addTest($input: AddTestData!) {
@@ -100,6 +111,39 @@ class TesteroSDK {
                 "idDomanda": idDomanda,
                 "idRisposta": idRisposta
             }
+        };
+
+        return this.request(query, vars);
+    }
+
+    completeCompilation(idCompilazione){
+        const query = gql`
+            mutation completeCompilation($input: Int!) {
+                completeCompilation(input: $input) {
+                    id
+                }
+            }`;
+
+        const vars = {
+            "input": idCompilazione
+        };
+
+        return this.request(query, vars);
+    }
+
+    getResults(idTest){
+        const query = gql`
+            mutation getResults($input: Int!) {
+                getResults(input: $input){
+                    nomeTest, dataTest, domandeConNumero, 
+                    results {
+                        testoDomanda, puntiDomanda, risposteConNumero, selectedTestoRisposta, selectedRispostaPunteggio, correctTestoRispostaList
+                    }
+                }
+            }`;
+
+        const vars = {
+            "input": idTest
         };
 
         return this.request(query, vars);

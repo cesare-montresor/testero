@@ -6,4 +6,5 @@ type Mutation {
     addQuestion(input: AddDomandaData): DomandaInfo!
 
     completeCompilation(input: Int!): Compilazione!
+    getResults(input: Int!): ResultInfo!
 }

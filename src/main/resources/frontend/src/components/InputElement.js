@@ -19,8 +19,8 @@ const InputText = React.forwardRef((props, ref) => (
 
 const InputRadioButton = React.forwardRef((props, ref) => (
     <div className={props.className}>
-        <input type="radio" key={props.id} name={props.id} id={props.id} value={props.value} checked={props.checked} onChange={props.onChange} />
-        <label htmlFor={ props.id }>{props.label}</label>
+      <input type="radio" key={props.id} name={props.id} id={props.id} value={props.value} checked={props.checked} onChange={props.onChange} />
+      <label htmlFor={ props.id }>{props.label}</label>
         {props.children}
     </div>
 ));

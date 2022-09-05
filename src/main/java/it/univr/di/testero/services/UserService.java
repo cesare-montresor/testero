@@ -1,5 +1,6 @@
 package it.univr.di.testero.services;
 
+import it.univr.di.testero.config.UserRoles;
 import it.univr.di.testero.model.User;
 import it.univr.di.testero.model.UserAuthDetails;
 import it.univr.di.testero.repository.UserRepository;
@@ -68,6 +69,16 @@ public class UserService implements UserDetailsService {
         return userGet(true); //TODO: change to false in production
     }
 
+    public boolean isTeacher(){
+        User user = userGet();
+        if (user == null) {return false;}
+        return user.getRoles().equals(UserRoles.TEACHER.name());
+    }
+    public boolean isStudent(){
+        User user = userGet();
+        if (user == null) {return false;}
+        return user.getRoles().equals(UserRoles.STUDENT.name());
+    }
 
     public User userAuthenticated() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

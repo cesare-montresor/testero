@@ -29,26 +29,14 @@ public class MainController implements ErrorController {
         User authUser = userService.userAuthenticated();
 
         if (authUser == null) {
-            return "redirect:/login";
-        }else{
-            return "redirect:/home";
+            return "login";
         }
-    }
-
-    @GetMapping("/home")
-    public String getHome(Model model) {
-        User authUser = userService.userAuthenticated();
-        model.addAttribute("user", authUser);
-        return "redirect:/app/index.html";
+        return "../static/index.html";
     }
 
     @GetMapping("/login")
     public String getLogin() {
-        User userAuth = userService.userAuthenticated();
-        if (userAuth!=null){
-            return "redirect:/home";
-        }
-        return "login";
+        return "redirect:/";
     }
 
     @RequestMapping("/error")

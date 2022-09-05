@@ -2,7 +2,7 @@
   "name": "testero-fe",
   "version": "0.1.0",
   "private": true,
-  "homepage": "/app/",
+  "homepage": "/",
   "dependencies": {
     "graphql": "^16.6.0",
     "graphql-request": "^4.3.0",

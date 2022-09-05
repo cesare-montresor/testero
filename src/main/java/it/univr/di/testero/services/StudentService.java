@@ -19,7 +19,7 @@ public class StudentService{
     private RispostaRepository rispostaRepository;
 
     public List<Test> allTests(){
-        return testRepository.findAll();
+        return testRepository.findByCompleto(true);
     }
 
     public Test findTest(Long testId){
