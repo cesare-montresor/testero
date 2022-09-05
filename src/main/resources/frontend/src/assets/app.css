@@ -22,7 +22,7 @@ a, a:hover, a:visited, a:active{
 
 :focus {
     outline: 5px dotted rebeccapurple;
-    border-radius: 0px;
+    border-radius: 0;
 }
 
 h1, h2, label {
@@ -37,7 +37,7 @@ h1, h2, label {
 /* COMMON */
 
 .btn-bar a, .btn-bar button{
-    //font-size: 18px;
+    //font-size: 14px;
     font-weight: bold;
     font-size: 13.33px;
     padding: 10px;
@@ -63,7 +63,7 @@ h1, h2, label {
 
 .error-message{
     width: 100%;
-    padding: 10px 0px 10px 0px;
+    padding: 10px 0 10px 0;
     margin-bottom: 10px;
     background-color: orangered;
     text-align: center;
@@ -131,6 +131,12 @@ nav {
     background-color: lightyellow;
 }
 
+.page-testList-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+}
+
 .page-testlist-row-container{
     display: flex;
     flex-direction: row;
@@ -170,7 +176,7 @@ nav {
 
 .page-question-movementButton button{
     margin: 10px;
-    width: 150px;
+    width: 160px;
 }
 
 /* RESULTS */
@@ -229,8 +235,6 @@ nav {
     margin-right: 10px;
     flex-grow: 1;
 }
-
-
 
 .test-add-main-controls{
     display: flex;
@@ -382,6 +386,10 @@ nav {
         font-size: min(13.33px, 5.5vw);
     }
 
+    .label{
+        font-size: min(5.5vw, 16px);
+    }
+
     /* NAVBAR */
 
     nav {
@@ -418,12 +426,9 @@ nav {
     }
 
     /* SELECTED EXAM*/
-    .page-question-radioButton-option label{
-        font-size: min(5.5vw, 16px);
-    }
 
     .page-question-movementButton button {
-        width: min(150px, 34vw);
+        width: min(160px, 34vw);
     }
 
     /* RESULTS */
@@ -455,6 +460,10 @@ nav {
         padding-left: 10px;
     }
 
+    label {
+        font-size: min(5vw, 16px);
+    }
+
     /* NAVBAR */
 
     .userInfo {
@@ -465,16 +474,13 @@ nav {
 
     .page-testlist-row-data{
         font-size: min(5vw, 16px);
+
     }
 
     /* SELECTED EXAM*/
     .page-question-radioButton{
         padding-right: 10px;
         padding-left: 10px;
-    }
-
-    .page-question-radioButton-option label{
-        font-size: min(5vw, 16px);
     }
 
     .page-question-movementButton{

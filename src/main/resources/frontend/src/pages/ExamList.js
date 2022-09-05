@@ -27,11 +27,11 @@ function ExamList(){
     <main className='page-centered-container'>
       <h1 tabIndex="0">Test disponibili</h1>
 
-        <div>
+        <ul className="page-testList-list">
           {examList? (
             examList.allTests.map((elem) => {
               return (
-                <div className='page-centered-container-row testList-row' key={elem.id}>
+                <li className='page-centered-container-row testList-row' key={elem.id}>
                     <div className='page-testlist-row-container'>
                       <div className='page-testlist-row-info'>
                         <div tabIndex="0" className='page-testlist-row-data'>{formatDate(elem.data)}</div>
@@ -43,13 +43,13 @@ function ExamList(){
                         }}>Avvia esame</button>
                       </div>
                     </div>
-                </div>
+                </li>
               )
             })
           ) : (
             <h1> Caricando </h1>
             )}
-        </div>
+        </ul>
       </main>
 
 

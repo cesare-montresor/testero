@@ -43,7 +43,7 @@ function Results(){
                       <h2 tabIndex="0">{(result.domandeConNumero? (`${questionNum}. `) : ("") ) + elem.testoDomanda}</h2>
 
                       <div className="page-results-questionResult">
-                        <div tabIndex="0">{"Risposta corretta:"}</div>
+                        <div tabIndex="0">{elem.correctTestoRispostaList.length > 1? "Risposte corrette:" : "Risposta corretta:"}</div>
                         <ul>
                           {
                             elem.correctTestoRispostaList.map( (ansText, index) =>

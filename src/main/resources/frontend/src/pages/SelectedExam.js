@@ -8,6 +8,7 @@ import {TesteroAPI as api} from "../components/TesteroAPI";
 const reducer = (state, action) => {
   switch (action.type) {
     case "initialize":
+      console.log("data", action.payload.data["takeTest"].compilazione);
       return {compilazione: action.payload.data["takeTest"].compilazione, test: action.payload.data["takeTest"].test,
         currentQuestion: action.payload.data["takeTest"].test.domande.find((elem) => (elem.id === action.payload.data["takeTest"].compilazione.compilazioniRisposte[action.payload.questionNum].domanda)),
         currentCompilazioniRisposte: action.payload.data["takeTest"].compilazione.compilazioniRisposte[action.payload.questionNum]
@@ -35,7 +36,7 @@ function SelectedExam(){
   const urlParams = useParams();
   const navigate = useNavigate();
   let ansNum = 0;
-  const [state, dispach] = useReducer(reducer, null);
+  const [state, dispatch] = useReducer(reducer, null);
 
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -51,15 +52,15 @@ function SelectedExam(){
           shuffleArray(elem.risposte);
       });
 
-      dispach({type:"initialize", payload: {data: data, questionNum: urlParams.questionNum}});
+      dispatch({type:"initialize", payload: {data: data, questionNum: urlParams.questionNum}});
     }).catch((error) => {
       alert("Errore durante il recupero delle domande.");
     });
   }, []);
 
   function selectAnswer(event) {
-    dispach({type: "setAnswer", payload: {answerId: event.target.value, questionNum: urlParams.questionNum}});
-    dispach({type: "setError", payload: false});
+    dispatch({type: "setAnswer", payload: {answerId: event.target.value, questionNum: urlParams.questionNum}});
+    dispatch({type: "setError", payload: false});
   }
 
   function changeRenderedQuestion(event) {
@@ -76,7 +77,7 @@ function SelectedExam(){
         }
         else
         {
-          dispach({type: "changeQuestion", payload: newQuestionNum});
+          dispatch({type: "changeQuestion", payload: newQuestionNum});
           navigate(state.test.domande.length === newQuestionNum? `/${urlParams.examId}/results` : `/${urlParams.examId}/question/${newQuestionNum}`);
         }
       }).catch((error) => {
@@ -84,7 +85,7 @@ function SelectedExam(){
       });
     } else
     {
-      dispach({type: "setError", payload: true});
+      dispatch({type: "setError", payload: true});
 
     }
   }
