@@ -21,7 +21,7 @@ a, a:hover, a:visited, a:active{
 }
 
 :focus {
-    outline: 3px solid red;
+    outline: 5px dotted rebeccapurple;
     border-radius: 5px;
 }
 
