@@ -8,4 +8,7 @@ import java.util.Optional;
 public interface TestRepository extends CrudRepository<Test, Long> {
     List<Test> findAll();
     Optional<Test> findById(Long id);
+
+    List<Test> findByCompleto(Boolean completo);
+
 }

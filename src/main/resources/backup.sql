@@ -388,7 +388,8 @@ CREATE TABLE testero_core.test (
                                    data timestamp without time zone NOT NULL,
                                    nome character varying NOT NULL,
                                    ordinecasuale boolean DEFAULT false,
-                                   domandeconnumero boolean DEFAULT false
+                                   domandeconnumero boolean DEFAULT false,
+                                   completo boolean NOT NULL DEFAULT false
 );
 
 

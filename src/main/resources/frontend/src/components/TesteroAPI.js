@@ -17,6 +17,17 @@ class TesteroSDK {
         return this.client.request(query, vars);
     }
 
+    getIncompleteTest(){
+        const query = gql`
+            query {
+                getIncompleteTest{
+                    id, domande{ id }
+                }
+            }`;
+
+        return this.request(query);
+    }
+
     addTest(nome, ordineCasuale, domandeConNumero){
         const query = gql`
             mutation addTest($input: AddTestData!) {

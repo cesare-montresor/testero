@@ -30,8 +30,8 @@ function NavBar() {
                 }
               </div>
               <div className="inner-menu btn-bar">
-                <div className="menu-elem">Utente: {userInfo.username}</div>
-                <div className="menu-elem">Livello permessi: {userInfo.roles}</div>
+                <div tabIndex="0" className="menu-elem">Utente: {userInfo.username}</div>
+                <div tabIndex="0" className="menu-elem">Livello permessi: {userInfo.roles}</div>
                 <Link to={"/logout"} className="menu-elem">Disconnetti</Link>
               </div>
             </>
