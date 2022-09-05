@@ -317,10 +317,24 @@ input[type="radio"]{
 .test-add-answer-main-entry > div {
     padding-right: 10px;
     margin-bottom: 10px;
+    flex-grow: 1;
 }
 
-.test-add-answer-main-entry {
+.test-add-answer-main-entry-num div{
+    width: 100%;
+}
 
+.test-add-answer-main-entry-nome input[type="text"] {
+    width: 100%;
+}
+
+.test-add-answer-main-entry-punteggio input[type="text"] {
+    width: 100%;
+}
+
+
+.test-add-answer-main-entry-nome {
+    flex-grow: 20!important;
 }
 
 

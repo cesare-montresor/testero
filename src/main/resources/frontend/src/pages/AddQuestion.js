@@ -16,9 +16,9 @@ function InputAnswer(props){
 
     return (
         <div className={props.className} id={props.num}>
-            <div className={props.className+"-num"}>{props.num}</div>
-            <InputText label="Nome" className={props.className+"nome"} id={props.num} ref={answerRef}/>
-            <InputText label="Punteggio" className={props.className+"punteggio"} id={props.num} ref={scoreRef}/>
+            <div className={props.className+"-num"}><div>Num</div><div>{props.num}</div></div>
+            <InputText label="Nome" className={props.className+"-nome"} id={props.num} ref={answerRef}/>
+            <InputText label="Punteggio" className={props.className+"-punteggio"} id={props.num} ref={scoreRef}/>
         </div>
     );
 }
@@ -31,7 +31,7 @@ function AddQuestion(){
     const testId = urlParams.id;
     const questionId = urlParams.num;
 
-    const [currentAnswers, setCurrentAnswers] = useState(null);
+    const [currentAnswers, setCurrentAnswers] = useState([{}, {}]);
     let counter = 2;
 
     const nameRef = React.createRef();
@@ -46,8 +46,7 @@ function AddQuestion(){
     useEffect(() => {
         const data = window.sessionStorage.getItem("currentAnswers");
 
-        if(data)
-            setCurrentAnswers(JSON.parse(data));
+        if(data) { setCurrentAnswers(JSON.parse(data)); }
     }, [])
 
     useEffect(() => {
