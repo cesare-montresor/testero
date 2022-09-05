@@ -97,11 +97,11 @@ function SelectedExam(){
             <h1 tabIndex="0" aria-label={`Nome esame: ${state.test.nome}`}>{state.test.nome}</h1>
 
             <div>
-              <h2 tabIndex="0" aria-label={(state.test.domandeConNumero? (`Domanda numero ${parseInt(urlParams.questionNum, 10) + 1}: `) : ("Domanda: ") ) + state.currentQuestion.testo} className={"page-container-row"}>
 
               {state.error && <ErrorMessage>{"Selezionare una risposta per proseguire"}</ErrorMessage>}
 
-              <h2 tabIndex="0" className={"page-container-row"} id="question-title">
+              <h2 tabIndex="0" className={"page-container-row"} id="question-title"
+                  aria-label={(state.test.domandeConNumero? (`Domanda numero ${parseInt(urlParams.questionNum, 10) + 1}: `) : ("Domanda: ") ) + state.currentQuestion.testo}>
                 {(state.test.domandeConNumero? (`${parseInt(urlParams.questionNum, 10) + 1}. `) : ("") ) + state.currentQuestion.testo}
               </h2>
 
@@ -124,8 +124,6 @@ function SelectedExam(){
                   )}
                 )}
               </form>
-
-              {state.error && <ErrorMessage aria-label={"Errore: selezionare una risposta per proseguire"}>{"Selezionare una risposta per proseguire"}</ErrorMessage>}
 
               <div className={"page-question-movementButton btn-bar"}>
                 {parseInt(urlParams.questionNum, 10) > 0? (

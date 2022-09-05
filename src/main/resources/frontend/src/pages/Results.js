@@ -40,22 +40,21 @@ function Results(){
 
                   return(
                     <div key={questionNum} className={"page-container-row"}>
-                      <h2 tabIndex="0">{(result.domandeConNumero? (`${questionNum}. `) : ("") ) + elem.testoDomanda}</h2>
+                      <h2 tabIndex="0" aria-label={(result.domandeConNumero? (`Domanda numero ${questionNum}: `) : ("Domanda: ") ) + elem.testoDomanda}>{(result.domandeConNumero? (`${questionNum}. `) : ("") ) + elem.testoDomanda}</h2>
 
                       <div className="page-results-answer">
                         <div tabIndex="0">{"Risposta corretta:"}</div>
                         <ul>
                           {
-                            elem.correctTestoRispostaList.map( (ansText, index) =>
-                                <li tabIndex="0" key={index}>{ansText}</li>
-                            )
+                            elem.correctTestoRispostaList.map((ansText, index) =>
+                                <li aria-label={"Risposta corretta: " + ansText} tabIndex="0" key={index}>{ansText}</li>)
                           }
                         </ul>
                       </div>
                       <div className="page-results-answer">
                         <div tabIndex="0">{"Risposta selezionata:"}</div>
                         <ul>
-                          <li tabIndex="0">{elem.selectedTestoRisposta}</li>
+                          <li tabIndex="0" aria-label={"Risposta selezionata: " + elem.selectedTestoRisposta}>{elem.selectedTestoRisposta}</li>
                         </ul>
                       </div>
                       <div tabIndex="0" className={"page-results-scoreInfo"}>{`Punti risposta: ${elem.puntiDomanda}`}</div>
@@ -69,7 +68,8 @@ function Results(){
             <div className={"page-results-finalScore btn-bar"}>
               <div tabIndex="0" className={"page-results-finalScore-text"}>{`Punteggio esame: ${testScore}`}</div>
               <div tabIndex="0" className={"page-results-finalScore-text"}>{`Punteggio utente: ${userScore}`}</div>
-              <button onClick={() => {
+              <button
+                  onClick={() => {
                 window.history.replaceState(null, "", "/");
                 navigate("/");
               }}>Torna alla home</button>
