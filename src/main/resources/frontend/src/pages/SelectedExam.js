@@ -90,7 +90,7 @@ function SelectedExam(){
   }
 
   return (
-    <section className={"page-centered-container"}>
+    <main className={"page-centered-container"}>
       {state?
         (
           <>
@@ -100,7 +100,7 @@ function SelectedExam(){
 
               {state.error && <ErrorMessage>{"Selezionare una risposta per proseguire"}</ErrorMessage>}
 
-              <h2 tabIndex="0" className={"page-container-row"} id="question-title">
+              <h2 tabIndex="0" className="page-centered-container-row" id="question-title">
                 {(state.test.domandeConNumero? (`${parseInt(urlParams.questionNum, 10) + 1}. `) : ("") ) + state.currentQuestion.testo}
               </h2>
 
@@ -140,7 +140,7 @@ function SelectedExam(){
         )
         : (<h1>Caricando</h1>)}
 
-    </section>
+    </main>
   );
 }
 

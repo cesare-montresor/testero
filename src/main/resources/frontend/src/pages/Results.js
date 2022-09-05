@@ -26,7 +26,7 @@ function Results(){
 
 
   return(
-    <section className={"page-centered-container"}>
+    <main className={"page-centered-container"}>
       {
         result ? (
           <div>
@@ -39,10 +39,10 @@ function Results(){
                   userScore += elem.selectedRispostaPunteggio;
 
                   return(
-                    <div key={questionNum} className={"page-container-row"}>
+                    <div key={questionNum} className={"page-centered-container-row"}>
                       <h2 tabIndex="0">{(result.domandeConNumero? (`${questionNum}. `) : ("") ) + elem.testoDomanda}</h2>
 
-                      <div className="page-results-answer">
+                      <div className="page-results-questionResult">
                         <div tabIndex="0">{"Risposta corretta:"}</div>
                         <ul>
                           {
@@ -52,14 +52,14 @@ function Results(){
                           }
                         </ul>
                       </div>
-                      <div className="page-results-answer">
+                      <div className="page-results-questionResult">
                         <div tabIndex="0">{"Risposta selezionata:"}</div>
                         <ul>
                           <li tabIndex="0">{elem.selectedTestoRisposta}</li>
                         </ul>
                       </div>
-                      <div tabIndex="0" className={"page-results-scoreInfo"}>{`Punti risposta: ${elem.puntiDomanda}`}</div>
-                      <div tabIndex="0" className={"page-results-scoreInfo"}>{`Punti ottenuti: ${elem.selectedRispostaPunteggio}`}</div>
+                      <div tabIndex="0" className="page-results-questionResult">{`Punti risposta: ${elem.puntiDomanda}`}</div>
+                      <div tabIndex="0" className="page-results-questionResult">{`Punti ottenuti: ${elem.selectedRispostaPunteggio}`}</div>
                     </div>
                   );
                 })
@@ -79,7 +79,7 @@ function Results(){
           <h1 id="question-title" tabIndex="0">Caricando</h1>
         )
       }
-    </section>
+    </main>
   );
 }
 

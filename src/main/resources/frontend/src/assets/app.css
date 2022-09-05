@@ -25,25 +25,37 @@ a, a:hover, a:visited, a:active{
     border-radius: 0px;
 }
 
+h1, h2, label {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
+}
+
 /* COMMON */
 
 .btn-bar a, .btn-bar button{
-    font-size: 18px;
+    //font-size: 18px;
     font-weight: bold;
+    font-size: 13.33px;
     padding: 10px;
+    margin: 10px;
     background-color: orange;
     border-radius: 5px;
     border: 0;
     cursor: pointer;
     text-transform: capitalize;
+    text-align: center;
 }
 
 .page-centered-container{
-    margin: 100px calc(10%);
+    margin: 70px calc(10%) 20px calc(10%);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.page-container-row{
+.page-centered-container-row{
     margin: 0;
     padding: 20px;
     border-bottom: 1px solid #dee2e6;
@@ -64,8 +76,7 @@ a, a:hover, a:visited, a:active{
         margin-top: 30px;
     }
 }
-
-/* MAIN PAGE */
+/* NAVBAR */
 
 .main-header-title {
     font-size: 30px;
@@ -79,37 +90,31 @@ a, a:hover, a:visited, a:active{
     height:max-content;
 }
 
-.main-menu {
+nav {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    margin: 0 5%;
+    margin: 0 5% 20px 5%;
 }
 
-.inner-menu {
+.navlink {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
-.menu-elem {
-    margin-right: 10px;
+.navlink a{
+    width: 110px;
 }
 
-@media(max-width: 800px) {
-    .main-menu {
-        flex-direction: column;
-    }
-
-    .inner-menu {
-        flex-direction: column;
-    }
-
-    .menu-elem {
-        margin-right: 0;
-        margin-bottom: 10px;
-    }
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-style: solid;
+    margin: 0 calc(5% + 10px);
+    padding: 10px 0;
 }
 
 /* TEST LIST */
@@ -117,7 +122,7 @@ a, a:hover, a:visited, a:active{
 .page-centered-container h1 {
     margin: 0;
     background-color: #efefef;
-    padding: 20px 50px;
+    padding: 20px calc(5%);
     text-align: center;
     color: #b4173e;
 }
@@ -142,22 +147,6 @@ a, a:hover, a:visited, a:active{
     margin-right: 20px;
 }
 
-@media(max-width: 800px) {
-    .page-testlist-row-container{
-        flex-direction: column;
-    }
-
-    .page-testlist-row-info {
-        flex-direction: column;
-    }
-
-    .page-testlist-row-data{
-        margin-right: 0;
-        padding-bottom: 10px;
-        text-align: center;
-    }
-}
-
 /* SELECTED EXAM */
 .page-question-radioButton {
     padding: 20px 30px;
@@ -171,33 +160,22 @@ a, a:hover, a:visited, a:active{
     align-items: center;
 }
 
-input[type="radio"]{
-    margin-top: 0;
-    margin-right: 6px;
-    height: 19px;
-    width: 19px;
-}
-
 .page-question-movementButton {
     padding: 10px;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     flex-basis: 20px;
-
 }
 
 .page-question-movementButton button{
     margin: 10px;
+    width: 150px;
 }
 
 /* RESULTS */
 
-.page-results-answer{
-    padding-top: 10px;
-}
-
-.page-results-scoreInfo{
+.page-results-questionResult{
     padding-top: 10px;
 }
 
@@ -215,12 +193,6 @@ input[type="radio"]{
 
 .page-results-finalScore button {
     padding-top: 10px;
-}
-
-@media(max-width: 800px) {
-    .page-centered-container h2 {
-        font-size: 18px;
-    }
 }
 
 /* ADD TEST */
@@ -383,4 +355,137 @@ input[type="radio"]{
 
 .question{
     margin: 20px 0;
+}
+
+/* MEDIA QUERY */
+
+@media(max-width: 800px) {
+    /* COMMON */
+
+    .page-centered-container{
+        margin-top: 30px;
+    }
+
+    .page-centered-container h1 {
+        font-size: min(6.5vw, 32px);
+    }
+
+    .page-centered-container h2 {
+        font-size: min(6vw, 24px);
+    }
+
+    .btn-bar a{
+        font-size: min(13.33px, 5.5vw);
+    }
+
+    .btn-bar button{
+        font-size: min(13.33px, 5.5vw);
+    }
+
+    /* NAVBAR */
+
+    nav {
+        flex-direction: column;
+    }
+
+    .navlink {
+        flex-direction: column;
+    }
+
+    .navlink a{
+        width: min(110px, 30vw);
+    }
+
+    .userInfo {
+        font-size: min(5vw, 16px);
+    }
+
+    /* EXAM LIST */
+
+    .page-testlist-row-container{
+        flex-direction: column;
+    }
+
+    .page-testlist-row-info {
+        flex-direction: column;
+    }
+
+    .page-testlist-row-data{
+        margin-right: 0;
+        padding-bottom: 10px;
+        text-align: center;
+        font-size: min(5.5vw, 16px);
+    }
+
+    /* SELECTED EXAM*/
+    .page-question-radioButton-option label{
+        font-size: min(5.5vw, 16px);
+    }
+
+    .page-question-movementButton button {
+        width: min(150px, 34vw);
+    }
+
+    /* RESULTS */
+
+    .page-results-questionResult, .page-results-finalScore-text {
+        font-size: min(5.5vw, 16px);
+    }
+
+    .page-results-finalScore button{
+        width: min(120px, 30vw);
+    }
+
+}
+
+@media screen and (max-width: 500px) {
+
+    /* COMMONS */
+
+    .btn-bar a{
+        font-size: min(13.33px, 5vw);
+    }
+
+    .btn-bar button{
+        font-size: min(13.33px, 5vw);
+    }
+
+    .page-centered-container-row {
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    /* NAVBAR */
+
+    .userInfo {
+        font-size: min(5vw, 16px);
+    }
+
+    /* EXAM LIST */
+
+    .page-testlist-row-data{
+        font-size: min(5vw, 16px);
+    }
+
+    /* SELECTED EXAM*/
+    .page-question-radioButton{
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    .page-question-radioButton-option label{
+        font-size: min(5vw, 16px);
+    }
+
+    .page-question-movementButton{
+        padding-right: 0;
+        padding-left: 0;
+        justify-content: space-evenly;
+    }
+
+    /* RESULTS */
+
+    .page-results-questionResult, .page-results-finalScore-text {
+        font-size: min(5vw, 16px);
+    }
 }
