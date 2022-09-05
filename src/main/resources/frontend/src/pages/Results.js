@@ -19,7 +19,7 @@ function Results(){
       {
         result? (
           <div>
-            <h1>Risultati {result.nomeTest}</h1>
+            <h1 tabIndex="0">Risultati {result.nomeTest}</h1>
             <div className={"page-results-questionList"}>
               {
                 result.results.map(elem => {
@@ -29,24 +29,26 @@ function Results(){
 
                   return(
                     <div key={questionNum} className={"page-container-row"}>
-                      <h2>{(result.domandeConNumero? (`${questionNum}. `) : ("") ) + elem.testoDomanda}</h2>
+                      <h2 tabIndex="0">{(result.domandeConNumero? (`${questionNum}. `) : ("") ) + elem.testoDomanda}</h2>
 
                       <div className="page-results-answer">
-                        <div>{"Risposta/e corretta/e:"}</div>
+                        <div tabIndex="0">{"Risposta corretta:"}</div>
                         <ul>
                           {
-                            elem.correctTestoRispostaList.map((ansText, index) => <li key={index}>{ansText}</li>)
+                            elem.correctTestoRispostaList.map( (ansText, index) =>
+                                <li tabIndex="0" key={index}>{ansText}</li>
+                            )
                           }
                         </ul>
                       </div>
                       <div className="page-results-answer">
-                        <div>{"Risposta selezionata:"}</div>
+                        <div tabIndex="0">{"Risposta selezionata:"}</div>
                         <ul>
-                          <li>{elem.selectedTestoRisposta}</li>
+                          <li tabIndex="0">{elem.selectedTestoRisposta}</li>
                         </ul>
                       </div>
-                      <div className={"page-results-scoreInfo"}>{`Punti risposta: ${elem.puntiDomanda}`}</div>
-                      <div className={"page-results-scoreInfo"}>{`Punti ottenuti: ${elem.selectedRispostaPunteggio}`}</div>
+                      <div tabIndex="0" className={"page-results-scoreInfo"}>{`Punti risposta: ${elem.puntiDomanda}`}</div>
+                      <div tabIndex="0" className={"page-results-scoreInfo"}>{`Punti ottenuti: ${elem.selectedRispostaPunteggio}`}</div>
                     </div>
                   );
                 })
@@ -54,8 +56,8 @@ function Results(){
             </div>
 
             <div className={"page-results-finalScore btn-bar"}>
-              <div className={"page-results-finalScore-text"}>{`Punteggio esame: ${testScore}`}</div>
-              <div className={"page-results-finalScore-text"}>{`Punteggio utente: ${userScore}`}</div>
+              <div tabIndex="0" className={"page-results-finalScore-text"}>{`Punteggio esame: ${testScore}`}</div>
+              <div tabIndex="0" className={"page-results-finalScore-text"}>{`Punteggio utente: ${userScore}`}</div>
               <button onClick={() => {
                 window.history.replaceState(null, "", "/");
                 navigate("/");
@@ -63,7 +65,7 @@ function Results(){
             </div>
           </div>
         ) : (
-          <h1>Caricando</h1>
+          <h1 tabIndex="0">Caricando</h1>
         )
       }
     </section>

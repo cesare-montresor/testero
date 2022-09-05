@@ -1,7 +1,7 @@
 
 function ErrorMessage({children}){
   return (
-    <div
+    <div tabIndex="0"
       style={{
         width: "80%",
         padding: 10,

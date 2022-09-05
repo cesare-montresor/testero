@@ -92,10 +92,10 @@ function SelectedExam(){
       {state?
         (
           <>
-            <h1>{state.test.nome}</h1>
+            <h1 tabIndex="0">{state.test.nome}</h1>
 
             <div>
-              <h2 className={"page-container-row"}>
+              <h2 tabIndex="0" className={"page-container-row"}>
                 {(state.test.domandeConNumero? (`${parseInt(urlParams.questionNum, 10) + 1}. `) : ("") ) + state.currentQuestion.testo}
               </h2>
 
