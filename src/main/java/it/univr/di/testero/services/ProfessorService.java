@@ -39,12 +39,12 @@ public class ProfessorService{
         return result.get(0);
     }
 
-    public Test addTest(String nome, Boolean ordineCasuale, Boolean domandeConNumero){
+    public Test addTest(String nome, Boolean ordineCasuale, Boolean domandeConNumero, Boolean completo){
         if(nome.equals("")){
             return null;
         }
 
-        Test t = new Test(OffsetDateTime.ofInstant(Instant.now(), ZoneOffset.UTC), nome, ordineCasuale, domandeConNumero);
+        Test t = new Test(OffsetDateTime.ofInstant(Instant.now(), ZoneOffset.UTC), nome, ordineCasuale, domandeConNumero, completo);
         return testRepository.save(t);
     }
 
