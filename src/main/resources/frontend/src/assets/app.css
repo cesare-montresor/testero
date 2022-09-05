@@ -22,7 +22,7 @@ a, a:hover, a:visited, a:active{
 
 :focus {
     outline: 5px dotted rebeccapurple;
-    border-radius: 5px;
+    border-radius: 0px;
 }
 
 /* COMMON */
@@ -44,6 +44,16 @@ a, a:hover, a:visited, a:active{
     margin: 0;
     padding: 20px;
     border-bottom: 1px solid #dee2e6;
+}
+
+.error-message{
+    width: 100%;
+    padding: 10px 0px 10px 0px;
+    margin-bottom: 10px;
+    background-color: orangered;
+    text-align: center;
+    color: white;
+    text-transform: capitalize;
 }
 
 @media(max-width: 800px) {

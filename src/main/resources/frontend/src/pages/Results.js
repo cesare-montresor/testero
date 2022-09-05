@@ -11,15 +11,26 @@ function Results(){
   let userScore = 0;
 
   useEffect(() => {
-    api.getResults(urlParams.examId).then(data => setResult(data["getResults"])).catch(error => alert("Errore durante il calcolo del punteggio."));
+    api.getResults(urlParams.examId).then( (data) => {
+      setResult(data["getResults"]);
+    }).catch( (error) => {
+      alert("Errore durante il calcolo del punteggio.");
+    });
+
   }, []);
+
+  useEffect(() => {
+    let item = document.getElementById("question-title");
+    if (item != null){item.focus();}
+  }, [result]);
+
 
   return(
     <section className={"page-centered-container"}>
       {
-        result? (
+        result ? (
           <div>
-            <h1 tabIndex="0">Risultati {result.nomeTest}</h1>
+            <h1 id="question-title" tabIndex="0">Risultati {result.nomeTest}</h1>
             <div className={"page-results-questionList"}>
               {
                 result.results.map(elem => {
@@ -65,7 +76,7 @@ function Results(){
             </div>
           </div>
         ) : (
-          <h1 tabIndex="0">Caricando</h1>
+          <h1 id="question-title" tabIndex="0">Caricando</h1>
         )
       }
     </section>
