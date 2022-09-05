@@ -62,7 +62,7 @@ public class TestResponder {
 
         Test test = professorService.getIncompleteTest();
         if (test == null) {
-            test = professorService.addTest(input.getNome(), input.getOrdineCasuale(), input.getDomandeConNumero());
+            test = professorService.addTest(input.getNome(), input.getOrdineCasuale(), input.getDomandeConNumero(), false);
         }
 
         return test;

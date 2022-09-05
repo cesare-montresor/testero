@@ -29,17 +29,21 @@ function AddTest(){
     }
 
     return (
-        <div className='test-add'>
-            <div className='test-add-main'>
-                <InputText label="Nome" className="test-add-main-nome" id="test-name" ref={nameRef}/>
-                <InputCheckbox label="Ordine Casuale" className="test-add-main-order" id="test-order" ref={orderRef}/>
-                <InputCheckbox label="Domanda con numero" className="test-add-main-numbered" id="test-numbered" ref={numberedRef}/>
+        <section className="page-centered-container">
+            <h1 tabIndex="0">Aggiungi un nuovo test</h1>
+            <div className='test-add'>
+                <div className='test-add-main'>
+                    <InputText label="Nome" className="test-add-main-nome" id="test-name" ref={nameRef}/>
+                    <InputCheckbox label="Ordine Casuale" className="test-add-main-order" id="test-order" ref={orderRef}/>
+                    <InputCheckbox label="Domanda con numero" className="test-add-main-numbered" id="test-numbered" ref={numberedRef}/>
 
-                <div className='test-add-main-controls'>
-                    <button type="button" onClick={saveTest} >Next &rarr;</button>
+                    <div className='test-add-main-controls btn-bar'>
+                        <button type="button" onClick={saveTest} >Prossimo</button>
+                    </div>
                 </div>
             </div>
-        </div>
+
+        </section>
     );
 }
 

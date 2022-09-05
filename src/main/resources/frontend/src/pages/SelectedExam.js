@@ -69,6 +69,7 @@ function SelectedExam(){
 
       api.giveAnswer(state.compilazione.id, state.currentCompilazioniRisposte.domanda, state.currentCompilazioniRisposte.risposta).then(() => {
         window.history.replaceState(null, "", "/");
+        document.getElementById("question-title").focus();
 
         if(state.test.domande.length === newQuestionNum){
           api.completeCompilation(state.compilazione.id).then(data => navigate(`/${urlParams.examId}/results`)).catch(error => alert("Errore nel salvataggio della risposta "+ error))
@@ -84,6 +85,7 @@ function SelectedExam(){
     } else
     {
       dispach({type: "setError", payload: true});
+
     }
   }
 
@@ -96,6 +98,10 @@ function SelectedExam(){
 
             <div>
               <h2 tabIndex="0" aria-label={(state.test.domandeConNumero? (`Domanda numero ${parseInt(urlParams.questionNum, 10) + 1}: `) : ("Domanda: ") ) + state.currentQuestion.testo} className={"page-container-row"}>
+
+              {state.error && <ErrorMessage>{"Selezionare una risposta per proseguire"}</ErrorMessage>}
+
+              <h2 tabIndex="0" className={"page-container-row"} id="question-title">
                 {(state.test.domandeConNumero? (`${parseInt(urlParams.questionNum, 10) + 1}. `) : ("") ) + state.currentQuestion.testo}
               </h2>
 

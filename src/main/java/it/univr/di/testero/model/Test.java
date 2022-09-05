@@ -36,10 +36,11 @@ public class Test {
     )
     public List<Domanda> domande;
 
-    public Test(OffsetDateTime data, String nome, Boolean ordineCasuale, Boolean domandeConNumero) {
+    public Test(OffsetDateTime data, String nome, Boolean ordineCasuale, Boolean domandeConNumero, Boolean completo) {
         this.data = data;
         this.nome = nome;
         this.ordineCasuale = ordineCasuale;
         this.domandeConNumero = domandeConNumero;
+        this.completo = completo;
     }
 }
