@@ -20,6 +20,11 @@ a, a:hover, a:visited, a:active{
     color: black;
 }
 
+:focus {
+    outline: 3px solid red;
+    border-radius: 5px;
+}
+
 /* COMMON */
 
 .btn-bar a, .btn-bar button{

@@ -2,7 +2,7 @@ import React from "react";
 
 const InputElement = React.forwardRef((props, ref) => (
     <div className={ props.className }>
-        <label htmlFor={ props.id }>{props.label}</label>
+        <label tabIndex="0" htmlFor={ props.id }>{props.label}</label>
         <input ref={ref} type={props.type} name={ props.id } id={ props.id }/>
         {props.children}
     </div>
@@ -20,7 +20,7 @@ const InputText = React.forwardRef((props, ref) => (
 const InputRadioButton = React.forwardRef((props, ref) => (
     <div className={props.className}>
       <input type="radio" key={props.id} name={props.id} id={props.id} value={props.value} checked={props.checked} onChange={props.onChange} />
-      <label htmlFor={ props.id }>{props.label}</label>
+      <label tabIndex="0" htmlFor={ props.id }>{props.label}</label>
         {props.children}
     </div>
 ));
