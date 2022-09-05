@@ -4,7 +4,6 @@ import React, {useEffect, useState} from "react";
 
 import {NavBar} from "./components/NavBar";
 
-
 import {ExamList} from "./pages/ExamList";
 import {SelectedExam} from "./pages/SelectedExam";
 import {Results} from "./pages/Results";
@@ -60,18 +59,16 @@ function App() {
         <BrowserRouter>
             <div className='page-main'>
                 <NavBar/>
-                <div className='page-content'>
-                    <Routes>
-                        <Route path="/app/" element={<ExamList />} />
-                        <Route path="/" element={<ExamList />} />
-                        <Route path=":examId/question/:questionNum" element={<SelectedExam />} />
-                        <Route path=":examId/results" element={<Results />} />
-                        <Route exact path="/apiTest" element={ <ApiTest/> } />
-                        <Route exact path="/addTest"  element={  <AddTest/> } />
-                        <Route exact path="/addTest/:id/addQuestion/:num"  element={  <AddQuestion/> } />
-                        <Route path="*" element={<NoPage />} />
-                    </Routes>
-                </div>
+                <Routes>
+                    <Route path="/app/" element={<ExamList />} />
+                    <Route path="/" element={<ExamList />} />
+                    <Route path=":examId/question/:questionNum" element={<SelectedExam />} />
+                    <Route path=":examId/results" element={<Results />} />
+                    <Route exact path="/apiTest" element={ <ApiTest/> } />
+                    <Route exact path="/addTest"  element={  <AddTest/> } />
+                    <Route exact path="/addTest/:id/addQuestion/:num"  element={  <AddQuestion/> } />
+                    <Route path="*" element={<NoPage />} />
+                </Routes>
             </div>
         </BrowserRouter>
     );
