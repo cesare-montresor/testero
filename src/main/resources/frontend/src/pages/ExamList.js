@@ -1,7 +1,6 @@
 import {useNavigate} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import {TesteroAPI as api} from "../components/TesteroAPI";
-import chevron_icon from "../assets/right-chevron.png";
 
 
 
@@ -25,14 +24,15 @@ function ExamList(){
   }
 
   return (
-      <section className='page-centered-container'>
-        <h1 tabIndex="0" aria-label={`Lista test disponibili`}>Test disponibili</h1>
 
-        <div>
+    <main className='page-centered-container'>
+      <h1 tabIndex="0" aria-label={`Lista test disponibili`}>Test disponibili</h1>
+
+        <ul className="page-testList-list">
           {examList? (
             examList.allTests.map((elem) => {
               return (
-                <div className='page-container-row testList-row' key={elem.id}>
+                <li className='page-centered-container-row testList-row' key={elem.id}>
                     <div className='page-testlist-row-container'>
                       <div className='page-testlist-row-info'>
                         <div tabIndex="0" className='page-testlist-row-data' aria-label={`Data esame ${elem.nome} ${formatDate(elem.data)}`}>{formatDate(elem.data)}</div>
@@ -44,14 +44,14 @@ function ExamList(){
                         }}>Avvia esame</button>
                       </div>
                     </div>
-                </div>
+                </li>
               )
             })
           ) : (
             <h1> Caricando test </h1>
             )}
-        </div>
-      </section>
+        </ul>
+      </main>
 
 
   );
