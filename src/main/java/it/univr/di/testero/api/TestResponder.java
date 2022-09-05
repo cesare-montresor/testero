@@ -21,6 +21,9 @@ import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
+import java.time.Instant;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -42,13 +45,27 @@ public class TestResponder {
         return studentService.allTests();
     }
 
-    @MutationMapping
-    public Test addTest(@Argument AddTestData input){
-        if(!userService.userGet().getRoles().equals(UserRoles.TEACHER.name())) {
+    @QueryMapping
+    public Test getIncompleteTest(){
+        if(!userService.isTeacher()) {
             throw new GraphQLException();
         }
 
-        return professorService.addTest(input.getNome(), input.getOrdineCasuale(), input.getDomandeConNumero());
+        return professorService.getIncompleteTest();
+    }
+
+    @MutationMapping
+    public Test addTest(@Argument AddTestData input){
+        if(!userService.isTeacher()) {
+            throw new GraphQLException();
+        }
+
+        Test test = professorService.getIncompleteTest();
+        if (test == null) {
+            test = professorService.addTest(input.getNome(), input.getOrdineCasuale(), input.getDomandeConNumero());
+        }
+
+        return test;
     }
 
     @MutationMapping
@@ -59,7 +76,7 @@ public class TestResponder {
             return new DomandaInfo(domanda.getId(), true);
         }
 
-        if(!userService.userGet().getRoles().equals(UserRoles.TEACHER.name())){
+        if(!userService.isTeacher()){
             throw new GraphQLException();
         }
 

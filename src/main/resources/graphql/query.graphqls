@@ -2,4 +2,5 @@
 type Query {
     getUser: User!
     allTests: [Test]!
+    getIncompleteTest: Test
 }
