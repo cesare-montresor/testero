@@ -40,6 +40,10 @@ public class ProfessorService{
     }
 
     public Test addTest(String nome, Boolean ordineCasuale, Boolean domandeConNumero){
+        if(nome.equals("")){
+            return null;
+        }
+
         Test t = new Test(OffsetDateTime.ofInstant(Instant.now(), ZoneOffset.UTC), nome, ordineCasuale, domandeConNumero);
         return testRepository.save(t);
     }

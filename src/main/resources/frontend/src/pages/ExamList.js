@@ -26,7 +26,7 @@ function ExamList(){
 
   return (
       <section className='page-centered-container'>
-        <h1 tabIndex="0">Test disponibili</h1>
+        <h1 tabIndex="0" aria-label={`Lista test disponibili`}>Test disponibili</h1>
 
         <div>
           {examList? (
@@ -35,11 +35,11 @@ function ExamList(){
                 <div className='page-container-row testList-row' key={elem.id}>
                     <div className='page-testlist-row-container'>
                       <div className='page-testlist-row-info'>
-                        <div tabIndex="0" className='page-testlist-row-data'>{formatDate(elem.data)}</div>
-                        <div tabIndex="0" className='page-testlist-row-data'>{elem.nome}</div>
+                        <div tabIndex="0" className='page-testlist-row-data' aria-label={`Data esame ${elem.nome} ${formatDate(elem.data)}`}>{formatDate(elem.data)}</div>
+                        <div tabIndex="0" className='page-testlist-row-data' aria-label={`Nome esame ${elem.nome}`}>{elem.nome}</div>
                       </div>
                       <div className='page-testlist-row-actions btn-bar' id={`btn-bar${elem.id}`}>
-                        <button onClick={() => {
+                        <button aria-label={`Avvia esame ${elem.nome}`} onClick={() => {
                           navigate(`/${elem.id}/question/0`);
                         }}>Avvia esame</button>
                       </div>
@@ -48,7 +48,7 @@ function ExamList(){
               )
             })
           ) : (
-            <h1> Caricando </h1>
+            <h1> Caricando test </h1>
             )}
         </div>
       </section>
