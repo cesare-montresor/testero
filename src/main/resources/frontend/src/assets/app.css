@@ -30,96 +30,85 @@ a, a:hover, a:visited, a:active{
     cursor: pointer;
 }
 
+.page-centered-container{
+    margin: 100px calc(10%);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.page-container-row{
+    margin: 0;
+    padding: 20px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+@media(max-width: 800px) {
+    .page-centered-container{
+        margin-top: 30px;
+    }
+}
+
 /* MAIN PAGE */
+
+.main-header-title {
+    font-size: 30px;
+    padding: 20px 10px;
+}
 
 .page-main{
     display: flex;
     flex-direction: column;
     width: 100%;
     height:max-content;
-    padding: 10px;
 }
 
-.page-content{
-    margin: 10px;
+.main-menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 5%;
 }
 
-
-
-/* MENU */
-.menu-main{
-    padding: 10px;
+.inner-menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
-.menu-main a{
+.menu-elem {
     margin-right: 10px;
 }
 
+@media(max-width: 800px) {
+    .main-menu {
+        flex-direction: column;
+    }
 
-.main-header  {
-    justify-content: space-between;
-    display: flex;
-    flex-direction: row;
+    .inner-menu {
+        flex-direction: column;
+    }
+
+    .menu-elem {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
 }
-
-.main-header-title{
-    font-size: 30px;
-}
-
-.main-header-status {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-}
-
-.main-header-status div {
-    margin-right: 20px;
-}
-
-.main-header-status div img{
-    width: 13px;
-}
-
-.main-header h1{
-    padding-top: 50px;
-    font-weight: 400;
-    font-size: 40px;
-}
-
 
 /* TEST LIST */
 
-.page-testlist-main{
-    margin: 100px calc(10%);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.page-testlist-main h1 {
-    margin-bottom: 0;
+.page-centered-container h1 {
+    margin: 0;
     background-color: #efefef;
     padding: 20px 50px;
     text-align: center;
     color: #b4173e;
 }
 
-.page-testlist-list{
-    border: 1px solid #dee2e6;
-    display: flex;
-    flex-direction: column;
-
-}
-
-.page-testlist-row{
-    padding: 10px;
-    border-bottom: 1px solid #dee2e6;
-}
-
-.page-testlist-row:hover{
+.testList-row:hover{
     background-color: lightyellow;
 }
 
 .page-testlist-row-container{
-    padding: 10px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -135,42 +124,91 @@ a, a:hover, a:visited, a:active{
     margin-right: 20px;
 }
 
-.page-testlist-row-nome {
-    margin-right: 20px;
+@media(max-width: 800px) {
+    .page-testlist-row-container{
+        flex-direction: column;
+    }
+
+    .page-testlist-row-info {
+        flex-direction: column;
+    }
+
+    .page-testlist-row-data{
+        margin-right: 0;
+        padding-bottom: 10px;
+        text-align: center;
+    }
 }
 
-.page-testlist-row-chevron {
-    all: unset;
-    cursor: pointer;
+/* SELECTED EXAM */
+.page-question-radioButton {
+    padding: 20px 30px;
 }
 
-.page-testlist-row-chevron:focus {
-    outline: orange 5px auto;
-}
-
-.page-testlist-row-chevron img{
-    width: 13px;
-}
-
-.page-testlist-row-actions{
-    display: none;
-    border-top: 1px solid #dee2e6;
+.page-question-radioButton-option {
+    padding-bottom: 10px;
+    display: flex;
     flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+input[type="radio"]{
+    margin-top: 0;
+    margin-right: 6px;
+    height: 19px;
+    width: 19px;
+}
+
+.page-question-movementButton {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    flex-basis: 20px;
+
+}
+
+.page-question-movementButton button{
+    margin: 10px;
+}
+
+/* RESULTS */
+
+.page-results-answer{
+    padding-top: 10px;
+}
+
+.page-results-scoreInfo{
+    padding-top: 10px;
+}
+
+.page-results-finalScore {
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-around;
 }
 
-.page-testlist-row-actions.btn-bar{
-    padding: 20px 0 10px 0;
+.page-results-finalScore-text{
+    padding-bottom: 10px;
+}
+
+.page-results-finalScore button {
+    padding-top: 10px;
 }
 
 @media(max-width: 800px) {
-
+    .page-centered-container h2 {
+        font-size: 18px;
+    }
 }
 
 /* ADD TEST */
 
 .test-add{
+    margin: 70px calc(10%);
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -198,6 +236,12 @@ a, a:hover, a:visited, a:active{
 .test-add-main-controls{
     display: flex;
     justify-content: center;
+}
+
+/* ADD QUESTION */
+
+.test-add-question {
+    margin: 100px calc(10%);
 }
 
 

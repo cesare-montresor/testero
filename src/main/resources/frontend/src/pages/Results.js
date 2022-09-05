@@ -1,76 +1,71 @@
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
+import {useEffect, useState} from "react";
+import {TesteroAPI as api} from "../components/TesteroAPI";
 
-function Results({selectedExam, questions}){
-  let numQuestion = 0;
-  let examPoints = 0;
-  let userScore = 0;
+function Results(){
   const navigate = useNavigate();
+  const urlParams = useParams();
+  const [result, setResult] = useState(null);
+  let questionNum = 0;
+  let testScore = 0;
+  let userScore = 0;
+
+  useEffect(() => {
+    api.getResults(urlParams.examId).then(data => setResult(data["getResults"])).catch(error => alert("Errore durante il calcolo del punteggio."));
+  }, []);
 
   return(
-    <section>
-      <h1>Risultati</h1>
-      <h2>{selectedExam.Name}</h2>
-      <div className={"questionList"}>
-        {questions? (
-          questions.map((question) => {
-            examPoints += question.Points;
-            let numAnswer = 0;
-            let selectedAnswer = null;
-            numQuestion += 1;
-            return(
-              <div className={"question"} key={question.Name}>
-                <h3>{(selectedExam.NumberedQuestions? `${numQuestion}. ` : "") + question.Text}</h3>
-                {` (punti ${question.Points})`}
-                <h4>Risposta corretta</h4>
-                {
-                  question.Answers.map(answer => {
-                    numAnswer += 1;
-                    if(answer.Selected === true) {
-                      selectedAnswer = {...answer, Position: numAnswer};
-                      selectedAnswer.Score = question.Points * answer.Score;
-                      userScore += selectedAnswer.Score;
-                    }
+    <section className={"page-centered-container"}>
+      {
+        result? (
+          <div>
+            <h1>Risultati {result.nomeTest}</h1>
+            <div className={"page-results-questionList"}>
+              {
+                result.results.map(elem => {
+                  questionNum += 1;
+                  testScore += elem.puntiDomanda;
+                  userScore += elem.selectedRispostaPunteggio;
 
-                    return(
-                      <div>
-                        {answer.Score === 1? (
-                          <div key={answer.id}>
-                            {(question.NumberedAnswers? `${numAnswer}. ` : "") + `${answer.Text}`}
-                          </div>
-                        ) : (
-                          <> </>)
-                        }
+                  return(
+                    <div key={questionNum} className={"page-container-row"}>
+                      <h2>{(result.domandeConNumero? (`${questionNum}. `) : ("") ) + elem.testoDomanda}</h2>
+
+                      <div className="page-results-answer">
+                        <div>{"Risposta/e corretta/e:"}</div>
+                        <ul>
+                          {
+                            elem.correctTestoRispostaList.map((ansText, index) => <li key={index}>{ansText}</li>)
+                          }
+                        </ul>
                       </div>
-                    );
-                  })
-                }
+                      <div className="page-results-answer">
+                        <div>{"Risposta selezionata:"}</div>
+                        <ul>
+                          <li>{elem.selectedTestoRisposta}</li>
+                        </ul>
+                      </div>
+                      <div className={"page-results-scoreInfo"}>{`Punti risposta: ${elem.puntiDomanda}`}</div>
+                      <div className={"page-results-scoreInfo"}>{`Punti ottenuti: ${elem.selectedRispostaPunteggio}`}</div>
+                    </div>
+                  );
+                })
+              }
+            </div>
 
-                <h4>Risposta selezionata</h4>
-                {selectedAnswer? (
-                  <>
-                    {(question.NumberedAnswers? `${selectedAnswer.Position}. ` : "") + `${selectedAnswer.Text} (punti: ${selectedAnswer.Score})`}
-                  </>
-                ) : (
-                  <></>)
-                }
-
-              </div>
-            );
-          })
+            <div className={"page-results-finalScore btn-bar"}>
+              <div className={"page-results-finalScore-text"}>{`Punteggio esame: ${testScore}`}</div>
+              <div className={"page-results-finalScore-text"}>{`Punteggio utente: ${userScore}`}</div>
+              <button onClick={() => {
+                window.history.replaceState(null, "", "/");
+                navigate("/");
+              }}>Torna alla home</button>
+            </div>
+          </div>
         ) : (
           <h1>Caricando</h1>
-        )}
-      </div>
-
-      <div>
-        {`Punteggio esame: ${examPoints}`}
-        {`Punteggio ottenuto: ${userScore}`}
-      </div>
-
-      <button onClick={() => {
-        window.history.replaceState(null, "", "/");
-        navigate("/");
-      }}>Torna alla home</button>
+        )
+      }
     </section>
   );
 }

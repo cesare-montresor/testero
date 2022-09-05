@@ -106,4 +106,12 @@ public class CompilationService{
 
         return compilazione;
     }
+
+    public Compilazione getResults(Long userId, Long testId) {
+        List<Compilazione> result = compilazioneRepository.findByUserAndTestAndCompleto(userId, testId, true);
+        if (result.isEmpty())
+            return null;
+        else
+            return result.get(result.size() - 1);
+    }
 }
