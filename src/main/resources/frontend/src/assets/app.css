@@ -28,11 +28,14 @@ a, a:hover, a:visited, a:active{
 /* COMMON */
 
 .btn-bar a, .btn-bar button{
+    font-size: 18px;
+    font-weight: bold;
     padding: 10px;
     background-color: orange;
     border-radius: 5px;
     border: 0;
     cursor: pointer;
+    text-transform: capitalize;
 }
 
 .page-centered-container{
@@ -225,28 +228,37 @@ input[type="radio"]{
 .test-add{
     margin: 70px calc(10%);
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
+    padding-bottom: 30px;
 }
 
 .test-add-main{
     display: flex;
     flex-direction: column;
-    width: fit-content;
-    min-width: 300px;
+    width: 100%;
+}
+
+.test-add-main > div{
+    margin-bottom: 10px;
 }
 
 .test-add-main-nome{
     display: flex;
-    flex-direction: column;
-}
-
-
-.test-add-main-order, .test-add-main-numbered{
-    display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    width: 100%;
 }
+.test-add-main-nome input{
+    margin-right: 10px;
+    flex-grow: 10;
+    min-width: 0px;
+}
+
+.test-add-main-nome label{
+    margin-right: 10px;
+    flex-grow: 1;
+}
+
+
 
 .test-add-main-controls{
     display: flex;
@@ -255,8 +267,69 @@ input[type="radio"]{
 
 /* ADD QUESTION */
 
-.test-add-question {
-    margin: 100px calc(10%);
+
+.test-add-question{
+    margin: 70px calc(10%);
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 30px;
+}
+
+.test-add-question-main{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.test-add-question-main>div{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.test-add-question-main input[type="text"]{
+    margin-right: 10px;
+    flex-grow: 10;
+    min-width: 0px;
+}
+
+.test-add-question-main label{
+    margin-right: 10px;
+    flex-grow: 1;
+}
+
+.test-add-answer-controls button{
+    margin-left: 10px;
+    height: 40px;
+    width: 40px;
+}
+
+.test-add-answer-list{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.test-add-answer-main-entry {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.test-add-answer-main-entry > div {
+    padding-right: 10px;
+    margin-bottom: 10px;
+}
+
+.test-add-answer-main-entry {
+
+}
+
+
+.test-add-question-main-controls{
+    text-align: center;
+}
+
+.test-add-question-main-controls > button{
+    margin-right: 10px;
 }
 
 
@@ -266,22 +339,25 @@ input[type="radio"]{
     display: flex;
     flex-direction: row;
     max-width: 100%;
+    margin: 20px;
 }
 
 .api-test-bar{
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
 }
 
 .api-test-bar button{
     margin-bottom: 10px;
     background-color: dodgerblue;
+
 }
 
 .api-test-results{
     display: flex;
     flex-direction: column;
-    flex-grow: 10;
+    flex-grow: 20;
     margin: 10px;
     border: 1px solid dodgerblue;
     white-space: pre-wrap;
