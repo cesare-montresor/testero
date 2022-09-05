@@ -16,9 +16,9 @@ function InputAnswer(props){
 
     return (
         <div className={props.className} id={props.num}>
-            <div className={props.className+"-num"}>{props.num}</div>
-            <InputText label="Nome" className={props.className+"nome"} id={props.num} ref={answerRef}/>
-            <InputText label="Punteggio" className={props.className+"punteggio"} id={props.num} ref={scoreRef}/>
+            <div className={props.className+"-num"}><div>Num</div><div>{props.num}</div></div>
+            <InputText label="Nome" className={props.className+"-nome"} id={props.num} ref={answerRef}/>
+            <InputText label="Punteggio" className={props.className+"-punteggio"} id={props.num} ref={scoreRef}/>
         </div>
     );
 }
@@ -31,7 +31,7 @@ function AddQuestion(){
     const testId = urlParams.id;
     const questionId = urlParams.num;
 
-    const [currentAnswers, setCurrentAnswers] = useState(null);
+    const [currentAnswers, setCurrentAnswers] = useState([{}, {}]);
     let counter = 2;
 
     const nameRef = React.createRef();
@@ -46,8 +46,7 @@ function AddQuestion(){
     useEffect(() => {
         const data = window.sessionStorage.getItem("currentAnswers");
 
-        if(data)
-            setCurrentAnswers(JSON.parse(data));
+        if(data) { setCurrentAnswers(JSON.parse(data)); }
     }, [])
 
     useEffect(() => {
@@ -153,35 +152,44 @@ function AddQuestion(){
     }
 
     return (
-        <div className='test-add-question'>
-            <div className='test-add-question-main'>
-                <InputText label="Nome" className="test-add-question-main-nome" id="test-question-name" ref={nameRef}/>
-                <InputText label="Testo" className="test-add-question-main-testo" id="test-question-testo" ref={textRef}/>
-                <InputText label="Punti" className="test-add-question-main-punti" id="test-question-punti" ref={scoreRef}/>
-                <InputCheckbox label="Ordine Casuale" className="test-add-question-main-order" id="test-question-order" ref={randomRef}/>
-                <InputCheckbox label="Risposta con numero" className="test-add-question-main-numbered" id="test-question-numbered" ref={answerNumberRef}/>
-            </div>
+        <section className="page-centered-container">
+            <h1 tabIndex="0">Aggiungi nuova domanda</h1>
+            <div className='test-add-question'>
+                <div className='test-add-question-main'>
+                    <InputText label="Nome" className="test-add-question-main-nome" id="test-question-name" ref={nameRef}/>
+                    <InputText label="Testo" className="test-add-question-main-testo" id="test-question-testo" ref={textRef}/>
+                    <InputText label="Punti" className="test-add-question-main-punti" id="test-question-punti" ref={scoreRef}/>
+                    <InputCheckbox label="Ordine Casuale" className="test-add-question-main-order" id="test-question-order" ref={randomRef}/>
+                    <InputCheckbox label="Risposta con numero" className="test-add-question-main-numbered" id="test-question-numbered" ref={answerNumberRef}/>
+                </div>
+                <hr/>
+                <div className='test-add-answer-main'>
+                    <div className="test-add-answer-controls btn-bar">
+                        Aggiungi o rimuovi risposte
+                    <button type="button" onClick={addAnswer}> + </button>
+                    {
+                        (currentAnswers !== null && currentAnswers !== "undefined" && currentAnswers.length > 2) ?
+                            (<button className='test-remove-answer-main' onClick={removeAnswer}> - </button>)
+                            : ('')
+                    }
+                    </div>
+                    <br/>
+                    <div className="test-add-answer-list">
+                    {
+                        currentAnswers?
+                            (currentAnswers.map((answer, index) => (
+                                <InputAnswer key={index} className="test-add-answer-main-entry" id={index} num={index} removeAnswer={removeAnswer} answerRefs={answerRefs} scoreRefs={scoreRefs}/>)))
+                            : (<h1 tabIndex="0">Caricando</h1> )
+                    }
+                    </div>
+                </div>
 
-            <div className='test-add-answer-main'>
-                Add answer<button type="button" onClick={addAnswer}> + </button>
-                {
-                    (currentAnswers !== null && currentAnswers !== "undefined" && currentAnswers.length > 2) ?
-                        (<button className='test-remove-answer-main' onClick={removeAnswer}> - </button>)
-                        : ('')
-                }
-                <br/>
-                {
-                    currentAnswers?
-                        (currentAnswers.map((answer, index) => (<InputAnswer key={index} className="test-add-answer-main-entry" id={index} num={index} removeAnswer={removeAnswer} answerRefs={answerRefs} scoreRefs={scoreRefs}/>)))
-                        : (<h1>Caricando</h1>)
-                }
+                <div className='test-add-question-main-controls btn-bar'>
+                    <button type="button" onClick={addQuestion}>Prossima</button>
+                    <button type="button" onClick={finishCreation}>Fine</button>
+                </div>
             </div>
-
-            <div className='test-add-question-main-controls'>
-                <button type="button" onClick={addQuestion}>Next &rarr;</button>
-                <button type="button" onClick={finishCreation}>Finish &rarr;</button>
-            </div>
-        </div>
+        </section>
     );
 }
 
