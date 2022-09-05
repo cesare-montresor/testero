@@ -29,16 +29,13 @@ function NavBar() {
                 )
                 }
               </div>
-              <div className="inner-menu btn-bar">
-                <div tabIndex="0" className="menu-elem" aria-label={"Nome utente: " + userInfo.username}>Utente: {userInfo.username}</div>
-                <div tabIndex="0" className="menu-elem" aria-label={"Livello permessi utente: " + userInfo.roles}>Livello permessi: {userInfo.roles}</div>
+              <div className="navlink btn-bar">
                 <Link to={"/logout"} className="menu-elem" aria-label={"Disconnetti dall'utente " + userInfo.username}>Disconnetti</Link>
-
               </div>
             </nav>
             <div className="userInfo">
-              <div tabIndex="0" className="menu-elem">Utente: {userInfo.username}</div>
-              <div tabIndex="0" className="menu-elem">Livello permessi: {userInfo.roles}</div>
+              <div tabIndex="0" className="menu-elem" aria-label={"Nome utente: " + userInfo.username}>Utente: {userInfo.username}</div>
+              <div tabIndex="0" className="menu-elem" aria-label={"Livello permessi utente: " + userInfo.roles}>Livello permessi: {userInfo.roles}</div>
             </div>
           </>
         ) : (

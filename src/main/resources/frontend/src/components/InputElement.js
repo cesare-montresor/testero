@@ -30,7 +30,7 @@ const InputRadioButton = React.forwardRef((props, ref) => (
       <input type="radio" key={props.id} name={props.id} id={props.id} value={props.value} checked={props.checked}
              aria-labelledby={props.id + "_label"}
              onChange={props.onChange}/>
-      <label id={props.id + "_label"} tabIndex="0" htmlFor={ props.id }
+      <label id={props.id + "_label"}  htmlFor={ props.id }
              aria-label={props.ariaLabel}
       >{props.label}</label>
         {props.children}
