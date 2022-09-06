@@ -15,7 +15,10 @@ function NavBar() {
   return (
 
     <header>
-      <div className="main-header-title" aria-label={"Nome applicazione: Testero"} >Testero&#8482;</div>
+        <div className="main-header">
+            <div className="main-header-logo" ><img tabIndex="-1 " src="testero-logo-192.png" alt="Testero logo"/></div>
+            <div className="main-header-title" aria-label={"Nome applicazione: Testero"} >Testero&#8482;</div>
+        </div>
       {
         userInfo? (
           <>
@@ -30,7 +33,7 @@ function NavBar() {
                 }
               </div>
               <div className="navlink btn-bar">
-                <Link to={"/logout"} className="menu-elem" aria-label={"Disconnetti dall'utente " + userInfo.username}>Disconnetti</Link>
+                <a href={"/logout"} className="menu-elem" aria-label={"Disconnetti dall'utente " + userInfo.username}>Disconnetti</a>
               </div>
             </nav>
             <div className="userInfo">

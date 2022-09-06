@@ -52,12 +52,13 @@ public class SecurityConfig {
 
         // Public
         http.authorizeRequests()
-            .regexMatchers("/static/.*").permitAll()
-            .regexMatchers("/").permitAll();
+                .antMatchers("/static/*").permitAll()
+                .antMatchers("/*.png").permitAll()
+                .antMatchers("/").permitAll();
 
         // GraphQL
         http.authorizeRequests()
-            .regexMatchers("/graphql.*").authenticated()
+            .antMatchers("/graphql*").authenticated()
             .antMatchers("/graphiql").authenticated();
 
         // Login/Logout
