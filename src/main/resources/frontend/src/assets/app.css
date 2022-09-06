@@ -89,6 +89,7 @@ h1, h2, label {
 }
 
 .main-header-logo img{
+    user-select: none;
     width: 40px;
     height:40px;
 }
