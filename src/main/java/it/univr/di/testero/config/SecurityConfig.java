@@ -52,15 +52,13 @@ public class SecurityConfig {
 
         // Public
         http.authorizeRequests()
-            .regexMatchers("/css/.*").permitAll()
-            .regexMatchers("/js/.*").permitAll()
-            .regexMatchers("/img/.*").permitAll()
-            .regexMatchers("/").permitAll();
+                .antMatchers("/static/*").permitAll()
+                .antMatchers("/*.png").permitAll()
+                .antMatchers("/").permitAll();
 
         // GraphQL
         http.authorizeRequests()
-            .regexMatchers("/graphql.*").permitAll() //.authenticated()
-            .antMatchers("/graphiql").permitAll(); //authenticated();
+            .antMatchers("/graphql*").authenticated();
 
         // Login/Logout
         http.formLogin().loginPage("/login").permitAll();
