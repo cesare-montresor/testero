@@ -97,14 +97,4 @@ public class ProfessorService{
 
         return result.get();
     }
-
-    public Domanda findQuestion(Long questionId){
-        Optional<Domanda> result = domandaRepository.findById(questionId);
-
-        if(result.isEmpty()){
-            return null;
-        }
-
-        return result.get();
-    }
 }

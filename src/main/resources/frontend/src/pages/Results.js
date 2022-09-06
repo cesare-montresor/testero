@@ -53,12 +53,14 @@ function Results(){
                           }
                         </ul>
                       </div>
+
                       <div className="page-results-questionResult">
-                        <div tabIndex="0">{"Risposta selezionata:"}</div>
+                        <div tabIndex="-1">{"Risposta selezionata:"}</div>
                         <ul>
                           <li tabIndex="0" aria-label={"Risposta selezionata: " + elem.selectedTestoRisposta}>{elem.selectedTestoRisposta}</li>
                         </ul>
                       </div>
+                      
                       <div tabIndex="0" className="page-results-questionResult">{`Punti risposta: ${elem.puntiDomanda}`}</div>
                       <div tabIndex="0" className="page-results-questionResult">{`Punti ottenuti: ${elem.selectedRispostaPunteggio}`}</div>
                     </div>

@@ -35,8 +35,8 @@ function ExamList(){
                 <li className='page-centered-container-row testList-row' key={elem.id}>
                     <div className='page-testlist-row-container'>
                       <div className='page-testlist-row-info'>
-                        <div tabIndex="0" className='page-testlist-row-data' aria-label={`Data esame ${elem.nome} ${formatDate(elem.data)}`}>{formatDate(elem.data)}</div>
-                        <div tabIndex="0" className='page-testlist-row-data' aria-label={`Nome esame ${elem.nome}`}>{elem.nome}</div>
+                        <div tabIndex="0" className='page-testlist-row-data' role={"textbox"} aria-label={`Data esame ${elem.nome} ${formatDate(elem.data)}`}>{formatDate(elem.data)}</div>
+                        <div tabIndex="0" className='page-testlist-row-data' role={"textbox"} aria-label={`Nome esame ${elem.nome}`}>{elem.nome}</div>
                       </div>
                       <div className='page-testlist-row-actions btn-bar' id={`btn-bar${elem.id}`}>
                         <button aria-label={`Avvia esame ${elem.nome}`} onClick={() => {

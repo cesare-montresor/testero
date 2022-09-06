@@ -37,8 +37,8 @@ function NavBar() {
               </div>
             </nav>
             <div className="userInfo">
-              <div tabIndex="0" className="menu-elem" aria-label={"Nome utente: " + userInfo.username}>Utente: {userInfo.username}</div>
-              <div tabIndex="0" className="menu-elem" aria-label={"Livello permessi utente: " + userInfo.roles}>Livello permessi: {userInfo.roles}</div>
+              <div tabIndex="0" role={"textbox"} className="menu-elem" aria-label={"Nome utente: " + userInfo.username}>Utente: {userInfo.username}</div>
+              <div tabIndex="0" role={"textbox"} className="menu-elem" aria-label={"Livello permessi utente: " + userInfo.roles}>Livello permessi: {userInfo.roles}</div>
             </div>
           </>
         ) : (
