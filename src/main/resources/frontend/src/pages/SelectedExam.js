@@ -106,7 +106,7 @@ function SelectedExam(){
               <form className={"page-question-radioButton"}>
                 {state.currentQuestion.risposte.map(ans => {
                   ansNum += 1;
-                  let selected = (state.currentCompilazioniRisposte.risposta);
+                  let selected = parseInt(state.currentCompilazioniRisposte.risposta, 10);
                   return (
                     <InputRadioButton
                       type="radio"
@@ -116,7 +116,7 @@ function SelectedExam(){
                       label={state.currentQuestion.risposteConNumero? (ansNum).toString() + ". " + ans.testo : ans.testo}
                       ariaLabel={state.currentQuestion.risposteConNumero? "Risposta numero " + (ansNum).toString() + ": " + ans.testo : "Risposta: " + ans.testo}
                       value={ans.id}
-                      checked={selected == ans.id}
+                      checked={selected === ans.id}
                       onChange={selectAnswer}
                     />
                   )}

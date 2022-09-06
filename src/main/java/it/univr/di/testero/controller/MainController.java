@@ -50,13 +50,12 @@ public class MainController implements ErrorController {
             error_message = "Error "+statusCode;
         }
 
-        if(statusCode == HttpStatus.FORBIDDEN.value()) {
+        if(statusCode == HttpStatus.NOT_FOUND.value()) {
+            //error_message += ": Not found.\nThe resource you are looking for has never existed.";
+            return "../static/index.html";
+        } else if(statusCode == HttpStatus.FORBIDDEN.value()) {
             error_message += ": Access forbidden.\nYou need higher powers to access this resource.\nThis incident will be reported.";
-        }
-        else if(statusCode == HttpStatus.NOT_FOUND.value()) {
-            error_message += ": Not found.\nThe resource you are looking for has never existed.";
-        }
-        else if(statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
+        } else if(statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
             error_message += ": Internal error.\nServer is on fire.";
         }
 
