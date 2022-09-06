@@ -49,9 +49,9 @@ type CompilazioneRisposta{
 
 type Compilazione{
     id: Int!
-    test: Test!
+    test: Int!
     compilazioniRisposte: [CompilazioneRisposta]!
-    user: User
+    user: Int
 }
 
 type Result{
