@@ -8,7 +8,6 @@ import {TesteroAPI as api} from "../components/TesteroAPI";
 const reducer = (state, action) => {
   switch (action.type) {
     case "initialize":
-      console.log("data", action.payload.data["takeTest"].compilazione);
       return {compilazione: action.payload.data["takeTest"].compilazione, test: action.payload.data["takeTest"].test,
         currentQuestion: action.payload.data["takeTest"].test.domande.find((elem) => (elem.id === action.payload.data["takeTest"].compilazione.compilazioniRisposte[action.payload.questionNum].domanda)),
         currentCompilazioniRisposte: action.payload.data["takeTest"].compilazione.compilazioniRisposte[action.payload.questionNum]
@@ -20,7 +19,6 @@ const reducer = (state, action) => {
       return {...state, compilazione: tmp};
 
     case "changeQuestion":
-      console.log("questionNum", action.payload);
       return {...state,
         currentQuestion: state.test.domande.find((elem) => (elem.id === state.compilazione.compilazioniRisposte[parseInt(action.payload, 10)].domanda)),
         currentCompilazioniRisposte: state.compilazione.compilazioniRisposte[parseInt(action.payload, 10)]

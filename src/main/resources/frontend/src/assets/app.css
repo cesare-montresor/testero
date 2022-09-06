@@ -25,7 +25,7 @@ a, a:hover, a:visited, a:active{
     border-radius: 0;
 }
 
-h1, h2, label {
+h1, h2, label, li, .break-word{
     word-wrap: break-word;
     overflow-wrap: break-word;
 
@@ -169,11 +169,13 @@ nav {
 }
 
 .page-testlist-row-info {
+    width: 80%;
     display: flex;
     flex-direction: row;
 }
 
 .page-testlist-row-data{
+    width: 80%;
     margin-right: 20px;
 }
 
@@ -188,6 +190,10 @@ nav {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+}
+
+.page-question-radioButton-option label{
+    width: 98%;
 }
 
 .page-question-movementButton {
@@ -219,6 +225,7 @@ nav {
 
 .page-results-finalScore-text{
     padding-bottom: 10px;
+    width: 98%;
 }
 
 .page-results-finalScore button {
@@ -387,11 +394,13 @@ nav {
 
 /* MEDIA QUERY */
 
-@media(max-width: 800px) {
+@media screen and (max-width: 800px) {
     /* COMMON */
 
     .page-centered-container{
         margin-top: 30px;
+        margin-left: calc(2%);
+        margin-right: calc(2%);
     }
 
     .page-centered-container h1 {
@@ -439,10 +448,12 @@ nav {
     }
 
     .page-testlist-row-info {
+        width: 100%;
         flex-direction: column;
     }
 
     .page-testlist-row-data{
+        width: 100%;
         margin-right: 0;
         padding-bottom: 10px;
         text-align: center;
@@ -450,6 +461,10 @@ nav {
     }
 
     /* SELECTED EXAM*/
+
+    .page-question-radioButton-option label{
+        width: 90%;
+    }
 
     .page-question-movementButton button {
         width: min(160px, 34vw);
@@ -459,6 +474,7 @@ nav {
 
     .page-results-questionResult, .page-results-finalScore-text {
         font-size: min(5.5vw, 16px);
+        width: 90%;
     }
 
     .page-results-finalScore button{
