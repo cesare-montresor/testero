@@ -133,6 +133,14 @@ nav {
     padding: 10px 0;
 }
 
+/* NO PAGE*/
+.page-nopage-main{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    list-style: none;
+}
+
 /* TEST LIST */
 
 .page-centered-container h1 {
