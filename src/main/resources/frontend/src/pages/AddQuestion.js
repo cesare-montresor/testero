@@ -148,7 +148,17 @@ function AddQuestion(){
     }
 
     function finishCreation(){
-        navigate("/");
+        api.completeTest(testId).then((data)=>{
+
+            if (data.completeTest){
+                navigate("/");
+            }else{
+                alert("Il test non raggiunge i requisiti minimi per poter essere considerato completo.")
+            }
+        }).catch((error)=>{
+            alert("Si è verificato un errore durante la richiesta al server.");
+        })
+
     }
 
     return (

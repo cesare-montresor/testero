@@ -70,14 +70,14 @@ public class TestResponder {
 
     @MutationMapping
     public DomandaInfo addQuestion(@Argument AddDomandaData input){
+        if(!userService.isTeacher()) {
+            throw new GraphQLException();
+        }
+
         Domanda domanda = professorService.findQuestionByName(input.getNome());
 
         if(domanda != null){
             return new DomandaInfo(domanda.getId(), true);
-        }
-
-        if(!userService.isTeacher()){
-            throw new GraphQLException();
         }
 
         domanda = professorService.addQuestion(input.getTestId(), input.getNome(), input.getTesto(), input.getPunti(), input.getOrdineCasuale(), input.getRisposteConNumero());
@@ -102,6 +102,17 @@ public class TestResponder {
 
         return new DomandaInfo(domanda.getId(), false);
     }
+
+    @MutationMapping
+    public Boolean completeTest(@Argument String input){
+        if(!userService.isTeacher()) {
+            throw new GraphQLException();
+        }
+        Long testID = Long.parseLong(input);
+        return professorService.completeTest(testID);
+    }
+
+
 
     @MutationMapping
     public TestInfo takeTest(@Argument String input){
@@ -174,7 +185,7 @@ public class TestResponder {
         return rispostaList.stream().filter(risposta -> idRisposta.equals(risposta.getId())).findFirst().orElse(null);
     }
 
-    @MutationMapping
+    @QueryMapping
     public ResultInfo getResults(@Argument String input){
         Long inputLong = Long.parseLong(input);
         Test test = studentService.findTest(inputLong);

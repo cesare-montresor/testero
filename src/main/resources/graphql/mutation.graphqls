@@ -4,7 +4,8 @@ type Mutation {
 
     addTest(input: AddTestData!): Test!
     addQuestion(input: AddDomandaData): DomandaInfo!
+    completeTest(input: Int!): Boolean!
 
     completeCompilation(input: Int!): Compilazione!
-    getResults(input: Int!): ResultInfo!
+
 }

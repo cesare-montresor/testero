@@ -39,6 +39,16 @@ public class ProfessorService{
         return result.get(0);
     }
 
+    public Boolean completeTest(Long testID){
+        Optional<Test> result = testRepository.findById(testID);
+        if (result.isEmpty()) return false;
+        Test t = result.get();
+        if (t.domande.size() == 0) return false;
+        t.setCompleto(true);
+        t = testRepository.save(t);
+        return t.getCompleto();
+    }
+
     public Test addTest(String nome, Boolean ordineCasuale, Boolean domandeConNumero, Boolean completo){
         if(nome.equals("")){
             return null;
