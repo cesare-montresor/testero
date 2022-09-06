@@ -17,7 +17,6 @@ const reducer = (state, action) => {
     case "setAnswer":
       const tmp = {...state.compilazione};
       tmp.compilazioniRisposte[action.payload.questionNum].risposta = action.payload.answerId;
-
       return {...state, compilazione: tmp};
 
     case "changeQuestion":
@@ -72,21 +71,19 @@ function SelectedExam(){
         window.history.replaceState(null, "", "/");
         document.getElementById("question-title").focus();
 
-        if(state.test.domande.length === newQuestionNum){
+        if(state.test.domande.length === newQuestionNum) {
           api.completeCompilation(state.compilazione.id).then(data => navigate(`/${urlParams.examId}/results`)).catch(error => alert("Errore nel salvataggio della risposta "+ error))
         }
-        else
-        {
+        else {
           dispatch({type: "changeQuestion", payload: newQuestionNum});
           navigate(state.test.domande.length === newQuestionNum? `/${urlParams.examId}/results` : `/${urlParams.examId}/question/${newQuestionNum}`);
         }
       }).catch((error) => {
         alert("Errore durante il salvataggio della risposta.");
       });
-    } else
-    {
+    }
+    else {
       dispatch({type: "setError", payload: true});
-
     }
   }
 
