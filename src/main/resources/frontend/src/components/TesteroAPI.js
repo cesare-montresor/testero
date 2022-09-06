@@ -14,7 +14,7 @@ class TesteroSDK {
 
     request( query, vars ) {
         this.client.setHeaders(this.headers);
-        return this.client.request(query, vars);
+        return this.client.request(query, vars).catch((error)=>{console.error(error.message)});
     }
 
     getIncompleteTest(){
@@ -116,6 +116,20 @@ class TesteroSDK {
         return this.request(query, vars);
     }
 
+
+    completeTest(idTest){
+        const query = gql`
+            mutation completeTest($input: Int!) {
+                completeTest(input: $input) 
+            }`;
+
+        const vars = {
+            "input": idTest
+        };
+
+        return this.request(query, vars);
+    }
+
     completeCompilation(idCompilazione){
         const query = gql`
             mutation completeCompilation($input: Int!) {
@@ -133,7 +147,7 @@ class TesteroSDK {
 
     getResults(idTest){
         const query = gql`
-            mutation getResults($input: Int!) {
+            query getResults($input: Int!) {
                 getResults(input: $input){
                     nomeTest, dataTest, domandeConNumero, 
                     results {

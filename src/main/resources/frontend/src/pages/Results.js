@@ -40,7 +40,7 @@ function Results(){
 
                   return(
 
-                    <div key={questionNum} className={"page-container-row"}>
+                    <div key={questionNum} className={"page-centered-container-row"}>
                       <h2 tabIndex="0" aria-label={(result.domandeConNumero? (`Domanda numero ${questionNum}: `) : ("Domanda: ") ) + elem.testoDomanda}>{(result.domandeConNumero? (`${questionNum}. `) : ("") ) + elem.testoDomanda}</h2>
 
 

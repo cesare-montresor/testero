@@ -3,7 +3,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
+
     /* HTML override */
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
     html, body {
         margin: 0;
         padding: 0;
@@ -18,12 +28,59 @@
 
 
     /* LOGIN */
-    #page-login
+    .main-header-title {
+        font-size: 30px;
+        padding: 20px 10px;
+    }
+    .page-login-header{
+        display: flex;
+        flex-direction: row;
+    }
+
+    .page-login
     {
         width: 300px;
-        margin-top: 30px;
+        margin-top: 50px;
         margin-left: auto;
         margin-right: auto;
+
+    }
+
+    .form-group{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-group-row{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+
+    .form-group-row input[type="text"]{
+        width: 100%;
+    }
+
+    .form-group-row label{
+        width: 100%;
+    }
+
+
+    .btn-bar a, .btn-bar button{
+        font-weight: bold;
+        font-size: 13.33px;
+        padding: 10px;
+        margin: 10px;
+        background-color: orange;
+        border-radius: 5px;
+        border: 0;
+        cursor: pointer;
+        text-transform: capitalize;
+        text-align: center;
+    }
+
+    .page-login-submit-main button{
+        text-align: center;
     }
 
 </style>
