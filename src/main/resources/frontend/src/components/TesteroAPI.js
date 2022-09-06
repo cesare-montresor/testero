@@ -14,7 +14,7 @@ class TesteroSDK {
 
     request( query, vars ) {
         this.client.setHeaders(this.headers);
-        return this.client.request(query, vars);
+        return this.client.request(query, vars).catch((error)=>{console.error(error.message)});
     }
 
     getIncompleteTest(){
