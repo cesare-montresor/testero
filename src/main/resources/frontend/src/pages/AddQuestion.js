@@ -163,7 +163,7 @@ function AddQuestion(){
 
     return (
         <section className="page-centered-container">
-            <h1 tabIndex="0">Aggiungi nuova domanda</h1>
+            <h1 tabIndex="0" id="addQuestion-title">Aggiungi nuova domanda</h1>
             <div className='test-add-question'>
                 <div className='test-add-question-main'>
                     <InputText label="Nome" className="test-add-question-main-nome" id="test-question-name" ref={nameRef}/>
@@ -186,10 +186,9 @@ function AddQuestion(){
                     <br/>
                     <div className="test-add-answer-list">
                     {
-                        currentAnswers?
+                        currentAnswers &&
                             (currentAnswers.map((answer, index) => (
                                 <InputAnswer key={index} className="test-add-answer-main-entry" id={index} num={index} removeAnswer={removeAnswer} answerRefs={answerRefs} scoreRefs={scoreRefs}/>)))
-                            : (<h1 tabIndex="0">Caricando</h1> )
                     }
                     </div>
                 </div>

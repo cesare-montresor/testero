@@ -21,6 +21,8 @@ import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
@@ -209,7 +211,8 @@ public class TestResponder {
             Float puntiDomanda = currentDomanda.getPunti();
             Boolean risposteConNumero = currentDomanda.getRisposteConNumero();
             String selectedTestoRisposta = selectedRisposta.getTesto();
-            Float selectedRispostaPunteggio = currentDomanda.getPunti() * selectedRisposta.getPunteggio();
+
+            Float selectedRispostaPunteggio = (float) (Math.round((currentDomanda.getPunti() * selectedRisposta.getPunteggio()) * 100.0) / 100.0);
             List<String> correctTestoRispostaList = new ArrayList<>();
             for(Risposta risposta : currentDomanda.risposte) {
                 if(risposta.getPunteggio() == 1.0)

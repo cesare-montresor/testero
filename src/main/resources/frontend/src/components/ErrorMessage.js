@@ -2,12 +2,8 @@ import {useEffect} from "react";
 
 
 function ErrorMessage({children}){
-  useEffect((asd) => {
-    document.getElementById("error-message").focus();
-  });
-
   return (
-    <div tabIndex="0" className="error-message" id="error-message">
+    <div tabIndex="0" className="error-message" id="error-message" role="alert">
       ERRORE: {children}
     </div>
   );

@@ -20,17 +20,18 @@ function Results(){
   }, []);
 
   useEffect(() => {
-    let item = document.getElementById("question-title");
-    if (item != null){item.focus();}
+    let item = document.getElementById("result-title");
+    if (item != null)
+      {item.focus();}
   }, [result]);
 
 
   return(
     <main className={"page-centered-container"}>
       {
-        result ? (
+        result && (
           <div>
-            <h1 id="question-title" tabIndex="0">Risultati {result.nomeTest}</h1>
+            <h1 id="result-title" tabIndex="0">Risultati {result.nomeTest}</h1>
             <div className={"page-results-questionList"}>
               {
                 result.results.map(elem => {
@@ -70,20 +71,14 @@ function Results(){
             </div>
 
             <div className={"page-results-finalScore btn-bar"}>
-              <h2 tabIndex="0" >Risultato esame</h2>
+              <h2 tabIndex="0" >Punteggio finale</h2>
               <div tabIndex="0" className={"page-results-finalScore-text break-word"}>{`Punteggio esame: ${testScore}`}</div>
               <div tabIndex="0" className={"page-results-finalScore-text break-word"}>{`Punteggio utente: ${userScore}`}</div>
               <button
-                  onClick={() => {
-                window.history.replaceState(null, "", "/");
-                navigate("/");
-              }}>Torna alla home</button>
+                  onClick={() => navigate("/")} aria-label="Torna alla lista dei test disponibili">Torna alla lista dei test</button>
             </div>
           </div>
-        ) : (
-          <h1 id="question-title" tabIndex="0">Caricando</h1>
-        )
-      }
+        )}
     </main>
   );
 }

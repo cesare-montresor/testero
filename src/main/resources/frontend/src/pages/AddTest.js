@@ -30,7 +30,7 @@ function AddTest(){
 
     return (
         <section className="page-centered-container">
-            <h1 tabIndex="0">Aggiungi un nuovo test</h1>
+            <h1 tabIndex="0" id="addTest-title">Aggiungi un nuovo test</h1>
             <div className='test-add'>
                 <div className='test-add-main'>
                     <InputText label="Nome" className="test-add-main-nome" id="test-name" ref={nameRef}/>
