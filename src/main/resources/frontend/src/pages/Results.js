@@ -70,6 +70,7 @@ function Results(){
             </div>
 
             <div className={"page-results-finalScore btn-bar"}>
+              <h2 tabIndex="0" >Risultato esame</h2>
               <div tabIndex="0" className={"page-results-finalScore-text break-word"}>{`Punteggio esame: ${testScore}`}</div>
               <div tabIndex="0" className={"page-results-finalScore-text break-word"}>{`Punteggio utente: ${userScore}`}</div>
               <button
