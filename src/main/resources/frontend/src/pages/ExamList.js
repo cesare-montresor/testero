@@ -9,6 +9,7 @@ function ExamList(){
   const [examList, setExamList] = useState(null);
 
   useEffect(() => {
+    document.title = "Test disponibili";
     api.allTests().then((data) => (setExamList(data))).catch((error) => (alert("Errore durante il caricamento dei test.")));
   }, []);
 

@@ -1,6 +1,6 @@
 import {useNavigate} from "react-router-dom";
 import {TesteroAPI as api} from "../components/TesteroAPI";
-import React from "react";
+import React, {useEffect} from "react";
 import {InputCheckbox, InputText} from "../components/InputElement";
 
 function AddTest(){
@@ -27,6 +27,10 @@ function AddTest(){
             navigate("/addTest/"+id+"/addQuestion/0");
         });
     }
+
+    useEffect(() => {
+        document.title = "Crea test";
+    }, []);
 
     return (
         <section className="page-centered-container">
