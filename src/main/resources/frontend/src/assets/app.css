@@ -28,7 +28,6 @@ a, a:hover, a:visited, a:active{
 h1, h2, label, li, .break-word{
     word-wrap: break-word;
     overflow-wrap: break-word;
-
     -webkit-hyphens: auto;
     -moz-hyphens: auto;
     hyphens: auto;
@@ -37,7 +36,7 @@ h1, h2, label, li, .break-word{
 /* COMMON */
 
 .btn-bar a, .btn-bar button{
-    //font-size: 14px;
+//font-size: 14px;
     font-weight: bold;
     font-size: 13.33px;
     padding: 10px;
@@ -48,6 +47,11 @@ h1, h2, label, li, .break-word{
     cursor: pointer;
     text-transform: capitalize;
     text-align: center;
+}
+
+.btn-bar a:hover, .btn-bar button:hover{
+    background-color: #007575;
+    color: white
 }
 
 .page-centered-container{
@@ -65,10 +69,10 @@ h1, h2, label, li, .break-word{
     width: 100%;
     padding: 10px 0 10px 0;
     margin-bottom: 10px;
-    background-color: orangered;
+    background-color: #b4173e;
     text-align: center;
     color: white;
-    text-transform: capitalize;
+    font-weight: bold;
 }
 
 @media(max-width: 800px) {
@@ -148,7 +152,7 @@ nav {
     background-color: #efefef;
     padding: 20px calc(5%);
     text-align: center;
-    color: #b4173e;
+                color: #b4173e;
 }
 
 .testList-row:hover{

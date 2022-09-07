@@ -1,11 +1,10 @@
 type Mutation {
     takeTest(input: Int!): TestInfo!
     giveAnswer(input: GiveRispostaData!): CompilazioneRisposta!
+    completeCompilation(input: Int!): Compilazione!
+
 
     addTest(input: AddTestData!): Test!
     addQuestion(input: AddDomandaData): DomandaInfo!
     completeTest(input: Int!): Boolean!
-
-    completeCompilation(input: Int!): Compilazione!
-
 }

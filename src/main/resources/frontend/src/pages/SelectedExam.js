@@ -101,24 +101,23 @@ function SelectedExam(){
                 {(state.test.domandeConNumero? (`${parseInt(urlParams.questionNum, 10) + 1}. `) : ("") ) + state.currentQuestion.testo}
               </h2>
 
-              <form className={"page-question-radioButton"}>
-                {state.currentQuestion.risposte.map(ans => {
-                  ansNum += 1;
-                  let selected = parseInt(state.currentCompilazioniRisposte.risposta, 10);
-                  return (
-                    <InputRadioButton
-                      type="radio"
-                      className="page-question-radioButton-option"
-                      key={ans.id}
-                      id={ans.id}
-                      label={state.currentQuestion.risposteConNumero? (ansNum).toString() + ". " + ans.testo : ans.testo}
-                      ariaLabel={state.currentQuestion.risposteConNumero? "Risposta numero " + (ansNum).toString() + ": " + ans.testo : "Risposta: " + ans.testo}
-                      value={ans.id}
-                      checked={selected === ans.id}
-                      onChange={selectAnswer}
-                    />
+              <form className={"page-question-radioButton"} tabIndex="0" aria-label={"Lista con "+state.currentQuestion.risposte.length+" risposte"}>
+                  {state.currentQuestion.risposte.map(ans => {
+                    ansNum += 1;
+                    let selected = parseInt(state.currentCompilazioniRisposte.risposta, 10);
+                    return (
+                        <InputRadioButton
+                          type="radio"
+                          className="page-question-radioButton-option"
+                          key={ans.id}
+                          id={ans.id}
+                          label={state.currentQuestion.risposteConNumero? (ansNum).toString() + ". " + ans.testo : ans.testo}
+                          ariaLabel={state.currentQuestion.risposteConNumero? "Risposta numero " + (ansNum).toString() + ": " + ans.testo : "Risposta: " + ans.testo}
+                          value={ans.id}
+                          checked={selected === ans.id}
+                          onChange={selectAnswer} />
+                    )}
                   )}
-                )}
               </form>
 
               <div className={"page-question-movementButton btn-bar"}>
