@@ -84,7 +84,7 @@ class TesteroSDK {
                     }
                     compilazione {
                         id, compilazioniRisposte {
-                            domanda, risposta
+                            id, domanda, risposta
                         } 
                     }
                 }

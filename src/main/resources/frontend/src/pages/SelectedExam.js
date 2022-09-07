@@ -8,6 +8,7 @@ import {TesteroAPI as api} from "../components/TesteroAPI";
 const reducer = (state, action) => {
   switch (action.type) {
     case "initialize":
+      action.payload.data["takeTest"].compilazione.compilazioniRisposte.sort((a, b) => a.id - b.id);
       return {compilazione: action.payload.data["takeTest"].compilazione, test: action.payload.data["takeTest"].test,
         currentQuestion: action.payload.data["takeTest"].test.domande.find((elem) => (elem.id === action.payload.data["takeTest"].compilazione.compilazioniRisposte[action.payload.questionNum].domanda)),
         currentCompilazioniRisposte: action.payload.data["takeTest"].compilazione.compilazioniRisposte[action.payload.questionNum]
