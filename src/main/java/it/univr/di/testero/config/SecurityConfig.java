@@ -61,7 +61,7 @@ public class SecurityConfig {
             .antMatchers("/graphql*").permitAll(); //.authenticated();
 
         // Login/Logout
-        http.formLogin().loginPage("/login").permitAll();
+        http.formLogin().loginPage("/login").permitAll().failureUrl("/login-error");
         http.logout().logoutUrl("/logout").permitAll();
 
         //Else

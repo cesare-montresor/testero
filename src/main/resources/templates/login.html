@@ -3,10 +3,20 @@
 <head>
     <title>Testero Login</title>
     <div th:replace="head"></div>
+
+    <script type="application/javascript">
+        function onLoad() {
+            const err = document.getElementsByClassName("error-message");
+            if (err.length > 0) {
+                err[0].focus();
+            }
+        }
+    </script>
+
 </head>
 
-<body>
-    <div class="page-content">
+<body onload="onLoad()">
+    <div class="page-content" >
         <div class="page-login" role="main">
             <div class="page-login-header">
                 <div class="main-header-logo" ><img tabIndex="-1 " src="/testero-logo-192.png" alt="Testero logo"/></div>
@@ -15,6 +25,8 @@
             </div>
             <form th:action="@{/login}" method="post">
                 <div class="form-group">
+                    <!--/*@thymesVar id="errorMessage" type="java.lang.String"*/-->
+                    <div class="form-group-row page-login-message" th:utext="${errorMessage}"></div>
                     <div class="form-group-row page-login-username-main">
                         <label for="page-login-username" aria-label="Inserisci nome utente">Username</label>
                         <input type="text" name="username" id="page-login-username" aria-labelledby="page-login-username"/>
@@ -32,4 +44,5 @@
     </div>
 
 </body>
+
 </html>

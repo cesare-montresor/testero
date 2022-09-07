@@ -9,6 +9,8 @@ import it.univr.di.testero.repository.TestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.web.WebAttributes;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 
 @Controller
@@ -29,14 +32,34 @@ public class MainController implements ErrorController {
         User authUser = userService.userAuthenticated();
 
         if (authUser == null) {
-            return "login";
+            return "redirect:/login";
         }
         return "../static/index.html";
     }
 
     @GetMapping("/login")
     public String getLogin() {
-        return "redirect:/";
+        return "login";
+    }
+
+    @GetMapping("/login-error")
+    public String login(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession(false);
+        String errorMessage = "";
+        if (session != null) {
+            AuthenticationException ex = (AuthenticationException) session.getAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
+            if (ex != null) {
+                errorMessage += "<div tabindex=\"0\" class=\"error-message\">";
+                errorMessage += "   Errore di autenticazione.";
+                errorMessage += "   </br>";
+                errorMessage += "   Verificare le credenziali e riprovare.";
+                errorMessage += "</div>";
+            }
+        }
+        model.addAttribute("errorMessage", errorMessage);
+        return "login";
+        //return getIndex();
+        //return "redirect:/";
     }
 
     @RequestMapping("/error")
