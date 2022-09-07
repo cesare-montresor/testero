@@ -9,6 +9,7 @@ function ExamList(){
   const [examList, setExamList] = useState(null);
 
   useEffect(() => {
+    document.title = "Test disponibili - Testero";
     api.allTests().then((data) => (setExamList(data))).catch((error) => (alert("Errore durante il caricamento dei test.")));
   }, []);
 
@@ -26,17 +27,17 @@ function ExamList(){
   return (
 
     <main className='page-centered-container'>
-      <h1 tabIndex="0" aria-label={`Lista test disponibili`}>Test disponibili</h1>
+      <h1 tabIndex="0" aria-label={`Lista test disponibili`} id="list-title">Test disponibili</h1>
 
         <ul className="page-testList-list">
-          {examList? (
+          {examList  && (
             examList.allTests.map((elem) => {
               return (
                 <li className='page-centered-container-row testList-row' key={elem.id}>
                   <div className='page-testlist-row-container'>
                     <div className='page-testlist-row-info'>
                       <div tabIndex="0" className='page-testlist-row-data break-word' role={"textbox"} aria-label={`Data esame ${elem.nome} ${formatDate(elem.data)}`}>{formatDate(elem.data)}</div>
-                      <div tabIndex="0" className='page-testlist-row-data' role={"textbox"} aria-label={`Nome esame ${elem.nome}`}>{elem.nome}</div>
+                      <div tabIndex="0" className='page-testlist-row-data test-name' role={"textbox"} aria-label={`Nome esame ${elem.nome}`}>{elem.nome}</div>
                     </div>
                     <div className='page-testlist-row-actions btn-bar' id={`btn-bar${elem.id}`}>
                       <button aria-label={`Avvia esame ${elem.nome}`} onClick={() => {
@@ -46,10 +47,7 @@ function ExamList(){
                   </div>
                 </li>
               )
-            })
-          ) : (
-            <h1> Caricando test </h1>
-            )}
+            }))}
         </ul>
       </main>
 

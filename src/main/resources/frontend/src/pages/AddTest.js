@@ -1,6 +1,6 @@
 import {useNavigate} from "react-router-dom";
 import {TesteroAPI as api} from "../components/TesteroAPI";
-import React from "react";
+import React, {useEffect} from "react";
 import {InputCheckbox, InputText} from "../components/InputElement";
 
 function AddTest(){
@@ -28,9 +28,13 @@ function AddTest(){
         });
     }
 
+    useEffect(() => {
+        document.title = "Creazione test - Testero";
+    }, []);
+
     return (
         <section className="page-centered-container">
-            <h1 tabIndex="0">Aggiungi un nuovo test</h1>
+            <h1 tabIndex="0" id="addTest-title">Aggiungi un nuovo test</h1>
             <div className='test-add'>
                 <div className='test-add-main'>
                     <InputText label="Nome" className="test-add-main-nome" id="test-name" ref={nameRef}/>
