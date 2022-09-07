@@ -227,6 +227,10 @@ nav {
     justify-content: space-around;
 }
 
+.page-results-finalScore h2 {
+    text-align: center;
+}
+
 .page-results-finalScore-text{
     padding-bottom: 10px;
     width: 98%;
