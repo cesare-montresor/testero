@@ -51,14 +51,14 @@ public class CompilationService{
             Test test = testResult.get();
             List<CompilazioneRisposta> crs = new ArrayList<CompilazioneRisposta>();
 
+            if(randomizeOrder) {
+                Collections.shuffle(test.domande);
+            }
+
             for (Domanda domanda: test.domande ) {
                 CompilazioneRisposta cr = new CompilazioneRisposta(compilazione, domanda.getId(), null);
                 cr = compilazioneRispostaRepository.save(cr);
                 crs.add(cr);
-            }
-
-            if(randomizeOrder) {
-                Collections.shuffle(crs);
             }
 
             compilazione.setCompilazioniRisposte(crs);

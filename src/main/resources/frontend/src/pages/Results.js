@@ -61,8 +61,8 @@ function Results(){
                         </ul>
                       </div>
                       
-                      <div tabIndex="0" className="page-results-questionResult">{`Punti risposta: ${elem.puntiDomanda}`}</div>
-                      <div tabIndex="0" className="page-results-questionResult">{`Punti ottenuti: ${elem.selectedRispostaPunteggio}`}</div>
+                      <div tabIndex="0" className="page-results-questionResult break-word">{`Punti risposta: ${elem.puntiDomanda}`}</div>
+                      <div tabIndex="0" className="page-results-questionResult break-word">{`Punti ottenuti: ${elem.selectedRispostaPunteggio}`}</div>
                     </div>
                   );
                 })
@@ -70,8 +70,9 @@ function Results(){
             </div>
 
             <div className={"page-results-finalScore btn-bar"}>
-              <div tabIndex="0" className={"page-results-finalScore-text"}>{`Punteggio esame: ${testScore}`}</div>
-              <div tabIndex="0" className={"page-results-finalScore-text"}>{`Punteggio utente: ${userScore}`}</div>
+              <h2 tabIndex="0" >Risultato esame</h2>
+              <div tabIndex="0" className={"page-results-finalScore-text break-word"}>{`Punteggio esame: ${testScore}`}</div>
+              <div tabIndex="0" className={"page-results-finalScore-text break-word"}>{`Punteggio utente: ${userScore}`}</div>
               <button
                   onClick={() => {
                 window.history.replaceState(null, "", "/");

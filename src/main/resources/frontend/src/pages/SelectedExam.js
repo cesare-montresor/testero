@@ -8,7 +8,7 @@ import {TesteroAPI as api} from "../components/TesteroAPI";
 const reducer = (state, action) => {
   switch (action.type) {
     case "initialize":
-      console.log("data", action.payload.data["takeTest"].compilazione);
+      action.payload.data["takeTest"].compilazione.compilazioniRisposte.sort((a, b) => a.id - b.id);
       return {compilazione: action.payload.data["takeTest"].compilazione, test: action.payload.data["takeTest"].test,
         currentQuestion: action.payload.data["takeTest"].test.domande.find((elem) => (elem.id === action.payload.data["takeTest"].compilazione.compilazioniRisposte[action.payload.questionNum].domanda)),
         currentCompilazioniRisposte: action.payload.data["takeTest"].compilazione.compilazioniRisposte[action.payload.questionNum]
@@ -20,7 +20,6 @@ const reducer = (state, action) => {
       return {...state, compilazione: tmp};
 
     case "changeQuestion":
-      console.log("questionNum", action.payload);
       return {...state,
         currentQuestion: state.test.domande.find((elem) => (elem.id === state.compilazione.compilazioniRisposte[parseInt(action.payload, 10)].domanda)),
         currentCompilazioniRisposte: state.compilazione.compilazioniRisposte[parseInt(action.payload, 10)]
@@ -103,24 +102,23 @@ function SelectedExam(){
                 {(state.test.domandeConNumero? (`${parseInt(urlParams.questionNum, 10) + 1}. `) : ("") ) + state.currentQuestion.testo}
               </h2>
 
-              <form className={"page-question-radioButton"}>
-                {state.currentQuestion.risposte.map(ans => {
-                  ansNum += 1;
-                  let selected = parseInt(state.currentCompilazioniRisposte.risposta, 10);
-                  return (
-                    <InputRadioButton
-                      type="radio"
-                      className="page-question-radioButton-option"
-                      key={ans.id}
-                      id={ans.id}
-                      label={state.currentQuestion.risposteConNumero? (ansNum).toString() + ". " + ans.testo : ans.testo}
-                      ariaLabel={state.currentQuestion.risposteConNumero? "Risposta numero " + (ansNum).toString() + ": " + ans.testo : "Risposta: " + ans.testo}
-                      value={ans.id}
-                      checked={selected === ans.id}
-                      onChange={selectAnswer}
-                    />
+              <form className={"page-question-radioButton"} tabIndex="0" aria-label={"Lista con "+state.currentQuestion.risposte.length+" risposte"}>
+                  {state.currentQuestion.risposte.map(ans => {
+                    ansNum += 1;
+                    let selected = parseInt(state.currentCompilazioniRisposte.risposta, 10);
+                    return (
+                        <InputRadioButton
+                          type="radio"
+                          className="page-question-radioButton-option"
+                          key={ans.id}
+                          id={ans.id}
+                          label={state.currentQuestion.risposteConNumero? (ansNum).toString() + ". " + ans.testo : ans.testo}
+                          ariaLabel={state.currentQuestion.risposteConNumero? "Risposta numero " + (ansNum).toString() + ": " + ans.testo : "Risposta: " + ans.testo}
+                          value={ans.id}
+                          checked={selected === ans.id}
+                          onChange={selectAnswer} />
+                    )}
                   )}
-                )}
               </form>
 
               <div className={"page-question-movementButton btn-bar"}>

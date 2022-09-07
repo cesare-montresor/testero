@@ -25,10 +25,9 @@ a, a:hover, a:visited, a:active{
     border-radius: 0;
 }
 
-h1, h2, label {
+h1, h2, label, li, .break-word{
     word-wrap: break-word;
     overflow-wrap: break-word;
-
     -webkit-hyphens: auto;
     -moz-hyphens: auto;
     hyphens: auto;
@@ -37,7 +36,6 @@ h1, h2, label {
 /* COMMON */
 
 .btn-bar a, .btn-bar button{
-    //font-size: 14px;
     font-weight: bold;
     font-size: 13.33px;
     padding: 10px;
@@ -48,6 +46,11 @@ h1, h2, label {
     cursor: pointer;
     text-transform: capitalize;
     text-align: center;
+}
+
+.btn-bar a:hover, .btn-bar button:hover{
+    background-color: #007575;
+    color: white
 }
 
 .page-centered-container{
@@ -65,10 +68,10 @@ h1, h2, label {
     width: 100%;
     padding: 10px 0 10px 0;
     margin-bottom: 10px;
-    background-color: orangered;
+    background-color: #b4173e;
     text-align: center;
     color: white;
-    text-transform: capitalize;
+    font-weight: bold;
 }
 
 @media(max-width: 800px) {
@@ -148,7 +151,7 @@ nav {
     background-color: #efefef;
     padding: 20px calc(5%);
     text-align: center;
-    color: #b4173e;
+                color: #b4173e;
 }
 
 .testList-row:hover{
@@ -169,11 +172,13 @@ nav {
 }
 
 .page-testlist-row-info {
+    width: 80%;
     display: flex;
     flex-direction: row;
 }
 
 .page-testlist-row-data{
+    width: 80%;
     margin-right: 20px;
 }
 
@@ -188,6 +193,10 @@ nav {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+}
+
+.page-question-radioButton-option label{
+    width: 98%;
 }
 
 .page-question-movementButton {
@@ -217,8 +226,13 @@ nav {
     justify-content: space-around;
 }
 
+.page-results-finalScore h2 {
+    text-align: center;
+}
+
 .page-results-finalScore-text{
     padding-bottom: 10px;
+    width: 98%;
 }
 
 .page-results-finalScore button {
@@ -387,11 +401,13 @@ nav {
 
 /* MEDIA QUERY */
 
-@media(max-width: 800px) {
+@media screen and (max-width: 800px) {
     /* COMMON */
 
     .page-centered-container{
         margin-top: 30px;
+        margin-left: calc(2%);
+        margin-right: calc(2%);
     }
 
     .page-centered-container h1 {
@@ -439,10 +455,12 @@ nav {
     }
 
     .page-testlist-row-info {
+        width: 100%;
         flex-direction: column;
     }
 
     .page-testlist-row-data{
+        width: 100%;
         margin-right: 0;
         padding-bottom: 10px;
         text-align: center;
@@ -450,6 +468,10 @@ nav {
     }
 
     /* SELECTED EXAM*/
+
+    .page-question-radioButton-option label{
+        width: 90%;
+    }
 
     .page-question-movementButton button {
         width: min(160px, 34vw);
@@ -459,6 +481,7 @@ nav {
 
     .page-results-questionResult, .page-results-finalScore-text {
         font-size: min(5.5vw, 16px);
+        width: 90%;
     }
 
     .page-results-finalScore button{
