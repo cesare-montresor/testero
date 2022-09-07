@@ -44,7 +44,7 @@ function AddQuestion(){
     let scoreRefs = [];
 
     useEffect(() => {
-        document.title = "Crea domanda test";
+        document.title = "Creazione domanda test - Testero";
 
         const data = window.sessionStorage.getItem("currentAnswers");
 

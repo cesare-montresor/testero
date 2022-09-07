@@ -11,7 +11,7 @@ function Results(){
   let userScore = 0;
 
   useEffect(() => {
-    document.title = "Risultati test";
+    document.title = "Risultati test - Testero";
 
     api.getResults(urlParams.examId).then( (data) => {
       setResult(data["getResults"]);

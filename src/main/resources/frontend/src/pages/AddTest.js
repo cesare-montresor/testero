@@ -29,7 +29,7 @@ function AddTest(){
     }
 
     useEffect(() => {
-        document.title = "Crea test";
+        document.title = "Creazione test - Testero";
     }, []);
 
     return (
