@@ -44,6 +44,8 @@ function SelectedExam(){
   }
 
   useEffect(() => {
+    document.title = "Svolgimento test - Testero";
+
     api.takeTest(parseInt(urlParams.examId, 10)).then((data) => {
       data["takeTest"].test.domande.forEach((elem) => {
         if(elem.ordineCasuale === true)

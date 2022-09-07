@@ -44,6 +44,8 @@ function AddQuestion(){
     let scoreRefs = [];
 
     useEffect(() => {
+        document.title = "Creazione domanda test - Testero";
+
         const data = window.sessionStorage.getItem("currentAnswers");
 
         if(data) { setCurrentAnswers(JSON.parse(data)); }
