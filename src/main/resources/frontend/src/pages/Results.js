@@ -48,19 +48,19 @@ function Results(){
 
 
                       <div className="page-results-questionResult">
-                        <div tabIndex="0">{elem.correctTestoRispostaList.length > 1? "Risposte corrette:" : "Risposta corretta:"}</div>
-                        <ul>
+                        <div tabIndex="0" id={`correct-answers-${questionNum}`}>{elem.correctTestoRispostaList.length > 1? "Risposte corrette:" : "Risposta corretta:"}</div>
+                        <ul aria-labelledby={`correct-answers-${questionNum}`}>
                           {
                             elem.correctTestoRispostaList.map((ansText, index) =>
-                                <li aria-label={"Risposta corretta: " + ansText} tabIndex="0" key={index}>{ansText}</li>)
+                                <li tabIndex="0" key={index}>{ansText}</li>)
                           }
                         </ul>
                       </div>
 
                       <div className="page-results-questionResult">
-                        <div tabIndex="-1">{"Risposta selezionata:"}</div>
+                        <div tabIndex="0" id={`selected-answers-${questionNum}`}>{"Risposta selezionata:"}</div>
                         <ul>
-                          <li tabIndex="0" aria-label={"Risposta selezionata: " + elem.selectedTestoRisposta}>{elem.selectedTestoRisposta}</li>
+                          <li tabIndex="0" aria-labelledby={`selected-answers-${questionNum}`}>{elem.selectedTestoRisposta}</li>
                         </ul>
                       </div>
                       

@@ -50,9 +50,9 @@ function ExamList(){
             }))}
         </ul>
       </main>
-
-
   );
 }
+
+
 
 export {ExamList}

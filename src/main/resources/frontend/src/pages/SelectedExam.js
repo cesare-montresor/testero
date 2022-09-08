@@ -92,7 +92,7 @@ function SelectedExam(){
     <main className={"page-centered-container"}>
       {state && (
         <>
-          <h1 tabIndex="0" aria-label={`Nome esame: ${state.test.nome}`} id="question-title">{state.test.nome}</h1>
+          <h1 tabIndex="0" aria-label={`Nome esame: ${state.test.nome}`} id="question-container-title">{state.test.nome}</h1>
 
           <div>
             {state.error && <ErrorMessage>{"Selezionare una risposta per proseguire"}</ErrorMessage>}
