@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 
 
@@ -21,21 +21,21 @@
     <div class="page-content" >
         <div class="page-login" role="main">
             <div class="page-login-header">
-                <div class="main-header-logo" ><img tabIndex="-1" src="/testero-logo-192.png" alt="Testero logo"/></div>
-                <h1 tabindex="0" class="main-header-title" aria-label="Nome applicazione: Testero" >Testero&#8482;</h1>
-                <h1 tabindex="0" class="main-header-title" aria-label="Pagina di login">Login</h1>
+                <div class="main-header-logo" ><img src="/testero-logo-192.png" alt="Testero logo"/></div>
+                <h1 class="main-header-title">Testero&#8482;</h1>
+                <h1 class="main-header-title">Login</h1>
             </div>
             <form th:action="@{/login}" method="post">
                 <div class="form-group">
                     <!--/*@thymesVar id="errorMessage" type="java.lang.String"*/-->
                     <div class="form-group-row page-login-message" th:utext="${errorMessage}"></div>
                     <div class="form-group-row page-login-username-main">
-                        <label for="page-login-username"  id="page-login-username-label" aria-label="Inserisci nome utente">Username</label>
-                        <input type="text" name="username" id="page-login-username" aria-labelledby="page-login-username-label"/>
+                        <label for="page-login-username"  id="page-login-username-label">Username</label>
+                        <input type="text" name="username" id="page-login-username" aria-required="true" aria-labelledby="page-login-username-label"/>
                     </div>
                     <div class="form-group-row page-login-password-main">
-                        <label for="page-login-password" id="page-login-password-label" aria-label="Inserisci password">Password</label>
-                        <input type="password" name="password" id="page-login-password" aria-labelledby="page-login-password-label"/>
+                        <label for="page-login-password" id="page-login-password-label">Password</label>
+                        <input type="password" name="password" id="page-login-password" aria-required="true" aria-labelledby="page-login-password-label"/>
                     </div>
                     <div class="btn-bar form-group-row page-login-submit-main">
                         <button type="submit" id="page-login-submit" aria-label="Accedi">Login</button>

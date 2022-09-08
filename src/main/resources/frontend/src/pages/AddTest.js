@@ -33,8 +33,8 @@ function AddTest(){
     }, []);
 
     return (
-        <section className="page-centered-container">
-            <h1 tabIndex="0" id="addTest-title">Aggiungi un nuovo test</h1>
+        <div id="main" role="main" className="page-centered-container" aria-labelledby="addTest-title" tabIndex="-1">
+            <h1 id="addTest-title">Aggiungi un nuovo test</h1>
             <div className='test-add'>
                 <div className='test-add-main'>
                     <InputText label="Nome" className="test-add-main-nome" id="test-name" ref={nameRef}/>
@@ -46,8 +46,7 @@ function AddTest(){
                     </div>
                 </div>
             </div>
-
-        </section>
+        </div>
     );
 }
 

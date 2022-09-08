@@ -164,8 +164,8 @@ function AddQuestion(){
     }
 
     return (
-        <section className="page-centered-container">
-            <h1 tabIndex="0" id="addQuestion-title">Aggiungi nuova domanda</h1>
+        <div role="main" id="main" className="page-centered-container" aria-labelledby="addQuestion-title" tabIndex="-1" >
+            <h1 id="addQuestion-title">Aggiungi nuova domanda</h1>
             <div className='test-add-question'>
                 <div className='test-add-question-main'>
                     <InputText label="Nome" className="test-add-question-main-nome" id="test-question-name" ref={nameRef}/>
@@ -200,7 +200,7 @@ function AddQuestion(){
                     <button type="button" onClick={finishCreation}>Fine</button>
                 </div>
             </div>
-        </section>
+        </div>
     );
 }
 
