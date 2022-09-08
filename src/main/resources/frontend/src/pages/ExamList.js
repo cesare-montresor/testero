@@ -26,8 +26,8 @@ function ExamList(){
 
   return (
 
-    <main className='page-centered-container'>
-      <h1 tabIndex="0" aria-label={`Lista test disponibili`} id="list-title">Test disponibili</h1>
+    <div id="main" role="main" className='page-centered-container' tabIndex="-1" aria-labelledby={"list-title"}>
+      <h1 id="list-title">Lista test disponibili</h1>
 
         <ul className="page-testList-list">
           {examList  && (
@@ -36,8 +36,8 @@ function ExamList(){
                 <li className='page-centered-container-row testList-row' key={elem.id}>
                   <div className='page-testlist-row-container'>
                     <div className='page-testlist-row-info'>
-                      <div tabIndex="0" className='page-testlist-row-data break-word' role={"textbox"} aria-label={`Data esame ${elem.nome} ${formatDate(elem.data)}`}>{formatDate(elem.data)}</div>
-                      <div tabIndex="0" className='page-testlist-row-data test-name' role={"textbox"} aria-label={`Nome esame ${elem.nome}`}>{elem.nome}</div>
+                      <div className='page-testlist-row-data break-word'>{formatDate(elem.data)}</div>
+                      <div className='page-testlist-row-data test-name'>{elem.nome}</div>
                     </div>
                     <div className='page-testlist-row-actions btn-bar' id={`btn-bar${elem.id}`}>
                       <button aria-label={`Avvia esame ${elem.nome}`} onClick={() => {
@@ -49,7 +49,9 @@ function ExamList(){
               )
             }))}
         </ul>
-      </main>
+      </div>
+
+
   );
 }
 
