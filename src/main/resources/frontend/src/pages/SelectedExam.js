@@ -100,7 +100,7 @@ function SelectedExam(){
           <div>
             {state.error && <ErrorMessage>{"Selezionare una risposta per proseguire"}</ErrorMessage>}
             <h2 className={"page-centered-container-row"} id="question-subtitle">
-              {(state.test.domandeConNumero? (`${parseInt(urlParams.questionNum, 10) + 1}. `) : ("") ) + state.currentQuestion.testo}
+              {(state.test.domandeConNumero? (`Domanda ${parseInt(urlParams.questionNum, 10) + 1}: `) : ("Domanda: ") ) + state.currentQuestion.testo}
             </h2>
 
             <form className={"page-question-radioButton"}>
