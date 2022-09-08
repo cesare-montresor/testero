@@ -13,9 +13,7 @@ function NavBar() {
 
   function changeFocus() {
       let mainElement = document.getElementById("main");
-
-      if (mainElement != null)
-          mainElement.focus();
+      if (mainElement != null) { mainElement.focus(); }
   }
 
   return (

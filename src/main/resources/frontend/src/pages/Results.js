@@ -22,11 +22,10 @@ function Results(){
   }, []);
 
   useEffect(() => {
-    let item = document.getElementById("result-title");
+    let item = document.getElementById("main");
     if (item != null)
       {item.focus();}
   }, [result]);
-
 
   return(
     <div id="main" role="main" className={"page-centered-container"} aria-labelledby="result-title" tabIndex="-1">
