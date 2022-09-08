@@ -28,12 +28,12 @@
                     <!--/*@thymesVar id="errorMessage" type="java.lang.String"*/-->
                     <div class="form-group-row page-login-message" th:utext="${errorMessage}"></div>
                     <div class="form-group-row page-login-username-main">
-                        <label for="page-login-username" aria-label="Inserisci nome utente">Username</label>
-                        <input type="text" name="username" id="page-login-username" aria-labelledby="page-login-username"/>
+                        <label for="page-login-username"  id="page-login-username-label" aria-label="Inserisci nome utente">Username</label>
+                        <input type="text" name="username" id="page-login-username" aria-labelledby="page-login-username-label"/>
                     </div>
                     <div class="form-group-row page-login-password-main">
-                        <label for="page-login-password" aria-label="Inserisci password">Password</label>
-                        <input type="password" name="password" id="page-login-password" aria-labelledby="page-login-password"/>
+                        <label for="page-login-password" id="page-login-password-label" aria-label="Inserisci password">Password</label>
+                        <input type="password" name="password" id="page-login-password" aria-labelledby="page-login-password-label"/>
                     </div>
                     <div class="btn-bar form-group-row page-login-submit-main">
                         <button type="submit" id="page-login-submit" aria-label="Accedi">Login</button>
