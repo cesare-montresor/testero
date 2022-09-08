@@ -58,10 +58,17 @@ function SelectedExam(){
     });
   }, []);
 
+  function changeFocus() {
+    let mainElement = document.getElementById("main");
+    if (mainElement != null) { mainElement.focus(); }
+  }
+
   function selectAnswer(event) {
     dispatch({type: "setAnswer", payload: {answerId: event.target.value, questionNum: urlParams.questionNum}});
     dispatch({type: "setError", payload: false});
   }
+
+
 
   function changeRenderedQuestion(event) {
     if(state.currentCompilazioniRisposte.risposta !== null) {
@@ -73,12 +80,18 @@ function SelectedExam(){
         document.getElementById("question-title").focus();
 
         if(state.test.domande.length === newQuestionNum) {
-          api.completeCompilation(state.compilazione.id).then(data => navigate(`/${urlParams.examId}/results`)).catch(error => alert("Errore nel salvataggio della risposta "+ error))
+          api.completeCompilation(state.compilazione.id).then( (data) =>{
+            navigate(`/${urlParams.examId}/results`);
+          }).catch( (error) => {
+            alert("Errore nel salvataggio della risposta "+ error)
+          });
         }
         else {
           dispatch({type: "changeQuestion", payload: newQuestionNum});
           navigate(state.test.domande.length === newQuestionNum? `/${urlParams.examId}/results` : `/${urlParams.examId}/question/${newQuestionNum}`);
+          changeFocus();
         }
+
       }).catch((error) => {
         alert("Errore durante il salvataggio della risposta.");
       });
