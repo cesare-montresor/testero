@@ -42,9 +42,8 @@ function Results(){
                   userScore += elem.selectedRispostaPunteggio;
 
                   return(
-
                     <div key={questionNum} className={"page-centered-container-row"}>
-                      <h2>{(result.domandeConNumero? (`${questionNum}. `) : ("") ) + elem.testoDomanda}</h2>
+                      <h2>{(result.domandeConNumero? (`Domanda ${questionNum}: `) : ("Domanda: ") ) + elem.testoDomanda}</h2>
 
                       <div className="page-results-questionResult">
                         <div>{elem.correctTestoRispostaList.length > 1? "Risposte corrette:" : "Risposta corretta:"}</div>
