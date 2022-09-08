@@ -54,6 +54,10 @@ public class SecurityConfig {
         http.authorizeRequests()
                 .antMatchers("/static/*").permitAll()
                 .antMatchers("/*.png").permitAll()
+                .antMatchers("/*.ico").permitAll()
+                .antMatchers("/*.txt").permitAll()
+                .antMatchers("/*.json").permitAll()
+                .antMatchers("/*.html").permitAll()
                 .antMatchers("/").permitAll();
 
         // GraphQL
