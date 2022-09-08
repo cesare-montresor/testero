@@ -1,0 +1,114 @@
+
+/* HTML override */
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%
+}
+
+a, a:hover, a:visited, a:active{
+    text-decoration: none;
+    color: black;
+}
+
+
+/* LOGIN */
+
+.main-header-title {
+    font-size: 30px;
+    padding: 20px 10px;
+}
+.page-login-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-header-logo{
+    padding: 20px 10px;
+}
+
+.main-header-logo img{
+    user-select: none;
+    width: 40px;
+    height:40px;
+}
+.page-content{
+    padding-top: 50px;
+}
+
+.page-login
+{
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+}
+
+:focus {
+    outline: 5px dotted rebeccapurple;
+    border-radius: 0;
+}
+
+.error-message{
+    width: 100%;
+    padding: 10px 0 10px 0;
+    margin-bottom: 10px;
+    background-color: #b4173e;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
+.form-group-row{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.form-group-row input[type="text"]{
+    width: 100%;
+}
+
+.form-group-row label{
+    width: 100%;
+}
+
+
+.btn-bar a, .btn-bar button{
+    font-weight: bold;
+    font-size: 13.33px;
+    padding: 10px;
+    margin: 10px;
+    background-color: orange;
+    border-radius: 5px;
+    border: 0;
+    cursor: pointer;
+    text-transform: capitalize;
+    text-align: center;
+}
+
+.btn-bar a:hover, .btn-bar button:hover{
+    background-color: #007575;
+    color: white
+}
+
+
+.page-login-submit-main button{
+    text-align: center;
+}
