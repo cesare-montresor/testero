@@ -34,16 +34,12 @@ function ExamList(){
             examList.allTests.map((elem) => {
               return (
                 <li className='page-centered-container-row testList-row' key={elem.id}>
-
                   <div className='page-testlist-row-container btn-bar'>
-
-                      <div className='page-testlist-row-data break-word'>{formatDate(elem.data)}</div>
-                      <div className='page-testlist-row-data test-name'>{elem.nome}</div>
-                
-                      <button aria-label={`Avvia esame ${elem.nome}`} onClick={() => {
-                        navigate(`/${elem.id}/question/0`);
-                      }}>Avvia esame</button>
-
+                    <div className='page-testlist-row-data test-name'>{elem.nome}</div>
+                    <div className='page-testlist-row-data break-word'>{formatDate(elem.data)}</div>
+                    <button aria-label={`Avvia esame ${elem.nome}`} onClick={() => {
+                      navigate(`/${elem.id}/question/0`);
+                    }}>Avvia esame</button>
                   </div>
                 </li>
               )
