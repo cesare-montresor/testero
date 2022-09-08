@@ -22,7 +22,7 @@ function NavBar() {
 
     <header>
         <div className="main-header">
-            <div className="main-header-logo" ><img src="/testero-logo-192.png" alt="Testero logo"/></div>
+            <div className="main-header-logo" ><img src="/testero-logo-192.png" alt=""/></div>
             <div className="main-header-title">Testero&#8482;</div>
         </div>
       {
