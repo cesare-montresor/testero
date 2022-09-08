@@ -12,29 +12,18 @@ function NavBar() {
   }, []);
 
   function changeFocus() {
-      let examList = document.getElementById("list-title");
-      let selectedTest = document.getElementById("question-container-title");
-      let results = document.getElementById("result-title");
-      let addQuestion = document.getElementById("addQuestion-title");
-      let addTest = document.getElementById("addTest-title");
-      if (examList != null)
-          examList.focus();
-      else if(selectedTest != null)
-          selectedTest.focus();
-      else if(results != null)
-          results.focus();
-      else if(addQuestion != null)
-          addQuestion.focus();
-      else if(addTest != null)
-          addTest.focus();
+      let mainElement = document.getElementById("main");
+
+      if (mainElement != null)
+          mainElement.focus();
   }
 
   return (
 
     <header>
         <div className="main-header">
-            <div className="main-header-logo" ><img tabIndex="-1" src="/testero-logo-192.png" alt="Testero logo"/></div>
-            <div className="main-header-title" aria-label={"Nome applicazione: Testero"} role="textbox" >Testero&#8482;</div>
+            <div className="main-header-logo" ><img src="/testero-logo-192.png" alt="Testero logo"/></div>
+            <div className="main-header-title">Testero&#8482;</div>
         </div>
       {
         userInfo && (
@@ -52,8 +41,8 @@ function NavBar() {
               </div>
             </nav>
             <div className="userInfo">
-              <div tabIndex="0" role={"textbox"} className="menu-elem" aria-label={"Nome utente: " + userInfo.username}>Utente: {userInfo.username}</div>
-              <div tabIndex="0" role={"textbox"} className="menu-elem" aria-label={"Livello permessi utente: " + userInfo.roles}>Livello permessi: {userInfo.roles}</div>
+              <div className="menu-elem">Utente: {userInfo.username}</div>
+              <div className="menu-elem">Livello permessi: {userInfo.roles}</div>
             </div>
           </>
         )}
