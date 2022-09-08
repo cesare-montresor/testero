@@ -85,6 +85,9 @@ function SelectedExam(){
     }
     else {
       dispatch({type: "setError", payload: true});
+      setTimeout(function(){
+        dispatch({type: "setError", payload: false});
+      },5000);
     }
   }
 
