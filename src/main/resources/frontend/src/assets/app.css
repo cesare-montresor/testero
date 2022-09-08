@@ -21,8 +21,8 @@ a, a:hover, a:visited, a:active{
 }
 
 :focus {
-    outline: 5px dotted rebeccapurple;
-    border-radius: 0;
+    outline: 3px dashed rebeccapurple;
+    /*border-radius: 0;*/
 }
 
 h1, h2, label, li, .break-word{
@@ -171,19 +171,12 @@ nav {
     justify-content: space-between;
 }
 
-.page-testlist-row-info {
-    width: 80%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
 .page-testlist-row-data{
     margin-right: 20px;
 }
 
 .test-name {
-    width: 80%;
+    width: 60%;
 }
 
 

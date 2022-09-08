@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="it" xmlns:th="http://www.thymeleaf.org" >
 <head>
 
 
@@ -7,11 +7,9 @@
     <div th:replace="head"></div>
 
     <script>
-        function onLoad() {
-            const err = document.getElementsByClassName("error-message");
-            if (err.length > 0) {
-                err[0].focus();
-            }
+        function onLoad(){
+            let field = document.getElementById("page-login-username");
+            if (field != null){ field.focus(); }
         }
     </script>
 
@@ -19,15 +17,14 @@
 
 <body onload="onLoad()">
     <div class="page-content" >
-        <div class="page-login" role="main">
-            <div class="page-login-header">
-                <div class="main-header-logo" ><img src="/testero-logo-192.png" alt="Testero logo"/></div>
-                <h1 class="main-header-title">Testero&#8482;</h1>
-                <h1 class="main-header-title">Login</h1>
-            </div>
+        <header class="page-login-header">
+            <div class="main-header-logo" ><img src="/testero-logo-192.png" alt="Testero logo"/></div>
+            <h1 class="main-header-title" >Testero&#8482;</h1>
+            <h1 class="main-header-title" >Login</h1>
+        </header>
+        <main class="page-login">
             <form th:action="@{/login}" method="post">
                 <div class="form-group">
-                    <!--/*@thymesVar id="errorMessage" type="java.lang.String"*/-->
                     <div class="form-group-row page-login-message" th:utext="${errorMessage}"></div>
                     <div class="form-group-row page-login-username-main">
                         <label for="page-login-username"  id="page-login-username-label">Username</label>
@@ -42,7 +39,7 @@
                     </div>
                 </div>
             </form>
-        </div>
+        </main>
     </div>
 
 </body>
