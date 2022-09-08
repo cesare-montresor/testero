@@ -13,7 +13,7 @@ function NavBar() {
 
   function changeFocus() {
       let examList = document.getElementById("list-title");
-      let selectedTest = document.getElementById("question-title");
+      let selectedTest = document.getElementById("question-container-title");
       let results = document.getElementById("result-title");
       let addQuestion = document.getElementById("addQuestion-title");
       let addTest = document.getElementById("addTest-title");
@@ -33,8 +33,8 @@ function NavBar() {
 
     <header>
         <div className="main-header">
-            <div className="main-header-logo" ><img tabIndex="-1 " src="/testero-logo-192.png" alt="Testero logo"/></div>
-            <div className="main-header-title" aria-label={"Nome applicazione: Testero"} >Testero&#8482;</div>
+            <div className="main-header-logo" ><img tabIndex="-1" src="/testero-logo-192.png" alt="Testero logo"/></div>
+            <div className="main-header-title" aria-label={"Nome applicazione: Testero"} role="textbox" >Testero&#8482;</div>
         </div>
       {
         userInfo && (
