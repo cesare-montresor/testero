@@ -42,9 +42,9 @@ function NavBar() {
             <nav>
               <div className='navlink btn-bar'>
                 <button className="menu-elem" onClick={changeFocus} >Vai al contenuto principale</button>
-                <Link to="/"  className="menu-elem" aria-label={"Torna alla lista dei test"} > Test disponibili </Link>
+                <Link to="/"  className="menu-elem" aria-label="Torna alla lista dei test disponibili" > Test disponibili </Link>
                 {userInfo.roles === "TEACHER" && (
-                  <Link to="/addTest"  className="menu-elem" aria-label={"Aggiungi un test"}> Crea Test </Link>
+                  <Link to="/addTest"  className="menu-elem" aria-label="Crea un test"> Crea Test </Link>
                 )}
               </div>
               <div className="navlink btn-bar">
