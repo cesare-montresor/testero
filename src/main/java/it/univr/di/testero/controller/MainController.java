@@ -49,7 +49,7 @@ public class MainController implements ErrorController {
         if (session != null) {
             AuthenticationException ex = (AuthenticationException) session.getAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
             if (ex != null) {
-                errorMessage += "<div tabindex=\"0\" class=\"error-message\">";
+                errorMessage += "<div role=\"alert\" class=\"error-message\">";
                 errorMessage += "   Errore di autenticazione.";
                 errorMessage += "   </br>";
                 errorMessage += "   Verificare le credenziali e riprovare.";
