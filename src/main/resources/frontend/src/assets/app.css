@@ -99,7 +99,7 @@ h1, h2, label, li, .break-word{
 
 .main-header-title {
     font-size: 30px;
-    padding: 20px 0px;
+    padding: 20px 0;
 }
 
 .page-main{
@@ -151,7 +151,7 @@ nav {
     background-color: #efefef;
     padding: 20px calc(5%);
     text-align: center;
-                color: #b4173e;
+    color: #b4173e;
 }
 
 .testList-row:hover{
@@ -175,12 +175,17 @@ nav {
     width: 80%;
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 
 .page-testlist-row-data{
-    width: 80%;
     margin-right: 20px;
 }
+
+.test-name {
+    width: 80%;
+}
+
 
 /* SELECTED EXAM */
 .page-question-radioButton {

@@ -1,27 +1,27 @@
 ---------------------- TEST ----------------------
 
-INSERT INTO testero_core.test VALUES (1, '2022-09-01T16:35:57.802316', 'Test A', true, true, true);
-INSERT INTO testero_core.test VALUES (2, '2022-09-01T17:12:07.636959', 'Test B', true, false, true);
-INSERT INTO testero_core.test VALUES (3, '2022-09-01T14:30:37.297855', 'Test C', false, true, true);
-INSERT INTO testero_core.test VALUES (4, '2022-09-01T14:30:37.297855', 'Test D', false, false, true);
+INSERT INTO testero_core.test VALUES (1, '2022-09-01T16:35:57.802316', 'Test di Fisica', true, true, true);
+INSERT INTO testero_core.test VALUES (2, '2022-09-01T17:12:07.636959', 'Test di Conoscenza generale', true, false, true);
+INSERT INTO testero_core.test VALUES (3, '2022-09-01T14:30:37.297855', 'Test di Conoscenza generale - parte 2', false, true, true);
+INSERT INTO testero_core.test VALUES (4, '2022-09-01T14:30:37.297855', 'Test di Economia', false, false, true);
 
 ---------------------- DOMANDA ----------------------
 
-INSERT INTO testero_core.domanda VALUES (1, 'Domanda A1', 'Che tempo fa?', 10.00, true, false);
-INSERT INTO testero_core.domanda VALUES (2, 'Domanda A2', 'Che colore è?', 10.00, false, true);
-INSERT INTO testero_core.domanda VALUES (3, 'Domanda A3', 'Che ore sono?', 10.00, false, true);
+INSERT INTO testero_core.domanda VALUES (1, 'Domanda A1', 'Un treno che viaggia alla velocità di 60 km/h attraversa un palo in 9 secondi. Qual è la lunghezza del treno?', 10.00, true, false);
+INSERT INTO testero_core.domanda VALUES (2, 'Domanda A2', 'Un treno lungo 125 m passa un uomo, correndo a 5 km/h nella stessa direzione in cui sta andando il treno, in 10 secondi. La velocità del treno è:', 10.00, false, true);
+INSERT INTO testero_core.domanda VALUES (3, 'Domanda A3', 'La lunghezza del ponte, che un treno lungo 130 metri e che viaggia a 45 km/h può attraversare in 30 secondi, è:', 10.00, false, true);
 
-INSERT INTO testero_core.domanda VALUES (4, 'Domanda B1', 'Dove siamo?', 10.00, false, true);
-INSERT INTO testero_core.domanda VALUES (5, 'Domanda B2', 'Chi sei?', 10.00, true, true);
-INSERT INTO testero_core.domanda VALUES (6, 'Domanda B3', 'Chi sono io?', 10.00, false, false);
+INSERT INTO testero_core.domanda VALUES (4, 'Domanda B1', 'L''entomologia è la scienza che studia: ', 15.00, false, true);
+INSERT INTO testero_core.domanda VALUES (5, 'Domanda B2', 'L''Eritrea, che è diventata il 182° membro delle Nazioni Unite nel 1993, si trova in: ', 7.00, true, true);
+INSERT INTO testero_core.domanda VALUES (6, 'Domanda B3', 'Per quale delle seguenti discipline viene assegnato il Premio Nobel?', 8.00, false, false);
 
-INSERT INTO testero_core.domanda VALUES (7, 'Domanda C1', 'Ma dov`è?', 10.00, false, false);
-INSERT INTO testero_core.domanda VALUES (8, 'Domanda C2', 'Ma perchè?', 10.00, true, true);
-INSERT INTO testero_core.domanda VALUES (9, 'Domanda C3', 'Sette per otto?', 10.00, false, false);
+INSERT INTO testero_core.domanda VALUES (7, 'Domanda C1', 'In quale anno della prima guerra mondiale la Germania dichiarò guerra alla Russia e alla Francia??', 10.00, false, false);
+INSERT INTO testero_core.domanda VALUES (8, 'Domanda C2', 'L''India ha i più grandi depositi di ____ nel mondo.', 10.00, true, true);
+INSERT INTO testero_core.domanda VALUES (9, 'Domanda C3', 'Durante la seconda guerra mondiale, quando la Germania attaccò la Francia?', 10.00, false, false);
 
-INSERT INTO testero_core.domanda VALUES (10, 'Domanda D1', 'Chi siete?', 10.00, true, true);
-INSERT INTO testero_core.domanda VALUES (11, 'Domanda D2', 'Cosa fate portate?', 10.00, false, false);
-INSERT INTO testero_core.domanda VALUES (12, 'Domanda D3', 'Quanti fiorino?', 10.00, true, false);
+INSERT INTO testero_core.domanda VALUES (10, 'Domanda D1', 'Il concetto fondamentale dell''Economia sulle risorse è che le risorse sono: ', 50.00, true, true);
+INSERT INTO testero_core.domanda VALUES (11, 'Domanda D2', 'Chi è considerato il fondatore della Microeconomia?', 20.00, false, false);
+INSERT INTO testero_core.domanda VALUES (12, 'Domanda D3', 'Chi è considerato il fondatore della Macroeconomia moderna?', 30.00, true, false);
 
 ---------------------- IN TEST ----------------------
 
@@ -44,56 +44,58 @@ INSERT INTO testero_core.in_test VALUES (4, 12);
 ---------------------- RISPOSTA ----------------------
 
 ----- Test A
-INSERT INTO testero_core.risposta VALUES (1, 'Sole', 1.0000, 1);
-INSERT INTO testero_core.risposta VALUES (2, 'Pioggia', 0.0000, 1);
-INSERT INTO testero_core.risposta VALUES (3, 'Neve', 0.0000, 1);
+INSERT INTO testero_core.risposta VALUES (1, '150 metri', 1.0000, 1);
+INSERT INTO testero_core.risposta VALUES (2, '200 metri', 0.0000, 1);
+INSERT INTO testero_core.risposta VALUES (3, '100 metri', 0.0000, 1);
+INSERT INTO testero_core.risposta VALUES (4, '300 metri', 0.0000, 1);
+INSERT INTO testero_core.risposta VALUES (5, '10 metri', 0.0000, 1);
 
-INSERT INTO testero_core.risposta VALUES (4, 'Giallo', 0.5000, 2);
-INSERT INTO testero_core.risposta VALUES (5, 'Rosso', 1.0000, 2);
-INSERT INTO testero_core.risposta VALUES (6, 'Verde', 0.0000, 2);
+INSERT INTO testero_core.risposta VALUES (6, '48 km/h', 0.5000, 2);
+INSERT INTO testero_core.risposta VALUES (7, '50 km/h', 1.0000, 2);
+INSERT INTO testero_core.risposta VALUES (8, '59 km/h', 0.0000, 2);
 
-INSERT INTO testero_core.risposta VALUES (7, 'Mezzogiorno', 1.0000, 3);
-INSERT INTO testero_core.risposta VALUES (8, 'Mattina', 0.0000, 3);
-INSERT INTO testero_core.risposta VALUES (9, 'Sera', 0.0000, 3);
+INSERT INTO testero_core.risposta VALUES (9, '2450 dm', 1.0000, 3);
+INSERT INTO testero_core.risposta VALUES (10, '100 m', 0.0000, 3);
+INSERT INTO testero_core.risposta VALUES (11, '245 m', 1.0000, 3);
 
 ----- Test B
-INSERT INTO testero_core.risposta VALUES (10, 'Roma', 0.0000, 4);
-INSERT INTO testero_core.risposta VALUES (11, 'Milano', 0.0000, 4);
-INSERT INTO testero_core.risposta VALUES (12, 'Verona', 1.0000, 4);
+INSERT INTO testero_core.risposta VALUES (12, 'Il comportamento degli esseri umani', 0.0000, 4);
+INSERT INTO testero_core.risposta VALUES (13, 'La formazione delle rocce', 0.0000, 4);
+INSERT INTO testero_core.risposta VALUES (14, 'Gli insetti', 1.0000, 4);
 
-INSERT INTO testero_core.risposta VALUES (13, 'Studente', 0.0000, 5);
-INSERT INTO testero_core.risposta VALUES (14, 'Insegnante', 0.0000, 5);
-INSERT INTO testero_core.risposta VALUES (15, 'Nessuna delle precedenti', 1.0000, 5);
+INSERT INTO testero_core.risposta VALUES (15, 'Europa', 0.0000, 5);
+INSERT INTO testero_core.risposta VALUES (16, 'Asia', 0.0000, 5);
+INSERT INTO testero_core.risposta VALUES (17, 'Africa', 1.0000, 5);
 
-INSERT INTO testero_core.risposta VALUES (16, 'Mario', 0.0000, 6);
-INSERT INTO testero_core.risposta VALUES (17, 'Luigi', 0.0000, 6);
-INSERT INTO testero_core.risposta VALUES (18, 'Computer', 1.0000, 6);
+INSERT INTO testero_core.risposta VALUES (18, 'Fisica e Chimica', 0.3000, 6);
+INSERT INTO testero_core.risposta VALUES (19, 'Psicologia o Medicina', 0.3000, 6);
+INSERT INTO testero_core.risposta VALUES (20, 'Tutte quelle riportate', 1.0000, 6);
 
 ----- Test C
-INSERT INTO testero_core.risposta VALUES (19, 'Lab Alfa', 0.0000, 7);
-INSERT INTO testero_core.risposta VALUES (20, 'Aula H', 0.0000, 7);
-INSERT INTO testero_core.risposta VALUES (21, 'Al clipper', 1.0000, 7);
+INSERT INTO testero_core.risposta VALUES (21, '1916', 0.0000, 7);
+INSERT INTO testero_core.risposta VALUES (22, '1915', 0.0000, 7);
+INSERT INTO testero_core.risposta VALUES (23, '1914', 1.0000, 7);
 
-INSERT INTO testero_core.risposta VALUES (22, 'Per la patria', 0.0000, 8);
-INSERT INTO testero_core.risposta VALUES (23, 'Per la gloria', 0.0000, 8);
-INSERT INTO testero_core.risposta VALUES (24, 'Per i CFU', 1.0000, 8);
+INSERT INTO testero_core.risposta VALUES (24, 'Carbone', 0.0000, 8);
+INSERT INTO testero_core.risposta VALUES (25, 'Oro', 0.0000, 8);
+INSERT INTO testero_core.risposta VALUES (26, 'Mica', 1.0000, 8);
 
-INSERT INTO testero_core.risposta VALUES (25, 'Non siamo a matematica', 0.0000, 9);
-INSERT INTO testero_core.risposta VALUES (26, 'Alexa cosa fa 7 per 8 ?', 0.0000, 9);
-INSERT INTO testero_core.risposta VALUES (27, 'https://www.wolframalpha.com/input/?i=7x8', 1.0000, 9);
+INSERT INTO testero_core.risposta VALUES (27, '1940', 1.0000, 9);
+INSERT INTO testero_core.risposta VALUES (28, '1939', 0.0000, 9);
+INSERT INTO testero_core.risposta VALUES (29, '1941', 0.0000, 9);
 
 ----- Test D
-INSERT INTO testero_core.risposta VALUES (28, 'Siamo due che...', 1.0000, 10);
-INSERT INTO testero_core.risposta VALUES (29, 'No ma sempre uno', 0.5000, 10);
-INSERT INTO testero_core.risposta VALUES (30, 'Ma sono quello di prima', 0.5000, 10);
+INSERT INTO testero_core.risposta VALUES (30, 'Scarse', 1.0000, 10);
+INSERT INTO testero_core.risposta VALUES (31, 'Equamente distribuite', 0.0000, 10);
+INSERT INTO testero_core.risposta VALUES (32, 'Non equamente distribuite', 0.0000, 10);
 
-INSERT INTO testero_core.risposta VALUES (31, 'Caciotta, pane...', 1.0000, 11);
-INSERT INTO testero_core.risposta VALUES (32, 'Forbici e forbinice', 0.0000, 11);
-INSERT INTO testero_core.risposta VALUES (33, 'Coltelli da prosciutto', 0.0000, 11);
+INSERT INTO testero_core.risposta VALUES (33, 'Adam Smith', 1.0000, 11);
+INSERT INTO testero_core.risposta VALUES (34, ' John Keynes', 0.0000, 11);
+INSERT INTO testero_core.risposta VALUES (35, 'Milton Friedman', 0.0000, 11);
 
-INSERT INTO testero_core.risposta VALUES (34, 'Tre fiorini', 0.0000, 12);
-INSERT INTO testero_core.risposta VALUES (35, 'Un fiorino', 1.0000, 12);
-INSERT INTO testero_core.risposta VALUES (36, 'Due fiorini', 0.0000, 12);
+INSERT INTO testero_core.risposta VALUES (36, 'Milton Friedman', 0.0000, 12);
+INSERT INTO testero_core.risposta VALUES (37, ' John Keynes', 1.0000, 12);
+INSERT INTO testero_core.risposta VALUES (38, 'Adam Smith', 0.0000, 12);
 
 
 

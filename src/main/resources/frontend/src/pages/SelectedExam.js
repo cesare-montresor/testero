@@ -44,6 +44,8 @@ function SelectedExam(){
   }
 
   useEffect(() => {
+    document.title = "Svolgimento test - Testero";
+
     api.takeTest(parseInt(urlParams.examId, 10)).then((data) => {
       data["takeTest"].test.domande.forEach((elem) => {
         if(elem.ordineCasuale === true)
@@ -88,55 +90,50 @@ function SelectedExam(){
 
   return (
     <main className={"page-centered-container"}>
-      {state?
-        (
-          <>
-            <h1 tabIndex="0" aria-label={`Nome esame: ${state.test.nome}`}>{state.test.nome}</h1>
+      {state && (
+        <>
+          <h1 tabIndex="0" aria-label={`Nome esame: ${state.test.nome}`} id="question-title">{state.test.nome}</h1>
 
-            <div>
+          <div>
+            {state.error && <ErrorMessage>{"Selezionare una risposta per proseguire"}</ErrorMessage>}
+            <h2 tabIndex="0" className={"page-centered-container-row"} id="question-title"
+                aria-label={(state.test.domandeConNumero? (`Domanda numero ${parseInt(urlParams.questionNum, 10) + 1}: `) : ("Domanda: ") ) + state.currentQuestion.testo}>
 
-              {state.error && <ErrorMessage>{"Selezionare una risposta per proseguire"}</ErrorMessage>}
-              <h2 tabIndex="0" className={"page-centered-container-row"} id="question-title"
-                  aria-label={(state.test.domandeConNumero? (`Domanda numero ${parseInt(urlParams.questionNum, 10) + 1}: `) : ("Domanda: ") ) + state.currentQuestion.testo}>
+              {(state.test.domandeConNumero? (`${parseInt(urlParams.questionNum, 10) + 1}. `) : ("") ) + state.currentQuestion.testo}
+            </h2>
 
-                {(state.test.domandeConNumero? (`${parseInt(urlParams.questionNum, 10) + 1}. `) : ("") ) + state.currentQuestion.testo}
-              </h2>
-
-              <form className={"page-question-radioButton"} tabIndex="0" aria-label={"Lista con "+state.currentQuestion.risposte.length+" risposte"}>
-                  {state.currentQuestion.risposte.map(ans => {
-                    ansNum += 1;
-                    let selected = parseInt(state.currentCompilazioniRisposte.risposta, 10);
-                    return (
-                        <InputRadioButton
-                          type="radio"
-                          className="page-question-radioButton-option"
-                          key={ans.id}
-                          id={ans.id}
-                          label={state.currentQuestion.risposteConNumero? (ansNum).toString() + ". " + ans.testo : ans.testo}
-                          ariaLabel={state.currentQuestion.risposteConNumero? "Risposta numero " + (ansNum).toString() + ": " + ans.testo : "Risposta: " + ans.testo}
-                          value={ans.id}
-                          checked={selected === ans.id}
-                          onChange={selectAnswer} />
-                    )}
+            <form className={"page-question-radioButton"} tabIndex="0" aria-label={"Lista con "+state.currentQuestion.risposte.length+" risposte"}>
+                {state.currentQuestion.risposte.map(ans => {
+                  ansNum += 1;
+                  let selected = parseInt(state.currentCompilazioniRisposte.risposta, 10);
+                  return (
+                      <InputRadioButton
+                        type="radio"
+                        className="page-question-radioButton-option"
+                        key={ans.id}
+                        id={ans.id}
+                        label={state.currentQuestion.risposteConNumero? (ansNum).toString() + ". " + ans.testo : ans.testo}
+                        ariaLabel={state.currentQuestion.risposteConNumero? "Risposta numero " + (ansNum).toString() + ": " + ans.testo : "Risposta: " + ans.testo}
+                        value={ans.id}
+                        checked={selected === ans.id}
+                        onChange={selectAnswer} />
                   )}
-              </form>
-
-              <div className={"page-question-movementButton btn-bar"}>
-                {parseInt(urlParams.questionNum, 10) > 0? (
-                  <button onClick={changeRenderedQuestion}>Domanda precedente</button>
-                ) : (
-                  <></>
                 )}
+            </form>
 
-                <button onClick={changeRenderedQuestion}>
-                  {state.test.domande.length === parseInt(urlParams.questionNum, 10)+1? "Termina esame" : "Domanda successiva"}
-                </button>
-              </div>
+            <div className={"page-question-movementButton btn-bar"}>
+              {parseInt(urlParams.questionNum, 10) > 0 && (
+                <button onClick={changeRenderedQuestion}>Domanda precedente</button>
+              )}
 
+              <button onClick={changeRenderedQuestion}>
+                {state.test.domande.length === parseInt(urlParams.questionNum, 10)+1? "Termina esame" : "Domanda successiva"}
+              </button>
             </div>
-          </>
-        )
-        : (<h1>Caricando</h1>)}
+
+          </div>
+        </>
+        )}
 
     </main>
   );
