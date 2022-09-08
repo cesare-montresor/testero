@@ -29,11 +29,11 @@ function Results(){
 
 
   return(
-    <main className={"page-centered-container"}>
+    <div id="main" role="main" className={"page-centered-container"} aria-labelledby="result-title" tabIndex="-1">
       {
         result && (
           <div>
-            <h1 id="result-title" tabIndex="0">Risultati {result.nomeTest}</h1>
+            <h1 id="result-title">Risultati {result.nomeTest}</h1>
             <div className={"page-results-questionList"}>
               {
                 result.results.map(elem => {
@@ -44,28 +44,27 @@ function Results(){
                   return(
 
                     <div key={questionNum} className={"page-centered-container-row"}>
-                      <h2 tabIndex="0" aria-label={(result.domandeConNumero? (`Domanda numero ${questionNum}: `) : ("Domanda: ") ) + elem.testoDomanda}>{(result.domandeConNumero? (`${questionNum}. `) : ("") ) + elem.testoDomanda}</h2>
-
+                      <h2>{(result.domandeConNumero? (`${questionNum}. `) : ("") ) + elem.testoDomanda}</h2>
 
                       <div className="page-results-questionResult">
-                        <div tabIndex="0" id={`correct-answers-${questionNum}`}>{elem.correctTestoRispostaList.length > 1? "Risposte corrette:" : "Risposta corretta:"}</div>
-                        <ul aria-labelledby={`correct-answers-${questionNum}`}>
+                        <div>{elem.correctTestoRispostaList.length > 1? "Risposte corrette:" : "Risposta corretta:"}</div>
+                        <ul>
                           {
                             elem.correctTestoRispostaList.map((ansText, index) =>
-                                <li tabIndex="0" key={index}>{ansText}</li>)
+                                <li>{ansText}</li>)
                           }
                         </ul>
                       </div>
 
                       <div className="page-results-questionResult">
-                        <div tabIndex="0" id={`selected-answers-${questionNum}`}>{"Risposta selezionata:"}</div>
+                        <div>{"Risposta selezionata:"}</div>
                         <ul>
-                          <li tabIndex="0" aria-labelledby={`selected-answers-${questionNum}`}>{elem.selectedTestoRisposta}</li>
+                          <li>{elem.selectedTestoRisposta}</li>
                         </ul>
                       </div>
                       
-                      <div tabIndex="0" className="page-results-questionResult break-word">{`Punti risposta: ${elem.puntiDomanda}`}</div>
-                      <div tabIndex="0" className="page-results-questionResult break-word">{`Punti ottenuti: ${elem.selectedRispostaPunteggio}`}</div>
+                      <div className="page-results-questionResult break-word">{`Punti risposta: ${elem.puntiDomanda}`}</div>
+                      <div className="page-results-questionResult break-word">{`Punti ottenuti: ${elem.selectedRispostaPunteggio}`}</div>
                     </div>
                   );
                 })
@@ -73,15 +72,15 @@ function Results(){
             </div>
 
             <div className={"page-results-finalScore btn-bar"}>
-              <h2 tabIndex="0" >Punteggio finale</h2>
-              <div tabIndex="0" className={"page-results-finalScore-text break-word"}>{`Punteggio esame: ${testScore}`}</div>
-              <div tabIndex="0" className={"page-results-finalScore-text break-word"}>{`Punteggio utente: ${userScore}`}</div>
+              <h2>Punteggio finale</h2>
+              <div className={"page-results-finalScore-text break-word"}>{`Punteggio esame: ${testScore}`}</div>
+              <div className={"page-results-finalScore-text break-word"}>{`Punteggio utente: ${userScore}`}</div>
               <button
                   onClick={() => navigate("/")} aria-label="Torna alla lista dei test disponibili">Torna alla lista dei test</button>
             </div>
           </div>
         )}
-    </main>
+    </div>
   );
 }
 

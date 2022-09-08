@@ -31,7 +31,6 @@ const InputRadioButton = React.forwardRef((props, ref) => (
              aria-labelledby={props.id + "_label"}
              onChange={props.onChange}/>
       <label id={props.id + "_label"}  htmlFor={ props.id }
-             aria-label={props.ariaLabel}
       >{props.label}</label>
         {props.children}
     </div>

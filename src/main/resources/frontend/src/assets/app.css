@@ -171,19 +171,12 @@ nav {
     justify-content: space-between;
 }
 
-.page-testlist-row-info {
-    width: 80%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
 .page-testlist-row-data{
     margin-right: 20px;
 }
 
 .test-name {
-    width: 80%;
+    width: 60%;
 }
 
 
