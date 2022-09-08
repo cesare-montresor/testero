@@ -53,6 +53,18 @@ public class UserService implements UserDetailsService {
         return userRepository.save(user);
     }
 
+    public boolean isTeacher(){
+        User user = userGet();
+        if (user == null) {return false;}
+        return user.getRoles().equals(UserRoles.TEACHER.name());
+    }
+    public boolean isStudent(){
+        User user = userGet();
+        if (user == null) {return false;}
+        return user.getRoles().equals(UserRoles.STUDENT.name());
+    }
+
+
     public User userGet(Boolean safe) {
         User user = userAuthenticated();
         if ( !safe ){ return user; }
@@ -66,29 +78,17 @@ public class UserService implements UserDetailsService {
     }
 
     public User userGet() {
-        return userGet(true); //TODO: change to false in production
+        return userGet(false);
     }
 
-    public boolean isTeacher(){
-        User user = userGet();
-        if (user == null) {return false;}
-        return user.getRoles().equals(UserRoles.TEACHER.name());
-    }
-    public boolean isStudent(){
-        User user = userGet();
-        if (user == null) {return false;}
-        return user.getRoles().equals(UserRoles.STUDENT.name());
-    }
 
     public User userAuthenticated() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        //TODO remove
         if (! (auth.getPrincipal() instanceof UserAuthDetails )){ return null; } // auth.getPrincipal() returns an empty string when not authenticated
 
         UserAuthDetails details = (UserAuthDetails) auth.getPrincipal();
 
         Optional<User> user = userRepository.findByUsername( details.getUsername() );
-        //TODO remove
         if (user.isEmpty() ) { return null; }
 
         return user.get();

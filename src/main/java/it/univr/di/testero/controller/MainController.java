@@ -58,8 +58,6 @@ public class MainController implements ErrorController {
         }
         model.addAttribute("errorMessage", errorMessage);
         return "login";
-        //return getIndex();
-        //return "redirect:/";
     }
 
     @RequestMapping("/error")

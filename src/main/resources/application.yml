@@ -20,12 +20,12 @@ spring:
       password: testero_resp
       driver-class-name: org.postgresql.Driver
 
-  main:
-    allow-bean-definition-overriding: true
+#  main:
+#    allow-bean-definition-overriding: false
 
   graphql:
     path: /graphql
     graphiql:
-      enabled: true
+      enabled: false
 
 

@@ -58,11 +58,13 @@ public class SecurityConfig {
                 .antMatchers("/*.txt").permitAll()
                 .antMatchers("/*.json").permitAll()
                 .antMatchers("/*.html").permitAll()
+                .antMatchers("/*.css").permitAll()
+                .antMatchers("/*.js").permitAll()
                 .antMatchers("/").permitAll();
 
         // GraphQL
         http.authorizeRequests()
-            .antMatchers("/graphql*").permitAll(); //.authenticated();
+            .antMatchers("/graphql*").authenticated();
 
         // Login/Logout
         http.formLogin().loginPage("/login").permitAll().failureUrl("/login-error");
