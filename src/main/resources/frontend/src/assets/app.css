@@ -21,8 +21,8 @@ a, a:hover, a:visited, a:active{
 }
 
 :focus {
-    outline: 5px dotted rebeccapurple;
-    border-radius: 0;
+    outline: 3px dashed rebeccapurple;
+    /*border-radius: 0;*/
 }
 
 h1, h2, label, li, .break-word{
