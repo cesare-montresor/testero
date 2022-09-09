@@ -18,9 +18,14 @@ function AddTest(){
     });
 
     function saveTest(){
-        const name = nameRef.current.value;
+        const name = nameRef.current.value.trim();
         const order = orderRef.current.checked;
         const numbered = numberedRef.current.checked;
+
+        if(name.length < 3){
+            alert("Errore, il nome del test deve essere lungo almeno 3 caratteri");
+            return;
+        }
 
         api.addTest(name , order, numbered).then((data) => {
             const id = data["addTest"]["id"];

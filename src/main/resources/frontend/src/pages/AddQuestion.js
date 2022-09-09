@@ -61,8 +61,8 @@ function AddQuestion(){
     }
 
     function addQuestion(){
-        const name = nameRef.current.value;
-        const text = textRef.current.value;
+        const name = nameRef.current.value.trim();
+        const text = textRef.current.value.trim();
         const score = parseFloat(scoreRef.current.value);
         const random = randomRef.current.checked;
         const answerNumber = answerNumberRef.current.checked;
@@ -72,6 +72,14 @@ function AddQuestion(){
             return;
         } else if(score <= 0){
             alert("Errore, il punteggio della domanda deve essere maggiore di 0.");
+            return;
+        }
+        if(name.length < 3){
+            alert("Errore, il nome della domande deve essere lungo almeno 3 caratteri");
+            return;
+        }
+        if(text.length < 3){
+            alert("Errore, il testo della domande deve essere lungo almeno 3 caratteri");
             return;
         }
 
@@ -90,6 +98,12 @@ function AddQuestion(){
         for(let i = 0; i < answerRefs.length; i++){
             let answerRef = answerRefs[i];
             let answerScore = answerScores[i];
+            let answerName = answerRef.current.value.trim();
+
+            if(answerName.length < 3){
+                alert("Errore, il testo della risposta "+(i+1)+" deve essere lungo almeno 3 caratteri");
+                return;
+            }
 
             if(isNaN(answerScore)){
                 alert("Errore, il punteggio di ogni risposta deve essere valido.");
