@@ -264,7 +264,7 @@ nav {
 .test-add-main-nome input{
     margin-right: 10px;
     flex-grow: 10;
-    min-width: 0px;
+    min-width: 0;
 }
 
 .test-add-main-nome label{
@@ -301,7 +301,7 @@ nav {
 .test-add-question-main input[type="text"]{
     margin-right: 10px;
     flex-grow: 10;
-    min-width: 0px;
+    min-width: 0;
 }
 
 .test-add-question-main label{
@@ -486,6 +486,26 @@ nav {
         width: min(120px, 30vw);
     }
 
+    /* ADD TEST */
+
+    .test-add{
+        margin-left: calc(4%);
+        margin-right: calc(4%);
+    }
+
+    /* ADD QUESTION */
+    .test-add-question{
+        margin-left: calc(4%);
+        margin-right: calc(4%);
+    }
+
+    .test-add-answer-controls{
+        font-size: min(5.5vw, 16px);
+    }
+
+    .test-add-answer-main-entry-num{
+        font-size: min(5.5vw, 16px);
+    }
 }
 
 @media screen and (max-width: 500px) {

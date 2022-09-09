@@ -73,7 +73,7 @@ function SelectedExam(){
   function changeRenderedQuestion(event) {
     if(state.currentCompilazioniRisposte.risposta !== null) {
       const text = event.target.textContent || event.target.innerText;
-      const newQuestionNum = (text === "Domanda successiva" || text === "Termina esame")? parseInt(urlParams.questionNum, 10) + 1 : parseInt(urlParams.questionNum, 10) - 1;
+      const newQuestionNum = (text === "Domanda successiva" || text === "Termina test")? parseInt(urlParams.questionNum, 10) + 1 : parseInt(urlParams.questionNum, 10) - 1;
 
       api.giveAnswer(state.compilazione.id, state.currentCompilazioniRisposte.domanda, state.currentCompilazioniRisposte.risposta).then(() => {
         window.history.replaceState(null, "", "/");
@@ -140,7 +140,7 @@ function SelectedExam(){
               )}
 
               <button onClick={changeRenderedQuestion}>
-                {state.test.domande.length === parseInt(urlParams.questionNum, 10)+1? "Termina esame" : "Domanda successiva"}
+                {state.test.domande.length === parseInt(urlParams.questionNum, 10)+1? "Termina test" : "Domanda successiva"}
               </button>
             </div>
 
