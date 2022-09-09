@@ -196,7 +196,7 @@ function AddQuestion(){
                 </div>
 
                 <div className='test-add-question-main-controls btn-bar'>
-                    <button type="button" onClick={addQuestion}>Prossima</button>
+                    <button type="button" onClick={addQuestion}>Salva e continua</button>
                     <button type="button" onClick={finishCreation}>Fine</button>
                 </div>
             </div>
