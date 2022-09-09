@@ -53,6 +53,7 @@ function SelectedExam(){
       });
 
       dispatch({type:"initialize", payload: {data: data, questionNum: urlParams.questionNum}});
+      changeFocus();
     }).catch((error) => {
       alert("Errore durante il recupero delle domande.");
     });
