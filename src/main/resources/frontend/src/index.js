@@ -16,44 +16,6 @@ import {ApiTest} from "./pages/ApiTest";
 import "./assets/app.css"
 
 function App() {
-    const [selectedExam, setSelectedExam] = useState({Name: "initial", Questions: [{Text: "initial test"}]});
-    const [questions, setQuestions] = useState(null);
-    const [currentQuestion, setCurrentQuestion] = useState(0);
-
-    useEffect(() => {
-        const data = JSON.parse(window.sessionStorage.getItem("selectedExam"));
-        if(data) {
-            setSelectedExam(data);
-        }
-    }, []);
-
-    useEffect(() => {
-        window.sessionStorage.setItem("selectedExam", JSON.stringify(selectedExam));
-    }, [selectedExam]);
-
-    useEffect(() => {
-        const data = window.sessionStorage.getItem("questions");
-        if(data !== "undefined" && data != null)
-        {
-            setQuestions(JSON.parse(data));
-        }
-    }, []);
-
-    useEffect(() => {
-        window.sessionStorage.setItem("questions", JSON.stringify(questions));
-    }, [questions]);
-
-    useEffect(() => {
-        const data = window.sessionStorage.getItem("currentQuestion");
-
-        if(data !== "undefined" && data != null) {
-            setCurrentQuestion(parseInt(JSON.parse(data)));
-        }
-    }, []);
-
-    useEffect(() => {
-        window.sessionStorage.setItem("currentQuestion", JSON.stringify(currentQuestion));
-    }, [currentQuestion]);
 
     return (
         <BrowserRouter>
@@ -64,7 +26,6 @@ function App() {
                     <Route path="/" element={<ExamList />} />
                     <Route path=":examId/question/:questionNum" element={<SelectedExam />} />
                     <Route path=":examId/results" element={<Results />} />
-                    <Route exact path="/apiTest" element={ <ApiTest/> } />
                     <Route exact path="/addTest"  element={  <AddTest/> } />
                     <Route exact path="/addTest/:id/addQuestion/:num"  element={  <AddQuestion/> } />
                     <Route path="*" element={<NoPage />} />

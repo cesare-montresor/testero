@@ -4,9 +4,6 @@ import {useNavigate, useParams} from 'react-router-dom';
 import {TesteroAPI as api} from "../components/TesteroAPI";
 
 function InputAnswer(props){
-    function removeAnswer(){
-        props.removeAnswer(props.num);
-    }
 
     let scoreRef = React.createRef();
     let answerRef = React.createRef();
@@ -45,15 +42,7 @@ function AddQuestion(){
 
     useEffect(() => {
         document.title = "Creazione domanda test - Testero";
-
-        const data = window.sessionStorage.getItem("currentAnswers");
-
-        if(data) { setCurrentAnswers(JSON.parse(data)); }
     }, [])
-
-    useEffect(() => {
-        window.sessionStorage.setItem("currentAnswers", JSON.stringify(currentAnswers));
-    }, [currentAnswers])
 
     function removeAnswer(){
         if(currentAnswers.length > 2) {
@@ -78,12 +67,11 @@ function AddQuestion(){
         const random = randomRef.current.checked;
         const answerNumber = answerNumberRef.current.checked;
 
-        if(score <= 0){
-            alert("Errore, il punteggio della domanda deve essere maggiore di 0.");
-            return;
-        }
-        else if(isNaN(score)){
+        if(isNaN(score)){
             alert("Errore, il punteggio della domanda non è valido.");
+            return;
+        } else if(score <= 0){
+            alert("Errore, il punteggio della domanda deve essere maggiore di 0.");
             return;
         }
 
@@ -103,19 +91,18 @@ function AddQuestion(){
             let answerRef = answerRefs[i];
             let answerScore = answerScores[i];
 
-            if(answerScore < 0 || answerScore > 1){
-                alert("Errore, il punteggio di ogni risposta deve essere compreso fra 0 e 1.");
-                return;
-            }
-            else if(isNaN(answerScore)){
+            if(isNaN(answerScore)){
                 alert("Errore, il punteggio di ogni risposta deve essere valido.");
+                return;
+            } else if(answerScore < 0 || answerScore > 1){
+                alert("Errore, il punteggio di ogni risposta deve essere compreso fra 0 e 1.");
                 return;
             }
 
             answers.push({testo: answerRef.current.value, punteggio: answerScore});
         }
 
-        api.addQuestion(parseInt(testId), name , text, score, random, answerNumber, answers).then((data) => {
+        api.addQuestion(parseInt(testId, 10), name , text, score, random, answerNumber, answers).then((data) => {
             if(data["addQuestion"]["alreadyExists"]){
                 alert("Errore, il nome della domanda inserito esiste già.");
                 return;
@@ -143,7 +130,7 @@ function AddQuestion(){
                 scoreRef.current.value = "";
             });
 
-            navigate("/addTest/"+testId+"/addQuestion/"+(parseInt(questionId) + 1));
+            navigate("/addTest/"+testId+"/addQuestion/"+(parseInt(questionId, 10) + 1));
         }).catch((error) => {
             alert("Errore durante l'inserimento della domanda.");
         });
@@ -180,7 +167,7 @@ function AddQuestion(){
                         Aggiungi o rimuovi risposte
                     <button type="button" onClick={addAnswer}> + </button>
                     {
-                        (currentAnswers !== null && currentAnswers !== "undefined" && currentAnswers.length > 2) ?
+                        (currentAnswers !== null && currentAnswers.length > 2) ?
                             (<button className='test-remove-answer-main' onClick={removeAnswer}> - </button>)
                             : ('')
                     }
