@@ -42,7 +42,7 @@ function AddTest(){
                     <InputCheckbox label="Domanda con numero" className="test-add-main-numbered" id="test-numbered" ref={numberedRef}/>
 
                     <div className='test-add-main-controls btn-bar'>
-                        <button type="button" onClick={saveTest} >Prossimo</button>
+                        <button type="button" onClick={saveTest} >Salva e continua</button>
                     </div>
                 </div>
             </div>
